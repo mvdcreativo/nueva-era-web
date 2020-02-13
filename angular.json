@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "nueva-era-web": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "nueva-era-web"
+    }
+  },
+  "defaultProject": "nueva-era-web",
+  "cli": {
+    "analytics": "fb33549e-72c1-444c-8702-2cfadaee5c87"
+  }
 }

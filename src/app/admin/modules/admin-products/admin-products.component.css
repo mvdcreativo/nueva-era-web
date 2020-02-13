@@ -1,0 +1,46 @@
+.content {
+  width: 100%;
+}
+.content .mat-card {
+  background-color: white;
+  box-shadow: none !important;
+}
+.content .mat-card .mat-table {
+  width: 100%;
+}
+.content .mat-card .mat-form-field {
+  font-size: 14px;
+  width: 20%;
+  margin-left: 1rem;
+}
+.content .mat-card .image {
+  height: 50px;
+}
+.content .mat-card .btn {
+  background-color: #2d86f7;
+  color: white;
+  margin: 1rem;
+}
+.content .mat-card form .mat-form-field {
+  font-size: 14px;
+  width: 30%;
+  margin-left: 1rem;
+}
+.content .mat-card .acciones {
+  width: 10%;
+}
+.content .mat-card .no-shadow {
+  box-shadow: none;
+  color: #424242;
+  background-color: transparent;
+}
+label {
+  height: 50;
+  align-items: center;
+  padding-top: 10px;
+}
+label .imgPrev {
+  width: 50px;
+  min-height: 50px;
+  cursor: pointer;
+}

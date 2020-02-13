@@ -1,0 +1,27 @@
+<div class="category-contant">
+    <ul>
+        <li *ngFor="let item of categories | async as list">
+            <a routerLinkActive="router-link-active" 
+                
+                
+                [routerLink]="['/productos', item.slug]">
+                {{ item.name }}
+            </a>
+
+        </li>
+    </ul>
+</div>
+
+<!-- <div class="category-contant" style="padding-left: 10%;">
+    <h5>Marcas</h5>
+    <ul>
+        <li *ngFor="let item of brands">
+            <a routerLinkActive="router-link-active" 
+                (click)="navega(item.slug)"
+               >
+                {{ item.name }}
+            </a>
+            
+        </li>
+    </ul>
+</div> -->

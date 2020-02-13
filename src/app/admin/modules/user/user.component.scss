@@ -1,0 +1,89 @@
+.content{
+    width: 100%;
+    
+    .mat-card{
+        
+        .mat-table {
+            width: 100%;
+        }
+    
+        .image{
+            height: 50px;
+        }
+        .btn{
+            background-color: #2D86F7;
+            color: white;
+            margin: 1rem;
+        }
+        
+        .columns{
+            display: grid;
+            grid-template-columns: repeat(1fr, 2);
+            .slideEdit{
+                width: 100%;
+                padding-left: 50%;
+                justify-content: right;
+            }
+            .datos{
+                font-size: 12px;
+                display: grid;
+                .mat-list{
+                    font-size: 12px;
+                    .mat-list.item{
+                        p{
+                            font-size: 12px;
+
+                        }
+
+                    }
+
+                }
+                h2{
+                    font-size: 2em;
+                    padding: 1rem;
+                }
+                h4{
+                    padding: 1rem;
+                }
+                .mat-form-field {
+                    
+                    width: 30%;
+                    margin-left: 1rem;
+
+                }
+                .corto{
+                    width: 15%
+                }
+                .medio{
+                    width: 20%
+                }
+                .content-btn{
+                    width: 100%;
+                }
+            }
+            
+        }
+        
+    }
+    
+    .acciones{
+        width: 13%;
+    }
+    .no-shadow{
+        box-shadow: none;
+        color: #424242;
+        background-color: transparent;
+    }
+}
+label{
+    height: 50;
+    align-items: center;
+    padding-top: 10px;
+    .imgPrev{
+        width: 50px;
+        min-height: 50px;
+        cursor: pointer;
+        // background-image: ;
+    }
+
+}

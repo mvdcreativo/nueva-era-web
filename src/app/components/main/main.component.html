@@ -1,0 +1,42 @@
+<a [routerLink]="[ '/contacto/whatsapp/']" target="_blank" mat-fab class="wsp-btn mat-elevation-z5">
+  <mat-icon svgIcon="ico-wsp" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+</a>
+<div class="sophia-app">
+  <mat-sidenav-container fullscreen>
+    <mat-sidenav [opened]="false" mode="over" #start class="sidenav">
+      <button mat-icon-button color="warn" class="close" (click)="start.close()">
+        <mat-icon color="warn">close</mat-icon>
+      </button>
+      <div class="divider"></div>
+      <div class="sidebar-items" fxLayout="column">
+        <app-sidebar *ngFor="let item of navItems" [item]="item"></app-sidebar>
+      </div>
+    </mat-sidenav>
+    <mat-toolbar class="main-topbar" [ngClass]="{topbar_four: url == '/inicio'}">
+      <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center" class="top-bar container">
+        <span fxHide="false" fxHide.gt-sm>
+          <button mat-icon-button (click)="start.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+        </span>
+        <div fxLayout="row" class="welcome-message">
+
+        </div>
+        <div class="widgets-left" fxLayout="row">
+          <user-actions-component></user-actions-component>
+        </div>
+      </mat-toolbar-row>
+
+    </mat-toolbar>
+
+    <!-- <app-header *ngIf="url == '/home/one' || url == '/home/three' && url != '/home/two' && url != '/home/four' || router.url.includes('pages') || router.url.includes('products') || router.url.includes('blog') || router.url.includes('product')"></app-header>
+  <app-header-two *ngIf="url == '/home/two'  "></app-header-two>
+  <app-header-three *ngIf="url == '/home/four' || url == '/home/four'"></app-header-three> -->
+    <!-- <app-header-four *ngIf="url == '/home/five' || url == '/home/five'"></app-header-four> -->
+    <app-header-four></app-header-four>
+    <router-outlet></router-outlet>
+    <!-- <app-footer></app-footer> -->
+    
+    <app-footer-one></app-footer-one>
+  </mat-sidenav-container>
+</div>

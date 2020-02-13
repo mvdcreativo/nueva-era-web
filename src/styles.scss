@@ -1,1 +1,93 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* You can add global styles to this file, and also import other style files */
+@import '~swiper/dist/css/swiper.min.css';
+@import '../node_modules/@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Color 1 scss
+@import './assets/scss/color1.scss';
+
+
+///////////////////
+//custom
+* {
+    box-sizing: border-box;
+  }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.mat-drawer,.mat-drawer-side,.mat-drawer-opened{
+    border: none!important;
+    // -webkit-box-shadow: 2px 0px 6px -2px rgba(0,0,0,0.75);
+    // -moz-box-shadow: 2px 0px 6px -2px rgba(0,0,0,0.75);
+    // box-shadow: 2px 0px 6px -2px rgba(0,0,0,0.75);
+  }
+  .mat-row,.mat-header-row{
+      display: table-row;
+      border: none!important;
+      width: 100%;
+      box-sizing: border-box;
+  }
+
+
+///////////////////
+//SNACK_BARR COLORES
+
+.toastSuccess{
+    background-color:  #42a847;
+}
+.toastWarn{
+    background-color: #bc5100;
+}
+.toastError{
+    background-color:  #d50000;
+}
+
+.acciones{
+    
+    
+    button{
+        float: left;
+    }
+    .ico-edit{
+        color: #bc5100;
+        float: left;
+    }
+    .ico-ver´{
+        color: #555555;
+        float: left;
+    }
+}
+
+///////////////
+
+
+
+
+
+.main-topbar{
+    min-height: none!important;
+}
+
+.wsp-btn{
+    background-color: #25D366!important;
+    position: fixed!important;
+    z-index: 1000;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0!important;
+    .mat-button-wrapper{
+        padding-top:0.7rem!important;
+
+
+    }
+    .mat-icon{
+        width: 36px!important;
+        height: 36px!important;
+    }
+}
+
+
+
+

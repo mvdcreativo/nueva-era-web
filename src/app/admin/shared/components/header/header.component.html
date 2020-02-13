@@ -1,0 +1,18 @@
+<mat-toolbar >
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="toggleSideBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <span> <img src="assets/images/logo.svg" width="200" style="margin-bottom: -5px;"> </span>
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="flex-end">
+            <ul fxLayout="row" fxLayoutGap="20px">
+                <li>
+                    <user-actions-component></user-actions-component>
+
+                </li>
+            </ul>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

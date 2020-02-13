@@ -1,0 +1,12 @@
+ul li {
+  list-style: none;
+  min-width: 200px;
+}
+.mat-toolbar{
+  background-color: #1b1b1b;
+  .mat-toolbar-row{
+    .mat-icon-button{
+      color: white;
+    }
+  }
+}

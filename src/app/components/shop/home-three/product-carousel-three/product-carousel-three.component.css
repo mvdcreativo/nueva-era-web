@@ -1,0 +1,26 @@
+.mat-card {
+  min-height: 350px;
+}
+.mat-card .product-img {
+  padding: 0px;
+  background-color: white !important;
+}
+.mat-card .product-img img {
+  max-width: 75%;
+}
+.mat-card .product-info-wrapper {
+  padding: 0.5rem !important;
+  margin-bottom: auto;
+  flex-grow: 1;
+}
+.mat-card .product-info-wrapper .title-wrap h4 {
+  font-size: 0.9em;
+  font-weight: 300;
+  white-space: normal;
+}
+.mat-card .product-info-wrapper .price-wrap {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 0.8rem;
+  width: calc(100% - 1rem);
+}

@@ -1,0 +1,62 @@
+<button class="btn-close" mat-mini-fab aria-label="Agregar Nuevo" (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+</button>
+<form [formGroup]="formAdd">
+    <h1 mat-dialog-title>Artículo
+    </h1>
+    <div class="imagePreview">
+        <label for="image">
+            <img class="" [src]="imageSrc || '../../../../assets/images/no-image-icon.png'" />
+            <!-- <a mat-button class="btn">
+                    <i class="material-icons">add_photo_alternate</i> 
+                    Imagen
+                </a> -->
+        </label>
+        <input type="file" (change)="changeImage($event)" hidden id="image">
+    </div>
+    <mat-form-field class="c2">
+        <input formControlName="name" matInput placeholder="Título del Producto">
+    </mat-form-field>
+    <mat-form-field class="c2">
+        <mat-label>Categoría</mat-label>
+        <mat-select formControlName="category_id">
+            <mat-option>Selecciona</mat-option>
+            <mat-option *ngFor="let option of categories" [value]="option.id">{{ option.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="c2">
+        <mat-label>Marca</mat-label>
+        <mat-select formControlName="brand_id">
+            <mat-option>Selecciona</mat-option>
+            <mat-option *ngFor="let option of brands" [value]="option.id">{{ option.name }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="c1">
+        <input formControlName="price" matInput placeholder="Precio">
+        <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="c1">
+        <input formControlName="discount" matInput placeholder="Descuento">
+        <span matPrefix>%&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="c1">
+        <input formControlName="price_mayorista" matInput placeholder="Precio Mayorista">
+        <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+    <mat-form-field class="c1">
+        <input formControlName="stock" matInput placeholder="stock">
+    </mat-form-field>
+    <mat-form-field class="c4">
+        <mat-label>Descripción</mat-label>
+        <textarea formControlName="description" matInput
+            placeholder="Ingresar descripcón del Artículo"></textarea>
+    </mat-form-field>
+
+
+    <button *ngIf="!edit" class="btn" (click)="enviar()" [disabled]="!formAdd.valid"
+        mat-button>Agregar</button>
+    <button *ngIf="edit" class="btn" (click)="enviar()" [disabled]="!formAdd.valid"
+        mat-button>Guardar Cambio</button>
+
+
+</form>

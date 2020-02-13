@@ -1,0 +1,71 @@
+.content {
+  width: 100%;
+}
+.content .mat-card .mat-table {
+  width: 100%;
+}
+.content .mat-card .image {
+  height: 50px;
+}
+.content .mat-card .btn {
+  background-color: #2d86f7;
+  color: white;
+  margin: 1rem;
+}
+.content .mat-card .columns {
+  display: grid;
+  grid-template-columns: repeat(1fr, 2);
+}
+.content .mat-card .columns .slideEdit {
+  width: 100%;
+  padding-left: 50%;
+  justify-content: right;
+}
+.content .mat-card .columns .datos {
+  font-size: 12px;
+  display: grid;
+}
+.content .mat-card .columns .datos .mat-list {
+  font-size: 12px;
+}
+.content .mat-card .columns .datos .mat-list .mat-list.item p {
+  font-size: 12px;
+}
+.content .mat-card .columns .datos h2 {
+  font-size: 2em;
+  padding: 1rem;
+}
+.content .mat-card .columns .datos h4 {
+  padding: 1rem;
+}
+.content .mat-card .columns .datos .mat-form-field {
+  width: 30%;
+  margin-left: 1rem;
+}
+.content .mat-card .columns .datos .corto {
+  width: 15%;
+}
+.content .mat-card .columns .datos .medio {
+  width: 20%;
+}
+.content .mat-card .columns .datos .content-btn {
+  width: 100%;
+}
+.content .acciones {
+  width: 13%;
+}
+.content .no-shadow {
+  box-shadow: none;
+  color: #424242;
+  background-color: transparent;
+}
+label {
+  height: 50;
+  align-items: center;
+  padding-top: 10px;
+}
+label .imgPrev {
+  width: 50px;
+  min-height: 50px;
+  cursor: pointer;
+}
