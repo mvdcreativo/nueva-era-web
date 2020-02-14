@@ -35,6 +35,11 @@ export class AuthService {
   public get errorValue(): any {
     return this.errorSubject.value;
   }
+
+
+  findUser(id){
+    return this.http.get<User>(`${environment.API}auth/users/${id}`)
+  }
   
   register(credentials: User): Observable<CurrentUser> {
     return this.http.post<any>(`${environment.API}auth/signup`, credentials)

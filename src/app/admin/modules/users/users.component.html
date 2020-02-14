@@ -4,34 +4,38 @@
         <ng-template #muestra>
             <form [formGroup]="formAdd">
                 <mat-form-field class="add">
-                    <input formControlName="name" type="text" matInput placeholder="Nombre" [readonly]="readOnly">
+                    <input formControlName="name" type="text" matInput placeholder="Nombre">
                 </mat-form-field>
                 <mat-form-field class="add">
-                    <input formControlName="email" type="email" matInput placeholder="Correo eléctronico" [readonly]="readOnly">
+                    <input formControlName="email" type="email" matInput placeholder="Correo eléctronico" >
                 </mat-form-field>
                 <mat-form-field class="corto">
-                    <input formControlName="phone" type="number" matInput placeholder="Teléfono" [readonly]="readOnly">
+                    <input formControlName="phone" type="number" matInput placeholder="Teléfono">
                 </mat-form-field>
-                <mat-form-field class="corto">
-                    <input formControlName="role" type="text"  matInput placeholder="Privilegios" [readonly]="readOnly">
+                <mat-form-field  class="corto">
+                    <mat-select placeholder="Tipo de usuario" formControlName="role">
+                        <mat-option *ngFor="let item of tipoUser" [value]="item.value">
+                            {{item.name}}
+                        </mat-option>
+                    </mat-select>
                 </mat-form-field>
                 <mat-form-field class="add">
-                    <input formControlName="address" type="text" matInput placeholder="Dirección" [readonly]="readOnly">
+                    <input formControlName="address" type="text" matInput placeholder="Dirección">
                 </mat-form-field>
                 <mat-form-field class="medio">
-                    <input formControlName="city" type="text" matInput placeholder="Ciudad" [readonly]="readOnly">
+                    <input formControlName="city" type="text" matInput placeholder="Ciudad">
                 </mat-form-field>
                 <mat-form-field class="corto">
-                    <input formControlName="ci" type="text" matInput placeholder="Doc. de Identidad" [readonly]="readOnly">
+                    <input formControlName="ci" type="text" matInput placeholder="Doc. de Identidad">
                 </mat-form-field>
                 <mat-form-field class="medio">
-                    <input formControlName="rut"  type="number" matInput placeholder="R.U.T." [readonly]="readOnly">
+                    <input formControlName="rut"  type="number" matInput placeholder="R.U.T.">
                 </mat-form-field>
                 <mat-form-field class="add">
-                    <input formControlName="company"  type="text" matInput placeholder="company" [readonly]="readOnly">
+                    <input formControlName="company"  type="text" matInput placeholder="company">
                 </mat-form-field>
                 <mat-form-field class="corto">
-                    <input formControlName="discount" type="number" matInput placeholder="Descuento" [readonly]="readOnly">
+                    <input formControlName="discount" type="number" matInput placeholder="Descuento">
                     <span matPrefix>%&nbsp;</span>
                 </mat-form-field>
                 
@@ -84,18 +88,26 @@
             <!-- name Column -->
             <ng-container matColumnDef="role">
                 <th mat-header-cell *matHeaderCellDef> Privilegios </th>
-                <td mat-cell *matCellDef="let element"  >{{element.role}} </td>
+                <td mat-cell *matCellDef="let element"  >{{element.roleName}} </td>
             </ng-container>
 
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef> Accioes </th>
                 <td class="acciones" mat-cell *matCellDef="let element">
-                    <button mat-icon-button color="warn" aria-label="Eliminar Registro" (click)="deleteReg(element.id)">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-icon-button [matMenuTriggerFor]="menuAcciones" aria-label="Acciones">
+                        <mat-icon>more_vert</mat-icon>
                     </button>
-                    <button mat-icon-button class="ico-ver" aria-label="Editar Registro" (click)="openEdit(element)">
-                        <mat-icon>remove_red_eye</mat-icon>
-                    </button>
+                    <mat-menu #menuAcciones="matMenu">
+                        <button mat-menu-item (click)="openEdit(element)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar Registro</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteReg(element.id)">
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar Registro</span>
+                        </button>
+
+                    </mat-menu>
                 </td>
             </ng-container>
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -1,9 +1,9 @@
 <div class="content">
     <mat-card>
 
-        <div class="columns">
+        <div class="columns" *ngIf="currenUser">
             <div class="slideEdit">
-                <mat-slide-toggle class="btn-edit" (click)="changeEdit()" >
+                <mat-slide-toggle class="btn-edit" [checked]= "checked" (change)="changeEdit()">
                     Editar mis Datos
                 </mat-slide-toggle>
             </div>
@@ -14,7 +14,7 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
                 <mat-form-field class="add">
-                    <input formControlName="email" type="email" matInput placeholder="Correo eléctronico" disabled >
+                    <input formControlName="email" type="email" matInput placeholder="Correo eléctronico" >
                 </mat-form-field>
                 <mat-form-field class="corto">
                     <input formControlName="phone" type="number" matInput placeholder="Teléfono">

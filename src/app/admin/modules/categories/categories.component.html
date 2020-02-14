@@ -1,5 +1,8 @@
 <div class="content">
+    
     <mat-card>
+        <mat-card-title>Categorias</mat-card-title>
+        
         <ng-container *ngIf="mostrar; then muestra; else oculto"></ng-container>
         <ng-template #muestra>
             <form [formGroup]="formAdd">
@@ -43,12 +46,20 @@
             <ng-container matColumnDef="acciones">
                 <th mat-header-cell *matHeaderCellDef> Accioes </th>
                 <td class="acciones" mat-cell *matCellDef="let element">
-                    <button mat-icon-button color="warn" aria-label="Eliminar Registro" (click)="deleteReg(element.id)">
-                        <mat-icon>delete</mat-icon>
+                    <button mat-icon-button [matMenuTriggerFor]="menuAcciones" aria-label="Acciones">
+                        <mat-icon>more_vert</mat-icon>
                     </button>
-                    <button mat-icon-button class="ico-edit" aria-label="Editar Registro" (click)="openEdit(element)">
-                        <mat-icon>edit</mat-icon>
-                    </button>
+                    <mat-menu #menuAcciones="matMenu">
+                        <button mat-menu-item (click)="openEdit(element)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar Registro</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteReg(element.id)">
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar Registro</span>
+                        </button>
+
+                    </mat-menu>
                 </td>
             </ng-container>
 

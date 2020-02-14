@@ -11,6 +11,15 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+
+  tipoUser = [
+    {name: "Usuario", value: "USER"},
+    {name: "Usuario Mayorista", value: "UMAY"},
+    {name: "Administrador", value: "ADM"},
+    
+  ]
+
+
   user: User[];
   displayedColumns: string[] = ['id', 'name','email','phone','role','acciones'];
   dataSource: any;
@@ -20,6 +29,7 @@ export class UsersComponent implements OnInit {
   edit: boolean;
   idUpdate: number = null;
   readOnly: boolean = true;
+  usersConRoles: User[];
 
   constructor(
     private _userService: UserService,
@@ -36,7 +46,7 @@ export class UsersComponent implements OnInit {
   createForm() {
     this.formAdd = this.fb.group({
       name: [null, Validators.required],
-      email:[null, Validators.required],
+      email: [{value : null, disabled: true }],
       role:[null],
       address:[null],
       city:[null],
@@ -56,7 +66,20 @@ export class UsersComponent implements OnInit {
         this.user = res.reverse();
         // console.log(res);
 
-        this.dataSource = new MatTableDataSource(this.user);
+        const data = this.user.map((a:any)=> {
+          
+          let role = this.tipoUser.filter(x => x.value === a.role).map(v => v.name)[0]
+         console.log(role);
+         a.roleName = role
+          
+          return a
+        }) 
+          
+        
+        console.log(this.usersConRoles);
+        
+        this.dataSource = new MatTableDataSource(data);
+        
       }
     );
   }
@@ -107,7 +130,7 @@ export class UsersComponent implements OnInit {
     this.formAdd.setValue(
       {
         name: element.name,
-        email:element.email,
+        email: [element.email],
         role: element.role,
         address: element.address,
         city: element.city,

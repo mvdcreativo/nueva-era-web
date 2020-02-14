@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
   edit: boolean = false;
   mostrar: boolean = false;
   typeUser: any;
-  checked : boolean = false
+  checked: boolean= false
   
 
 
@@ -31,17 +31,21 @@ export class UserComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.getUser();
-
   }
-  getUser() {
-    this._authSerice.currentUser.subscribe(
-      user => {
-        this.currenUser = user.user
-        this.createForm();
-        this.getTypeUser(user.user.role)
 
+  getUser() {
+    const user_id = this._authSerice.currentUserValue.user.id
+    console.log(user_id);
+    
+    this._authSerice.findUser(user_id).subscribe(
+      user => {
+        console.log(user);
+        
+        this.currenUser = user
+        this.createForm();
+        this.getTypeUser(user.role)
+        this.edit= false
       }
     )
   }
@@ -49,7 +53,7 @@ export class UserComponent implements OnInit {
   createForm() {
     this.formAdd = this.fb.group({
       name: this.currenUser.name,
-      email: this.currenUser.email,
+      email: [{value : this.currenUser.email, disabled: true }],
       address: this.currenUser.address,
       city: this.currenUser.city,
       phone: this.currenUser.phone,
@@ -71,6 +75,9 @@ export class UserComponent implements OnInit {
         console.log(res);
         this._userService.openSnackBar('success', `Tipo ${res.name} Actualizado con éxito!!`)
         this.formAdd.reset();
+        this.checked= false
+        this.getUser()
+        
 
       },
       err => {
@@ -100,9 +107,12 @@ export class UserComponent implements OnInit {
   }
 
   changeEdit(){
-    
-      this.edit = !this.edit
-    
+ 
+    this.checked =  !this.checked 
+    console.log(this.checked);
+      this.edit = !this.edit;
+      // this.checked = !this.edit
+   
   }
 
   oculta(estado) {
