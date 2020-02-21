@@ -4,7 +4,7 @@
             <mat-card fxLayout="column">
                 <div class="product-img">
                     <a class="product-link" [routerLink]="['/producto', product.slug]">
-                      <img [src]="urlImg+product.picture || urlFiles+product.picture">
+                      <img [src]="urlFiles+product.picture">
                    </a>
                 </div>
                  <div class="product-info-wrapper">
