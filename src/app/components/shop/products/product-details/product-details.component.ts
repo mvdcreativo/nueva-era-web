@@ -29,7 +29,7 @@ export class ProductDetailsComponent implements OnInit {
   public zoomImage: any;
 
   public counter            :   number = 1;
-  urlImg: string = environment.urlImg;
+  urlFiles: string = environment.urlFiles;
   
   index: number;
   bigProductImageIndex = 0;
