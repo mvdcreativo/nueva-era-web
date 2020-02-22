@@ -98,19 +98,28 @@ export class AuthService {
 
   logout() {
     console.log('logoutService');
-    
+
     return this.http.get<any>(`${environment.API}auth/logout`)
     .pipe(
-      map( res => {
+      take(1)
+    ).subscribe( res => {
         console.log(res);
         // remove user from local storage to log user out
         localStorage.removeItem('cartItem');
         localStorage.removeItem('currentUser');
         this.currentUserSubject.next(null);
         this.router.navigate(['/']);
-      }),
-    );
-
-  }
+      },
+      error => {
+        localStorage.removeItem('cartItem');
+        localStorage.removeItem('currentUser');
+        this.currentUserSubject.next(null);
+        this.router.navigate(['/']);
+      }
+      
+      )
+    
+    
+    }
 
 }

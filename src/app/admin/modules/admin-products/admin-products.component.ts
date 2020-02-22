@@ -189,7 +189,7 @@ export class AdminProductsComponent implements OnInit {
     this._productService.updateProducto(id, data).subscribe(
       res => {
         console.log(res);
-        this._productService.openSnackBar('success', `Marca ${res.name} Actualizado con éxito!!`)
+        this._productService.openSnackBar('success', `Producto ${res.name} Actualizado con éxito!!`)
         this.getProduct()
         this.mostrar = false;
         this.idUpdate = null;

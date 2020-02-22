@@ -1,7 +1,25 @@
-a{
-    cursor: pointer;
+.category-content{
+    ul{
+        padding-left: 10%;
+        li{
+            a{
+                cursor: pointer;
+                font-weight: 400;
+                color: black;
+                display: grid;
+                grid-template-columns: 30px auto;
+                column-gap: 5px;
+                align-items: center;
+                margin-bottom: 10px;
+                padding-top: 2px;
+                .mat-icon{
+                    padding:-2px;
+                }
+                &:hover{
+                    color:#ffc111
+                }
+            }
+        }
+    }
+}
 
-}
-ul{
-    padding-left: 10%;
-}

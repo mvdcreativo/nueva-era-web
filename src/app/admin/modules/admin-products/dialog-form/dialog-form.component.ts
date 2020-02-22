@@ -61,8 +61,8 @@ export class DialogFormComponent implements OnInit {
       name: [null, Validators.required],
       price: [null, Validators.required],
       name_concat:[null],
-      price_mayorista: [null],
-      discount: [null],
+      price_mayorista: [0],
+      discount: [0],
       picture: [null],
       description: [null],
       stock: [null, Validators.required],
@@ -77,14 +77,27 @@ export class DialogFormComponent implements OnInit {
     
     this.edit = false;
     this.edit = true;
+    var discount
+    if(element.discount === null){
+      discount = 0;
+    }else{
+      discount = element.discount;
+    }
+    var price_mayorista
+    if(element.price_mayorista === null){
+      price_mayorista = 0;
+    }else{
+      price_mayorista = element.discount;
+    }
+
     this.formAdd.patchValue(
       {
         id: element.id,
         name: element.name,
         price: element.price,
         name_concat:element.name_concat,
-        price_mayorista: element.price_mayorista,
-        discount: element.discount,
+        price_mayorista: price_mayorista,
+        discount: discount,
         description: element.description,
         stock: element.stock,
         brand_id: element.brand_id,

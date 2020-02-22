@@ -4,7 +4,6 @@
             <div fxFlex="25" fxFlex.lt-sm="100" class="filter-sidenav" perfectScrollbar>
                 <div class="toggles-wrapper" fxLayout="column" fxLayout.lt-md="column">
                     <div class="toggles" fxFlex.lt-md="100">
-                        <mat-accordion>
                             <mat-card>
                                 <mat-card-header>
                                     <mat-card-title>Productos</mat-card-title>
@@ -18,7 +17,7 @@
                             </mat-card>
                             <mat-card>
                                 <mat-card-header>
-                                    <mat-card-title>Marcas</mat-card-title>
+                                    <mat-card-title>Marcas Destacadas</mat-card-title>
                                 </mat-card-header>
                                 <div class="brands">
                                     <app-brands (brandChanged)="onBrendsChanged($event)"></app-brands>
@@ -39,7 +38,6 @@
                                 </div>
                             </mat-expansion-panel> -->
 
-                        </mat-accordion>
                     </div>
                     <!-- <div class="popular-products" fxFlex.lt-md="100">
                         <app-popular-products></app-popular-products>
@@ -78,7 +76,7 @@
                         </button> -->
                     </div>
                 </div>
-                <div [@Animation]="animation" fxLayout="row wrap" class="products-wrapper">
+                <div fxLayout="row wrap" class="products-wrapper">
                     <div *ngFor="let products of allItems | orderBy:sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
                         fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                         <div class="product-box">

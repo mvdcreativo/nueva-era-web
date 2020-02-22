@@ -449,7 +449,7 @@ p.adam {
 }
 @media (max-width: 1440px) {
   .content {
-    width: 73%;
+    width: 100%;
   }
 }
 @media (max-width: 1366px) {
@@ -467,7 +467,7 @@ p.adam {
 }
 @media (max-width: 1080px) {
   .content {
-    width: 80%;
+    width: 100%;
   }
   .footer h3 {
     font-size: 19px;
@@ -500,7 +500,7 @@ p.adam {
     padding: 2em 2em;
   }
   .content {
-    width: 82%;
+    width: 100%;
   }
   .main h1 {
     font-size: 33px;
@@ -518,7 +518,7 @@ p.adam {
 }
 @media (max-width: 800px) {
   .content {
-    width: 88%;
+    width: 100%;
   }
   .footer.one p {
     font-size: 13px;
@@ -540,7 +540,7 @@ p.adam {
 }
 @media (max-width: 768px) {
   .content {
-    width: 90%;
+    width: 100%;
   }
   p.footer-gd {
     font-size: 13px;

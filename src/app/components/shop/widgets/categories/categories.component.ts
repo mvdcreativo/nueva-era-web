@@ -4,6 +4,8 @@ import { BrandService } from 'src/app/admin/modules/brands/services/brand.servic
 import { Router } from '@angular/router';
 import { Product } from 'src/app/modals/product.model';
 import { Brand } from 'src/app/admin/modules/brands/interfaces/brand';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-categories',
@@ -17,8 +19,28 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private _categoryServices : CategoryService,
     private _brandServices: BrandService,
-    public router : Router 
-  ) { }
+    public router : Router,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer
+
+  ) { 
+    this.matIconRegistry.addSvgIcon(
+      "perros",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-perro.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "gatos",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "accesorios",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-accesorios.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "promociones",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
+    );
+  }
 
   ngOnInit() {
 

@@ -17,9 +17,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                 if(err.error.message === "Unauthorized"){
                     this.authService.errorSubject.next('Usuario o contraseña incorrectos')
                 }
-                this.authService.logout().subscribe(
-                    res => console.log(res)
-                  );
+                this.authService.logout()
                 // location.reload(true);
 
             }

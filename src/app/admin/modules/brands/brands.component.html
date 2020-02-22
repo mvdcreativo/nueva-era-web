@@ -8,26 +8,31 @@
                 <mat-form-field class="add">
                     <input formControlName="name" matInput placeholder="Nueva Marca">
                 </mat-form-field>
+                <div class="image-content">
                     <label for="image">
-                        <img class="imgPrev" [src]="imageSrc || '../../../../assets/images/no-image-icon.png'"/>
+                        <img class="imgPrev" [src]="imageSrc || '../../../../assets/images/no-image-icon.png'" />
                         <!-- <a mat-button class="btn">
                             <i class="material-icons">add_photo_alternate</i> 
                             Imagen
                         </a> -->
                     </label>
                     <input type="file" (change)="changeImage($event)" hidden id="image">
-                
-                    <button *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid" mat-button>Agregar</button>
-                    <button *ngIf="edit" class="btn" (click)="update(idUpdate)" [disabled]="!formAdd.valid" mat-button>Guardar Cambio</button>
+                </div>
 
-                    <button class="no-shadow" mat-mini-fab aria-label="Agregar Nuevo" (click)="oculta(mostrar = !mostrar)">
-                        <mat-icon>close</mat-icon>
-                    </button>
+                <mat-slide-toggle [checked] = "checkedValue" (change)="destacar($event)" >Destacada</mat-slide-toggle>
+
+                <button *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid"
+                    mat-button>Agregar</button>
+                <button *ngIf="edit" class="btn" (click)="update(idUpdate)" [disabled]="!formAdd.valid"
+                    mat-button>Guardar Cambio</button>
+
+                <button class="no-shadow" mat-mini-fab aria-label="Agregar Nuevo" (click)="oculta(mostrar = !mostrar)">
+                    <mat-icon>close</mat-icon>
+                </button>
             </form>
         </ng-template>
         <ng-template #oculto>
-            <button class="btn" mat-mini-fab aria-label="Agregar Nuevo"
-            (click)="mostrar = !mostrar">
+            <button class="btn" mat-mini-fab aria-label="Agregar Nuevo" (click)="mostrar = !mostrar">
                 <mat-icon>add</mat-icon>
             </button>
         </ng-template>
@@ -53,8 +58,15 @@
             <!-- name Column -->
             <ng-container matColumnDef="image_url">
                 <th mat-header-cell *matHeaderCellDef> Logo </th>
-                <td mat-cell *matCellDef="let element"> 
-                    <img class="image" [src]="urlFiles+element.image_url" alt=""> 
+                <td mat-cell *matCellDef="let element">
+                    <img class="image" [src]="urlFiles+element.image_url" alt="">
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="destacada">
+                <th mat-header-cell *matHeaderCellDef> Destacada </th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle [checked] = "element.destaca ? true:false" (change)="destacarUpdatate($event,element.id)" ></mat-slide-toggle>
                 </td>
             </ng-container>
 

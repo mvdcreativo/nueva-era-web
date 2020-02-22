@@ -14,7 +14,7 @@ import { BrandService } from './services/brand.service';
 })
 export class BrandsComponent implements OnInit {
   brand: Brand [];
-  displayedColumns: string[] = ['id', 'name', 'image_url', 'acciones' ];
+  displayedColumns: string[] = ['id', 'name', 'image_url', 'destacada', 'acciones' ];
   dataSource: any;
   formAdd : FormGroup
   mostrar :boolean = false;
@@ -23,6 +23,8 @@ export class BrandsComponent implements OnInit {
   idUpdate: any;
   edit: boolean;
   imageSrc: string | ArrayBuffer;
+  destacada: any;
+  checkedValue: boolean;
 
   constructor(
     private _branService : BrandService,
@@ -64,9 +66,14 @@ export class BrandsComponent implements OnInit {
   addBrand(){
     const data = this.formAdd.value;
     const formData = new FormData();
+    if (this.selectedImage) {
+      formData.append('image_url', this.selectedImage[0])
+    }
 
-    formData.append('image_url', this.selectedImage[0]),
     formData.append('name', data.name )
+
+    formData.append('destaca', this.destacada)
+
     console.log(this.selectedImage[0]);
     console.log(data);
     
@@ -93,7 +100,7 @@ export class BrandsComponent implements OnInit {
   deleteReg(id:number){
     this._branService.deleteBrand(id).subscribe(
       res => {
-        this._branService.openSnackBar('success', `Tipo "${res.name}" eliminado con éxito!!`)
+        this._branService.openSnackBar('success', `Marca "${res.name}" eliminada con éxito!!`)
         this.getBrand()
         this.formAdd.reset();
         this.mostrar = false;
@@ -120,6 +127,7 @@ export class BrandsComponent implements OnInit {
           name: element.name,
         }
       )
+      this.checkedValue = element.destaca ? true:false;
 
 
       this.idUpdate = element.id;
@@ -135,7 +143,11 @@ export class BrandsComponent implements OnInit {
       console.log(data);
       
       formData.append('_method', 'PUT')
-      formData.append('image', this.selectedImage[0])
+      if (this.selectedImage) {
+        formData.append('image_url', this.selectedImage[0])
+      }
+      formData.append('destaca', this.destacada)
+
       formData.append('name', data.name )
       console.log(formData.get('name'));
       
@@ -180,29 +192,37 @@ export class BrandsComponent implements OnInit {
       console.log(selectedFiles);
       console.log(this.formAdd.value);
 
-
-      
-      // console.log(this.files);
-      
-
-      // this._publishService.uploadImage(this.publicationID, selectedFiles, index)
-      // .subscribe(
-      //   (event: HttpEvent<Object>) => {
-          
-      //     // console.log(event);
-      //     if (event.type === HttpEventType.Response) {
-      //       console.log('Upload Concluído');
-      //       console.log(event.body);
-      //       this.publication = event.body;
-      //       this.getImages();
-      //     } else if (event.type === HttpEventType.UploadProgress) {
-      //       const percentDone = Math.round((event.loaded * 100) / event.total);
-      //       // console.log('Progresso', percentDone);
-      //       this.progress = percentDone;
-      //     }
-      //   }
-      // )
     }
     
+  }
+
+  destacar(e){
+    console.log(e.checked);
+    this.destacada = e.checked ? 1:0;
+  }
+  destacarUpdatate(e, id){
+    const destacada:any = e.checked ? 1:0;
+    const formData = new FormData();
+
+    formData.append('_method', 'PUT')
+    formData.append('destaca', destacada)
+
+
+    this._branService.updateBrand(id, formData).subscribe(
+    res => {
+      console.log(res);
+      this._branService.openSnackBar('success', `Marca ${res.name} Actualizado con éxito!!`)
+      this.getBrand()
+      this.formAdd.reset();
+      this.mostrar = false;
+      this.idUpdate = null;
+      this.imageSrc=null
+    },
+    err => {
+      console.log(err);
+
+      this._branService.openSnackBar('error', `${err}`)
+    }
+    )
   }
 }

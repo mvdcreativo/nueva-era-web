@@ -65,10 +65,7 @@ export class UserActionsComponent implements OnInit {
   public logout(){
     console.log("logout");
     
-    return this._authService.logout().subscribe(
-      res => console.log(res)
-      
-    );
+    return this._authService.logout()
   }
 
   linkAccound(){

@@ -98,9 +98,7 @@ export class AccessComponent implements OnInit {
   reLogout() {
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
-      this.authService.logout().subscribe(
-        res => console.log(res)
-      );
+      this.authService.logout()
     }
 
   }

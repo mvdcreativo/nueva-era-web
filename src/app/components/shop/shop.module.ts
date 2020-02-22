@@ -57,6 +57,7 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
     FlexLayoutModule,
     NgxPaginationModule,
     ShopRoutingModule,
+    
       // NgxImageZoomModule.forRoot() // <-- Add this line
 
   ],
