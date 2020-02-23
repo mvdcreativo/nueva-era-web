@@ -1,16 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { UsersDataSource } from './services/users-data-source.service';
+import { ActivatedRoute } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, AfterViewInit {
 
   tipoUser = [
     {name: "Usuario", value: "USER"},
@@ -19,10 +24,9 @@ export class UsersComponent implements OnInit {
     
   ]
 
-
-  user: User[];
+  
   displayedColumns: string[] = ['id', 'name','email','phone','role','acciones'];
-  dataSource: any;
+  dataSource: UsersDataSource;///modificado para paginacion
 
   formAdd: FormGroup
   mostrar: boolean = false;
@@ -30,18 +34,52 @@ export class UsersComponent implements OnInit {
   idUpdate: number = null;
   readOnly: boolean = true;
   usersConRoles: User[];
+  pageSize = 20;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  totalResut: any;
 
   constructor(
     private _userService: UserService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private route: ActivatedRoute
+
 
   ) { }
 
   ngOnInit() {
+    this.dataSource = new UsersDataSource(this._userService);////paginacion
+    this.dataSource.loadUsers('', 'asc', 1, this.pageSize);
+    this.totalResut = this._userService.totalResult$
     this.createForm();
-    this.getUsers();
+    // this.getUsers();
   }
+
+  ngAfterViewInit() {
+    this.paginator.page
+        .pipe(
+            tap(() => this.loadUserPage())
+        )
+        .subscribe();
+  }
+
+
+  loadUserPage() {
+    this.dataSource.loadUsers(
+        '',
+        'asc',
+        this.paginator.pageIndex,
+        this.paginator.pageSize
+        );
+
+    // this.totalResut = this.userService.totalResult$
+
+    
+        
+  }
+
+
 
   createForm() {
     this.formAdd = this.fb.group({
@@ -60,30 +98,6 @@ export class UsersComponent implements OnInit {
     
   }
 
-  getUsers() {
-    this._userService.getUsers().subscribe(
-      (res: any) => {
-        this.user = res.reverse();
-        // console.log(res);
-
-        const data = this.user.map((a:any)=> {
-          
-          let role = this.tipoUser.filter(x => x.value === a.role).map(v => v.name)[0]
-         console.log(role);
-         a.roleName = role
-          
-          return a
-        }) 
-          
-        
-        console.log(this.usersConRoles);
-        
-        this.dataSource = new MatTableDataSource(data);
-        
-      }
-    );
-  }
-
   onSubmit() {
     this.addUser();
   }
@@ -94,7 +108,7 @@ export class UsersComponent implements OnInit {
       res => {
         console.log(res);
         this._userService.openSnackBar('success', `Tipo ${res.name} creado con éxito!!`)
-        this.getUsers()
+        // this.getUsers()
         this.formAdd.reset();
         this.mostrar = false;
       },
@@ -110,9 +124,11 @@ export class UsersComponent implements OnInit {
     this._userService.deleteUser(id).subscribe(
       res => {
         this._userService.openSnackBar('success', `Tipo "${res.name}" eliminado con éxito!!`)
-        this.getUsers()
+        // this.getUsers()
         this.formAdd.reset();
         this.mostrar = false;
+        this.loadUserPage()
+
       },
       err => {
         this._userService.openSnackBar('success', err)
@@ -154,7 +170,7 @@ export class UsersComponent implements OnInit {
       res => {
         console.log(res);
         this._userService.openSnackBar('success', `Tipo ${res.name} Actualizado con éxito!!`)
-        this.getUsers()
+        this.loadUserPage()
         this.formAdd.reset();
         this.mostrar = false;
         this.idUpdate = null;
@@ -172,10 +188,38 @@ export class UsersComponent implements OnInit {
     this.formAdd.reset();
     this.mostrar = estado
   }
+
+
+  // getUsers() {
+  //   this._userService.getUsers().subscribe(
+  //     (res: any) => {
+  //       this.user = res.data;
+  //       // console.log(res);
+
+  //       const data = this.user.map((a:any)=> {
+          
+  //         let role = this.tipoUser.filter(x => x.value === a.role).map(v => v.name)[0]
+  //           // console.log(role);
+  //           a.roleName = role
+          
+  //         return a
+  //       }) 
+          
+        
+  //       // console.log(this.usersConRoles);
+  //       if(data){
+
+  //         this.dataSource = new MatTableDataSource(data);
+  //       }
+        
+  //     }
+  //   );
+  // }
+
   //////////
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  // applyFilter(filterValue: string) {
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  // }
 
 }

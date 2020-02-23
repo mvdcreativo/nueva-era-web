@@ -14,7 +14,7 @@ export class BtnWspRedirectComponent implements OnInit {
   }
 
   ngOnInit() {
-    window.location.href = 'https://api.whatsapp.com/send?phone=598092987661';
+    window.location.href = 'https://api.whatsapp.com/send?phone=598092843843';
   }
 
 }

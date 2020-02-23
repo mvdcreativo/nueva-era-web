@@ -38,6 +38,7 @@ import { AuthModule } from 'src/app/auth/auth.module';
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
+    
     RouterModule,
     HighchartsChartModule,
     AuthModule

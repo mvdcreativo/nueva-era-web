@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-cart',
@@ -12,6 +13,8 @@ export class CartComponent implements OnInit {
 
   public cartItems : Observable<CartItem[]> = of([]);
   public shoppingCartItems  : CartItem[] = [];
+  urlFiles: string = environment.urlFiles;
+
 
   constructor(private cartService: CartService) { }
 

@@ -5,7 +5,7 @@
            <mat-chip color="warn" selected="true">NO TIENE ARTÍCULOS EN SU CARRITO DE COMPRAS.</mat-chip>
         </mat-chip-list>
         <div>
-           <a  mat-raised-button color="primary" class="btn-project mt-20">Continuar comprando</a>
+           <a  mat-raised-button color="primary" class="btn-project mt-20" [routerLink]="['/productos']" routerLinkActive="router-link-active" >Continuar comprando</a>
         </div>
      </div>
      <mat-card *ngIf="shoppingCartItems.length"  class="p-0">
@@ -19,7 +19,7 @@
               <div class="mat-header-cell">Acciones</div>
            </div>
            <div *ngFor="let item of shoppingCartItems"  class="mat-row">
-              <div class="mat-cell"><img [src]="item.product.pictures"></div>
+              <div class="mat-cell"><img [src]="urlFiles+item.product.picture"></div>
               <div class="mat-cell"><a  class="product-name">{{item.product.name}}</a></div>
               <div class="mat-cell price">{{item.product.price | number : '1.2-2'}}</div>
               <div class="mat-cell text-muted">
@@ -49,7 +49,7 @@
               </div>
            </div>
            <div class="mat-row">
-              <div class="mat-cell"><a  mat-raised-button  class="btn-project" [routerLink]="['/home/one']" routerLinkActive="router-link-active" >Continuar comprando</a></div>
+              <div class="mat-cell"><a  mat-raised-button  class="btn-project" [routerLink]="['/productos']" routerLinkActive="router-link-active" >Continuar comprando</a></div>
               <div class="mat-cell"></div>
               <div class="mat-cell"></div>
               <div class="mat-cell text-right">

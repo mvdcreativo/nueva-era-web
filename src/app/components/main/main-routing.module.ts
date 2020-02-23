@@ -5,6 +5,7 @@ import { HomeFourComponent } from '../shop/home-four/home-four.component';
 import { ProductLeftSidebarComponent } from '../shop/products/product-left-sidebar/product-left-sidebar.component';
 import { ProductDetailsComponent } from '../shop/products/product-details/product-details.component';
 import { AccessComponent } from 'src/app/auth/access/access.component';
+import { ErrorPageComponent } from '../pages/error-page/error-page.component';
 
 const routes: Routes = [
   // {
@@ -38,10 +39,10 @@ const routes: Routes = [
         loadChildren: () => import('../pages/pages.module').then(m => m.PagesModule)
       },
       {
-        path: 'blog',
-        loadChildren: () => import('../blog/blog.module').then(m => m.BlogModule)
-
+        path: '**',
+        component: ErrorPageComponent
       }
+
     ]
   }
 ];

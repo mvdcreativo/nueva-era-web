@@ -14,7 +14,7 @@ import { BrandService } from './services/brand.service';
 })
 export class BrandsComponent implements OnInit {
   brand: Brand [];
-  displayedColumns: string[] = ['id', 'name', 'image_url', 'destacada', 'acciones' ];
+  displayedColumns: string[] = ['id', 'name', 'image_url', 'destacada', 'status', 'acciones' ];
   dataSource: any;
   formAdd : FormGroup
   mostrar :boolean = false;
@@ -25,6 +25,7 @@ export class BrandsComponent implements OnInit {
   imageSrc: string | ArrayBuffer;
   destacada: any;
   checkedValue: boolean;
+  status: any;
 
   constructor(
     private _branService : BrandService,
@@ -217,6 +218,49 @@ export class BrandsComponent implements OnInit {
       this.mostrar = false;
       this.idUpdate = null;
       this.imageSrc=null
+    },
+    err => {
+      console.log(err);
+
+      this._branService.openSnackBar('error', `${err}`)
+    }
+    )
+  }
+
+  stat(e){
+    console.log(e.checked);
+    
+    this.status = e.checked ? "ACT":"DIS";
+  }
+  chequed(status){
+    let checked : boolean;
+    if(status==="ACT"){
+      checked=true
+    }else{
+      checked=false
+    }
+    return checked
+  }
+
+  statusUpdatate(e,id){
+    const status:any = e.checked ? "ACT":"DIS";
+    const formData = new FormData();
+
+    formData.append('_method', 'PUT')
+    formData.append('status', status)
+    
+
+    this._branService.updateBrand(id, formData).subscribe(
+    res => {
+      console.log(res);
+      this._branService.openSnackBar('success', `Marca ${res.name} Actualizado con éxito!!`)
+      this.getBrand()
+      this.formAdd.reset();
+      this.mostrar = false;
+      this.idUpdate = null;
+      this.imageSrc=null
+      
+
     },
     err => {
       console.log(err);

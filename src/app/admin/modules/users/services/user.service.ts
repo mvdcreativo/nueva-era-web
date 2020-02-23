@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { take } from 'rxjs/operators';
+import { take, map } from 'rxjs/operators';
 import { User } from 'src/app/auth/interfaces/user';
 import { SnackBarComponent } from 'src/app/components/shared/snack-bar/snack-bar.component';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,39 @@ export class UserService {
   ) { }
 
 
-// //categoias
+
+  ////////PAGINACION, FILTRADO Y ORDEN, ANGULAR MATERIAL
+
+  private totalResultSubject =  new BehaviorSubject<number>(null);
+  public totalResult$ = this.totalResultSubject.asObservable();
+
+  findUsers(filter = '', sortOrder = 'asc', pageNumber= 1 , pageSize = 20):  Observable<User[]> {
+
+      return this._http.get(`${environment.AuthAPI}users`, {
+        params: new HttpParams()        
+              .set('page', pageNumber.toString())
+              .set('filter', filter)
+              .set('sortOrder', sortOrder)
+              .set('pageSize', pageSize.toString())
+              
+      }).pipe(
+          map(
+            (res:any) =>  {
+              res["payload"] = res;
+              this.totalResultSubject.next(res.total)
+              return res["payload"];
+            }
+            )
+      );
+  }
+///////////////////////////////////////////////////////////
+
+
+
+
+
+
+// Users
 getUsers() {
   return this._http.get<User[]>(`${environment.AuthAPI}users`).pipe(
     take(1)

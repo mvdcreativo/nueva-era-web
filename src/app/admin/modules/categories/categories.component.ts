@@ -13,13 +13,14 @@ import { MatTableDataSource } from '@angular/material/table';
 export class CategoriesComponent implements OnInit {
 
   category: Category[];
-  displayedColumns: string[] = ['id', 'name', 'acciones'];
+  displayedColumns: string[] = ['id', 'name','status', 'acciones'];
   dataSource: any;
 
   formAdd: FormGroup
   mostrar: boolean = false;
   edit: boolean;
   idUpdate: number = null;
+  status: any;
 
 
   constructor(
@@ -111,7 +112,7 @@ export class CategoriesComponent implements OnInit {
     this._categoryService.updateCategory(id, data).subscribe(
       res => {
         console.log(res);
-        this._categoryService.openSnackBar('success', `Tipo ${res.name} Actualizado con éxito!!`)
+        this._categoryService.openSnackBar('success', `Categoría ${res.name} Actualizado con éxito!!`)
         this.getCategories()
         this.formAdd.reset();
         this.mostrar = false;
@@ -136,4 +137,44 @@ export class CategoriesComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
+
+  stat(e){
+    console.log(e.checked);
+    
+    this.status = e.checked ? "ACT":"DIS";
+  }
+  chequed(status){
+    let checked : boolean;
+    if(status==="ACT"){
+      checked=true
+    }else{
+      checked=false
+    }
+    return checked
+  }
+
+  statusUpdatate(e,id){
+    const status:any = e.checked ? "ACT":"DIS";
+    const data = {'status':status};
+
+   
+    
+
+    this._categoryService.updateCategory(id, data).subscribe(
+      res => {
+        console.log(res);
+        this._categoryService.openSnackBar('success', `Categoría ${res.name} Actualizado con éxito!!`)
+        this.getCategories()
+        this.formAdd.reset();
+        this.mostrar = false;
+        this.idUpdate = null;
+      },
+      err => {
+        console.log(err);
+
+        this._categoryService.openSnackBar('error', `${err}`)
+      },
+    )
+  }
 }
