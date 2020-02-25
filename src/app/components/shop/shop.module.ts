@@ -7,7 +7,6 @@ import { ProductComponent } from './products/product/product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
 import { ProductDialogComponent } from './products/product-dialog/product-dialog.component';
 import { ProductLeftSidebarComponent } from './products/product-left-sidebar/product-left-sidebar.component';
-import { ProductVerticalComponent } from './products/product-vertical/product-vertical.component';
 import { CommonModule } from '@angular/common';
 import { ShopRoutingModule } from './shop-routing.module';
 import { SharedModule } from '../shared/shared.module';
@@ -36,7 +35,6 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
     ProductDetailsComponent,
     ProductDialogComponent,
     ProductLeftSidebarComponent,
-    ProductVerticalComponent,
 
 
     // ProductCarouselTwoComponent,
