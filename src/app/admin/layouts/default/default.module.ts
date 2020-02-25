@@ -47,6 +47,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 import { DialogFormComponent } from '../../modules/admin-products/dialog-form/dialog-form.component';
+import { OrdersComponent } from '../../modules/orders/orders.component';
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -62,7 +63,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     AdminProductsComponent,
     UsersComponent,
     UserComponent,
-    DialogFormComponent
+    DialogFormComponent,
+    OrdersComponent
   ],
   imports: [
     CommonModule,

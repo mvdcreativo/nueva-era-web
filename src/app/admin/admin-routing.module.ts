@@ -9,6 +9,7 @@ import { AdminProductsComponent } from './modules/admin-products/admin-products.
 import { AdministradorGuard } from '../auth/guards/administrador.guard';
 import { UsersComponent } from './modules/users/users.component';
 import { UserComponent } from './modules/user/user.component';
+import { OrdersComponent } from './modules/orders/orders.component';
 
 
 
@@ -40,6 +41,11 @@ const appRoutes: Routes = [
       {
         path: 'usuarios',
         component: UsersComponent,
+        canActivate: [AdministradorGuard]
+      },
+      {
+        path: 'pedidos',
+        component: OrdersComponent,
         canActivate: [AdministradorGuard]
       },
       {

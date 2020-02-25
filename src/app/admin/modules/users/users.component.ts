@@ -75,8 +75,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
     // this.totalResut = this.userService.totalResult$
 
-    
-        
   }
 
 
@@ -190,36 +188,6 @@ export class UsersComponent implements OnInit, AfterViewInit {
   }
 
 
-  // getUsers() {
-  //   this._userService.getUsers().subscribe(
-  //     (res: any) => {
-  //       this.user = res.data;
-  //       // console.log(res);
 
-  //       const data = this.user.map((a:any)=> {
-          
-  //         let role = this.tipoUser.filter(x => x.value === a.role).map(v => v.name)[0]
-  //           // console.log(role);
-  //           a.roleName = role
-          
-  //         return a
-  //       }) 
-          
-        
-  //       // console.log(this.usersConRoles);
-  //       if(data){
-
-  //         this.dataSource = new MatTableDataSource(data);
-  //       }
-        
-  //     }
-  //   );
-  // }
-
-  //////////
-
-  // applyFilter(filterValue: string) {
-  //   this.dataSource.filter = filterValue.trim().toLowerCase();
-  // }
 
 }

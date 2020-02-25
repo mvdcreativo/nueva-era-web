@@ -22,12 +22,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     // -moz-box-shadow: 2px 0px 6px -2px rgba(0,0,0,0.75);
     // box-shadow: 2px 0px 6px -2px rgba(0,0,0,0.75);
   }
-//   .mat-row,.mat-header-row{
-//       display: table-row;
-//       border: none!important;
-//       width: 100%;
-//       box-sizing: border-box;
-//   }
+  .mat-table tbody .mat-row,.mat-table thead .mat-header-row{
+      display: table-row;
+      border: none!important;
+      width: 100%;
+      box-sizing: border-box;
+  }
 
 
 ///////////////////

@@ -15,6 +15,7 @@ export interface User {
     phone?: any;
     created_at: string;
     updated_at: string;
+    state: any;
 
 }
 export interface CurrentUser {

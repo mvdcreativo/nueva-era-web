@@ -3,61 +3,58 @@
       <div fxLayout="row wrap" class="">
           <div class="billing-details  pr-15" fxFlex="100" fxFlex.gt-md="30" fxFlex.md="30">
             <div class="header-title">
-                <h2>Datos de facturación</h2>
+                <h3>Datos de facturación</h3
+                  >
             </div>
 
-              <form fxLayout="row wrap">
+              <form fxLayout="row wrap" [formGroup] = "form">
                   <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Primer Nombre" #name="ngModel" ngModel name="name" required>
-                          <mat-error *ngIf="name.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Nombre y Apellido" formControlName = "name"  required>
+                          
                         </mat-form-field>
                   </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                  <div  fxFlex="50" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="Documento de Identidad" formControlName = "ci"  required>
+                        
+                      </mat-form-field>
+                </div>
+                  <div fxFlex="50" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Apellido" #email="ngModel" ngModel name="email" required>
-                          <mat-error *ngIf="email.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Empresa (opcional)" formControlName = "company" >
+                        </mat-form-field>
+                  </div>
+                  <div  fxFlex="50" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                    <mat-form-field class="w-100">
+                        <input matInput placeholder="R.U.T. (opcional)" formControlName = "rut" >
+                        
+                      </mat-form-field>
+                </div>
+                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                      <mat-form-field class="w-100">
+                          <input matInput placeholder="Dirección" formControlName = "address" required>
+                          
                         </mat-form-field>
                   </div>
                   <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Nombre de empresa (opcional)" #subject="ngModel" ngModel name="subject">
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Dirección" #address="ngModel" ngModel name="address">
-                          <mat-error *ngIf="address.invalid">Dato inválido</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Ciudad" #town="ngModel" ngModel name="town/city">
-                          <mat-error *ngIf="town.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Ciudad" formControlName = "city" required>
                         </mat-form-field>
                   </div>
                   <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Departamento" #state="ngModel" ngModel name="state" required>
-                          <mat-error *ngIf="state.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Departamento" formControlName = "state" required>
                         </mat-form-field>
                   </div>
                   <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Código Postal" #postcode="ngModel" ngModel name="postcode" required>
-                          <mat-error *ngIf="postcode.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Teléfono / Móvil" formControlName = "phone" required>
                         </mat-form-field>
                   </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+                  <div  fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
                       <mat-form-field class="w-100">
-                          <input matInput placeholder="Correo electrónico" #email="ngModel" ngModel name="email" required>
-                          <mat-error *ngIf="email.invalid">Dato inválido</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Teléfono" #phone="ngModel" ngModel name="phone" required>
-                          <mat-error *ngIf="phone.invalid">Dato inválido</mat-error>
+                          <input matInput placeholder="Correo electrónico" formControlName = "email" required>
                         </mat-form-field>
                   </div>
                   <!-- <div class="add-info">
@@ -70,9 +67,9 @@
                           <textarea placeholder="Post content" matInput rows="4" ngModel name="content"></textarea>
                         </mat-form-field>
                   </div> -->
-                  <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+                  <!-- <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                       <button class="btn-project" mat-raised-button color="accent" type="submit">Enviar Datos</button>
-                    </div>
+                    </div> -->
                   </form>
           </div>
           <div class="mainOrder-wrapper pl-15" fxFlex="100" fxFlex.gt-md="70" fxFlex.md="70">
@@ -116,7 +113,7 @@
               </mat-radio-group>
             </div> -->
             <div class="order">
-              <button class="btn-project" mat-raised-button color="accent" type="submit">Enviar Pedido</button>
+              <button class="btn-project" mat-raised-button color="accent" (click)="onSubmit()" [disabled]="!form.valid" type="submit">Enviar Pedido</button>
             </div>
                </div>
           </div>

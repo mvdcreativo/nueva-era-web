@@ -11,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const requestUrl: Array<any> = req.url.split('/');
         const apiUrl: Array<any> = environment.AuthAPI.split('/');
-        console.log(apiUrl);
+        // console.log(apiUrl);
         // console.log(requestUrl);
         
         let accderUrl = `${environment.API}auth/login`;

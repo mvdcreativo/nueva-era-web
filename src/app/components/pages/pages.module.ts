@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeFourComponent } from '../shop/home-four/home-four.component';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { HomeFourComponent } from '../shop/home-four/home-four.component';
     ContactComponent,
     CheckoutComponent,
     ErrorPageComponent,
+    PaymentMethodsComponent,
 
   ],
   imports: [

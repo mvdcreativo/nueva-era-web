@@ -1,0 +1,47 @@
+.content{
+    width: 100%;
+    .mat-card{
+        height: 100%;
+        box-shadow: none!important;
+        background-color: white;
+
+        .mat-table {
+            width: 100%;
+        }
+    
+        .image{
+            height: 50px;
+        }
+        .btn{
+            background-color: #2D86F7;
+            color: white;
+            margin: 1rem;
+        }
+        form{
+            .mat-form-field {
+                font-size: 14px;
+                width: 30%;
+                margin-left: 1rem;
+            }
+            .corto{
+                width: 15%
+            }
+            .medio{
+                width: 20%
+            }
+            .content-btn{
+                width: 100%;
+            }
+        }
+        .acciones{
+            width: 13%;
+        }
+        .no-shadow{
+            box-shadow: none;
+            color: #424242;
+            background-color: transparent;
+        }
+    
+    }
+
+}
