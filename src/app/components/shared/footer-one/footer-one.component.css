@@ -217,10 +217,10 @@ li button {
   .mat-form-field-outline-thick::placeholder {
   color: white;
 }
-::ng-deep .mat-input-element {
-  color: #adadad !important;
+.mat-input-element {
+  color: #b1b1b1 !important;
 }
-::ng-deep .mat-input-element::placeholder {
+.mat-input-element::placeholder {
   color: white;
 }
 ::ng-deep .mat-form-field-invalid .mat-input-element,

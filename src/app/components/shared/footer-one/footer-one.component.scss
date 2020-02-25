@@ -74,8 +74,8 @@ li button{
 }
 
 // mat-input carent color
-::ng-deep .mat-input-element {
-    color: rgb(173, 173, 173)!important;
+.mat-input-element {
+    color: rgb(177, 177, 177)!important;
     &::placeholder{
         color: white;
     }
