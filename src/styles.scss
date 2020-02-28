@@ -6,11 +6,15 @@
 // Color 1 scss
 @import './assets/scss/color1.scss';
 
+@import url('https://fonts.googleapis.com/css?family=Nunito&display=swap');
+
+
 
 ///////////////////
 //custom
 * {
     box-sizing: border-box;
+    font-family: 'Nunito', "Helvetica Neue", sans-serif;
   }
 
 html, body { height: 100%; }
