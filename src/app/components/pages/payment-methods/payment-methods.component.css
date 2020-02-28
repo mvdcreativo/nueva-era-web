@@ -1,0 +1,10 @@
+.mantenimiento {
+  width: 80%;
+  height: 70vh;
+  background-image: url("../../../../assets/images/pagos.svg");
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-position-y: top;
+  margin-right: auto;
+  margin-left: auto;
+}

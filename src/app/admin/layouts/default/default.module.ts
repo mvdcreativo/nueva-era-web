@@ -64,7 +64,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UsersComponent,
     UserComponent,
     DialogFormComponent,
-    OrdersComponent
+    OrdersComponent,
   ],
   imports: [
     CommonModule,

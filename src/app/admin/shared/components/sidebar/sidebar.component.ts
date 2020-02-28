@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,6 +12,7 @@ export class SidebarComponent implements OnInit {
 
   user: User
   auth: boolean = false
+  urlExportFaceboock: string = `${environment.API}products-faceboock`;
 
   constructor(
     private _authService: AuthService

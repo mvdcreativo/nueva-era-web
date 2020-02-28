@@ -15,7 +15,7 @@ import { tap } from 'rxjs/operators';
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['id', 'user_id','name','email','phone' ,'total','status','acciones'];
+  displayedColumns: string[] = ['id', 'date', 'user_id','name','email','phone' ,'total','status','acciones'];
   dataSource: OrdersDataSourceService;///modificado para paginacion
 
   pageSize = 20;
@@ -34,6 +34,10 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     this.dataSource = new OrdersDataSourceService(this._orderService);////paginacion
     this.dataSource.loadOrders('', 'asc', 1, this.pageSize);
     this.totalResut = this._orderService.totalResult$
+
+    console.log(this.totalResut);
+    
+  
   }
 
   ngAfterViewInit() {

@@ -10,6 +10,7 @@ import { AdministradorGuard } from '../auth/guards/administrador.guard';
 import { UsersComponent } from './modules/users/users.component';
 import { UserComponent } from './modules/user/user.component';
 import { OrdersComponent } from './modules/orders/orders.component';
+import { AuthGuard } from '../auth/guards/auth.guard';
 
 
 
@@ -47,10 +48,19 @@ const appRoutes: Routes = [
         path: 'pedidos',
         component: OrdersComponent,
         canActivate: [AdministradorGuard]
+      },      
+      {
+        path: 'mis-pedidos',
+        component: OrdersComponent,
       },
       {
         path: 'mis-datos',
         component: UserComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'mis-pedidos',
+        pathMatch: "full"
       },
       
     ]

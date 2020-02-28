@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -30,7 +31,8 @@ export class CheckoutComponent implements OnInit {
     private authService: AuthService,
     private cartService: CartService,
     public productService: ProductService,
-    public orderService: OrdersService
+    public orderService: OrdersService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -95,7 +97,11 @@ export class CheckoutComponent implements OnInit {
 
 
     this.orderService.addOrder(dataForm).subscribe(      
-      res => console.log(res)
+      res => {
+        localStorage.removeItem("cartItem");
+        this.router.navigate(['/pages/metodos-de-pago'])
+        console.log(res)
+      }
     )
       
     

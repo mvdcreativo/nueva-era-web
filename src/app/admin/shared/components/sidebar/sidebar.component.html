@@ -1,5 +1,7 @@
 
 <mat-nav-list>
+
+
     <!-- <div class="profile-card">
         <div class="header">
             <h2>Soufiane FADIL</h2>
@@ -8,14 +10,14 @@
         <img src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Soufiane FADIL">
     </div> -->
 
-    <mat-divider></mat-divider>
+    <ng-container *ngIf="!auth; then user; else admin"></ng-container>
+    <ng-template #user>
+        <h2 matSubheader>Mi Cuenta</h2>
 
-    <h2 matSubheader>Cliente</h2>
-
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="pedidos">Mis pedidos</a>
-    <a mat-list-item routerLinkActive="list-item-active" routerLink="mis-datos">Mis datos</a>
-
-    <span *ngIf="auth">
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="mis-pedidos">Mis pedidos</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="mis-datos">Mis datos</a>
+    </ng-template>
+    <ng-template #admin>
         <mat-divider></mat-divider>
 
         <h2 matSubheader>Administrador</h2>
@@ -28,10 +30,21 @@
 
         <mat-divider></mat-divider>
 
-        <h2 matSubheader>Configuraciones</h2>
+        <h2 matSubheader>Categorías y Marcas</h2>
 
         <a mat-list-item routerLinkActive="list-item-active" routerLink="categorias">Categorías</a>
         <a mat-list-item routerLinkActive="list-item-active" routerLink="marcas">Marcas</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="/contacts">Importar Exportar</a>
-    </span>
+
+        <mat-divider></mat-divider>
+
+        <h2 matSubheader>Importar Exportar</h2>
+        <a mat-list-item [href]="urlExportFaceboock">Exportar Catálogo para Faceboock</a>
+        <a mat-list-item routerLinkActive="list-item-active" routerLink="#">Importar Artículos Masivamente<i>(pendeiente)</i></a>
+
+    </ng-template>
+    
+
+    <mat-divider></mat-divider>
+
+
 </mat-nav-list>

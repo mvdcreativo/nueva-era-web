@@ -5,13 +5,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { ContactComponent } from './contact/contact.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { AuthGuard } from 'src/app/auth/guards/auth.guard';
+import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 
 
 
 
 const routes: Routes = [
       { path: 'cart', component: CartComponent },
-      { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard]},
+      { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard]},      
+      { path: 'metodos-de-pago', component: PaymentMethodsComponent, canActivate:[AuthGuard]},
       { path: 'contact', component: ContactComponent },
       { path: 'error', component: ErrorPageComponent },
 ];
