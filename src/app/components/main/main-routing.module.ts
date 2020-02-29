@@ -18,10 +18,14 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       { path: '', component: HomeFourComponent },
-      { path: 'productos/marca/:marca', component: ProductLeftSidebarComponent },
-      { path: 'productos/:category', component: ProductLeftSidebarComponent },
-      { path: 'productos', component: ProductLeftSidebarComponent },
-      { path: 'producto/:slug', component: ProductDetailsComponent },
+      {
+        path: 'tienda',
+        loadChildren: () => import('../shop/shop.module').then(m => m.ShopModule),
+      },
+      // { path: 'productos/marca/:marca', component: ProductLeftSidebarComponent },
+      // { path: 'productos/:category', component: ProductLeftSidebarComponent },
+      // { path: 'productos', component: ProductLeftSidebarComponent },
+      // { path: 'producto/:slug', component: ProductDetailsComponent },
       {
         path : 'acceder',
         component : AccessComponent

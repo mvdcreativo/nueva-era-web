@@ -23,16 +23,12 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
-import { HeaderComponent } from './header/header.component';
-import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { OrderByPipe } from './pipes/order-by.pipe';
 import { ProductService } from './services/product.service';
 import { CartService } from './services/cart.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { HeaderTwoComponent } from './header-two/header-two.component';
 import { ShoppingWidgetsComponent } from './shopping-widgets/shopping-widgets.component';
-import { HeaderThreeComponent } from './header-three/header-three.component';
 import { BannersFourComponent } from './banners-four/banners-four.component';
 import { HeaderFourComponent } from './header-four/header-four.component';
 import { CategoriesMenuComponent } from './categories-menu/categories-menu.component';
@@ -46,14 +42,10 @@ import { FooterOneComponent } from './footer-one/footer-one.component';
 
 @NgModule({
   declarations: [
-    HeaderComponent,
-    FooterComponent,
     MenuComponent,
     SidebarComponent,
     OrderByPipe,
-    HeaderTwoComponent,
     ShoppingWidgetsComponent,
-    HeaderThreeComponent,
     BannersFourComponent,
     HeaderFourComponent,
     CategoriesMenuComponent,
@@ -107,13 +99,9 @@ import { FooterOneComponent } from './footer-one/footer-one.component';
     MatDividerModule,
     MatCardModule,
     OrderByPipe,
-    HeaderComponent,
-    FooterComponent,
     MenuComponent,
     SidebarComponent,
     FlexLayoutModule,
-    HeaderTwoComponent,
-    HeaderThreeComponent,
     HeaderFourComponent,
     ShoppingWidgetsComponent,
     BannersFourComponent,

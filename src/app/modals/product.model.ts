@@ -1,3 +1,5 @@
+import { Category } from '../admin/modules/categories/interfaces/category';
+
 // Product Tag
 export type ProductTags = 'nike' | 'puma' | 'lifestyle' | 'caprese';
 
@@ -21,7 +23,7 @@ export class Product {
   newPro?: boolean;
   brand?: string;
   sale?: boolean;
-  category?: string;
+  category?: Category;
   tags?: ProductTags[];
   colors?: ProductColor[];
   brand_id?:number;
@@ -41,7 +43,7 @@ export class Product {
     newPro?: boolean,
     brand?: string,
     sale?: boolean,
-    category?: string,
+    category?: any,
     tags?: ProductTags[],
     colors?: ProductColor[]
   ) {

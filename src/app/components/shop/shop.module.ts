@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainCarouselComponent } from './main-carousel/main-carousel.component';
-import { PriceComponent } from './products/price/price.component';
 import { ProductsComponent } from './products/products.component';
 import { ProductComponent } from './products/product/product.component';
 import { ProductDetailsComponent } from './products/product-details/product-details.component';
@@ -30,7 +29,6 @@ import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansi
   declarations: [
     MainCarouselComponent,
     ProductsComponent,
-    PriceComponent,
     ProductComponent,
     ProductDetailsComponent,
     ProductDialogComponent,

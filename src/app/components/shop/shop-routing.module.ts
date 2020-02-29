@@ -11,11 +11,10 @@ import { HomeFourComponent } from './home-four/home-four.component';
 
 // Routes
 const routes: Routes = [
-  // { path: '', component: HomeFourComponent },
-  // { path: 'productos/:category/:marca', component: ProductLeftSidebarComponent },
-  // { path: 'productos/:category', component: ProductLeftSidebarComponent },
-  // { path: 'productos', component: ProductLeftSidebarComponent },
-  // { path: 'producto/:slug', component: ProductDetailsComponent },
+  { path: 'productos/:category/:marca', component: ProductLeftSidebarComponent },
+  { path: 'productos/:category', component: ProductLeftSidebarComponent },
+  { path: 'productos', component: ProductLeftSidebarComponent },
+  { path: 'producto/:slug', component: ProductDetailsComponent },
 
 
 

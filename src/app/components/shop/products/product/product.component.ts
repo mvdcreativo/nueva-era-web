@@ -40,7 +40,7 @@ export class ProductComponent implements OnInit {
      // Add to cart
      public addToCart(product: Product,  quantity: number = 1) {
       this.cartService.addToCart(product,quantity);
-      this.facebookAddToCart();
+      this.facebookAddToCart(product.name,product.id,product.price,product.category.name);
       console.log(product, quantity);
     }
 
@@ -73,19 +73,25 @@ export class ProductComponent implements OnInit {
 
 
   
-  faceboockViewContent(){
+  faceboockViewContent(name,id,price,category_name){
     fbq('track', 'ViewContent', {
-      currency: 'UYU',
-      content_ids: '150754082143164',
-      content_type: 'product_group',
-    });
+      content_name: name,
+      content_category: category_name,
+      content_ids: [id],
+      content_type: 'product',
+      value: price,
+      currency: 'UYU'
+     });
   }
 
-  facebookAddToCart(){
+  facebookAddToCart(name,id,price,category_name){
     fbq('track', 'AddToCart', {
-      currency: 'UYU',
-      content_ids: '150754082143164',
-      content_type: 'product_group',
-    });
+      content_name: name,
+      content_category: category_name,
+      content_ids: [id],
+      content_type: 'product',
+      value: price,
+      currency: 'UYU'
+     });
   }
 }

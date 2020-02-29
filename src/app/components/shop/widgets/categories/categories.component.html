@@ -2,7 +2,7 @@
     <ul>
         <li *ngFor="let item of categories | async as list">
             <a routerLinkActive="router-link-active" 
-                [routerLink]="['/productos', item.slug]">
+                [routerLink]="['/tienda/productos', item.slug]">
                 <mat-icon [svgIcon]="item.slug"></mat-icon>
                 {{ item.name }}
             </a>
