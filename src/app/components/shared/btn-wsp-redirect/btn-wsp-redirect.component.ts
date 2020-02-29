@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+declare let fbq:Function;
+
+
 
 @Component({
   selector: 'app-btn-wsp-redirect',
@@ -14,6 +17,7 @@ export class BtnWspRedirectComponent implements OnInit {
   }
 
   ngOnInit() {
+    fbq('track', 'Contact');
     window.location.href = 'https://api.whatsapp.com/send?phone=598092843843';
   }
 

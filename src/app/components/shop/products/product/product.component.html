@@ -2,7 +2,7 @@
   <mat-card fxLayout="column">
     <div class="product-img">
         <!-- <a class="product-link" [routerLink]="['/producto', product.id]"> -->
-      <a class="product-link" [routerLink]="['/producto', product.slug]">
+      <a class="product-link" (click)="faceboockViewContent()" [routerLink]="['/producto', product.slug]">
           <img [src]="urlFiles+product.picture" >
        </a>
     </div>

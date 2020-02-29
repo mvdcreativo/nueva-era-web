@@ -8,6 +8,8 @@ import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 import { environment } from 'src/environments/environment';
 
+declare let fbq:Function;
+
 
 @Component({
   selector: 'app-product-details',
@@ -135,13 +137,23 @@ getRelatedProducts() {
   // Add to cart
   public addToCart(product: Product, quantity) {
     if (quantity == 0) return false;
+    this.facebookAddToCart();
     this.cartService.addToCart(product, parseInt(quantity));
   }
-
+////facebok pixel
+  facebookAddToCart(){
+    fbq('track', 'AddToCart', {
+      currency: 'UYU',
+      content_ids: '150754082143164',
+      content_type: 'product_group',
+    });
+  }
+////////
    // Add to cart
    public buyNow(product: Product, quantity) {
     if (quantity > 0)
       this.cartService.addToCart(product,parseInt(quantity));
+      this.facebookAddToCart();
       this.router.navigate(['/pages/checkout']);
  }
 

@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
 import { Router } from '@angular/router';
+declare let fbq:Function;
+
 
 @Component({
   selector: 'app-checkout',
@@ -80,7 +82,9 @@ export class CheckoutComponent implements OnInit {
   }
 
   onSubmit() {
-    
+    ///Facebook pixel
+    fbq('track', 'AddPaymentInfo');
+    //////
 
     const dataProduct = this.buyProducts.map(
       value => {

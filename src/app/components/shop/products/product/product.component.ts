@@ -3,10 +3,12 @@ import { CartService } from 'src/app/components/shared/services/cart.service';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { WishlistService } from 'src/app/components/shared/services/wishlist.service';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Product } from 'src/app/modals/product.model';
 import { ProductDialogComponent } from '../product-dialog/product-dialog.component';
 import { environment } from 'src/environments/environment';
+
+declare let fbq:Function;
 
 @Component({
   selector: 'app-product',
@@ -21,7 +23,16 @@ export class ProductComponent implements OnInit {
  urlImg: string = environment.urlImg;
  urlFiles: string = environment.urlFiles;
  
-  constructor(private cartService: CartService, public productsService: ProductService, private wishlistService: WishlistService, private dialog: MatDialog, private router: Router ) { }
+  constructor(
+    private cartService: CartService, 
+    public productsService: ProductService, 
+    private wishlistService: WishlistService, 
+    private dialog: MatDialog, 
+    private router: Router ,
+    
+    ) { 
+
+    }
 
   ngOnInit() {
   }
@@ -29,6 +40,7 @@ export class ProductComponent implements OnInit {
      // Add to cart
      public addToCart(product: Product,  quantity: number = 1) {
       this.cartService.addToCart(product,quantity);
+      this.facebookAddToCart();
       console.log(product, quantity);
     }
 
@@ -55,4 +67,25 @@ export class ProductComponent implements OnInit {
     });
   }
 
+
+
+  
+
+
+  
+  faceboockViewContent(){
+    fbq('track', 'ViewContent', {
+      currency: 'UYU',
+      content_ids: '150754082143164',
+      content_type: 'product_group',
+    });
+  }
+
+  facebookAddToCart(){
+    fbq('track', 'AddToCart', {
+      currency: 'UYU',
+      content_ids: '150754082143164',
+      content_type: 'product_group',
+    });
+  }
 }
