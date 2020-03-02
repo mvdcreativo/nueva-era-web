@@ -137,17 +137,16 @@ getRelatedProducts() {
   // Add to cart
   public addToCart(product: Product, quantity) {
     if (quantity == 0) return false;
-    this.facebookAddToCart(product.name,product.id,product.price,product.category.name);
     this.cartService.addToCart(product, parseInt(quantity));
+    this.facebookAddToCart(product);
   }
 ////facebok pixel
-  facebookAddToCart(name,id,price,category_name){
+  facebookAddToCart(product){
     fbq('track', 'AddToCart', {
-      content_name: name,
-      content_category: category_name,
-      content_ids: [id],
-      content_type: 'product',
-      value: price,
+      content_name: product.name,
+      content_ids: product.id,
+      content_type: 'product_group',
+      value: product.price,   
       currency: 'UYU'
     });
   }
@@ -157,7 +156,7 @@ getRelatedProducts() {
     if (quantity > 0)
       this.cartService.addToCart(product,parseInt(quantity));
       this.router.navigate(['/pages/checkout']);
-      this.facebookAddToCart(product.name,product.id,product.price,product.category.name);
+      this.facebookAddToCart(product);
  }
 
 

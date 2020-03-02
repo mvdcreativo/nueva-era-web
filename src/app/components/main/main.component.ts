@@ -9,6 +9,7 @@ import { SidenavMenu } from '../shared/sidebar/sidebar-menu.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 
+declare let fbq:Function;
 
 @Component({
   selector: 'app-main',
@@ -94,6 +95,10 @@ export class MainComponent implements OnInit {
 
   }
 
+
+  contactFacebook(){
+    fbq('track', 'Contact');
+  }
   // public changeCurrency(currency){
   //   this.currency = currency;
   // }

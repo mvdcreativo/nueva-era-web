@@ -5,6 +5,8 @@ import { CartItem } from 'src/app/modals/cart-item';
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject, Subscriber } from 'rxjs';
 
+declare let fbq:Function;
+
 // Get product from Localstorage
 let products = JSON.parse(localStorage.getItem("cartItem")) || [];
 
@@ -59,6 +61,9 @@ public observer   :  Subscriber<{}>;
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
   }
+  
+      ///ejecuta Pixel Facebook
+      this.facebookAddToCart(product);
 
      localStorage.setItem("cartItem", JSON.stringify(products));
      return item;
@@ -78,7 +83,21 @@ public calculateStockCounts(product: CartItem, quantity): CartItem | Boolean {
   return true
 }
 
+facebookAddToCart(product : Product){
 
+  // fbq('track', 'AddToCart', { 
+  //   currency: 'UYU',
+  //   content_ids: '150754082143164',
+  //   content_type: 'product_group',
+  // });
+  fbq('track', 'AddToCart', {
+    content_name: product.name,
+    content_ids: product.id,
+    content_type: 'product_group',
+    value: product.price,   
+    currency: 'UYU'
+   });
+}
 
 
 
