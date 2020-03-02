@@ -6,7 +6,7 @@
         <a [routerLink]="['/tienda/productos', item.slug]" routerLinkActive="router-link-active"  mat-button class="mat-button">{{ item.name }}</a>
       </span>
       
-      <a   mat-button class="mat-button">Contacto</a>
+      <a   mat-button [routerLink]="['/pages/contacto']" class="mat-button">Contacto</a>
     </div>
 </mat-toolbar-row>
 

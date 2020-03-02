@@ -14,8 +14,7 @@ const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard]},      
       { path: 'metodos-de-pago', component: PaymentMethodsComponent, canActivate:[AuthGuard]},
-      { path: 'contact', component: ContactComponent },
-      { path: 'error', component: ErrorPageComponent },
+      { path: 'contacto', component: ContactComponent },
 ];
 
 

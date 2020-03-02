@@ -2,30 +2,36 @@
     <div class="footer-grids">
         <div class="footer one">
             <h3>PÓNGASE EN CONTACTO</h3>
-            <ul>
-                <li>
-                    <mat-form-field appearance="outline" appearance="fill">
-                        <input matInput placeholder="Nombre">
-                    </mat-form-field>
-                </li>
-                <li>
-                    <mat-form-field appearance="outline" appearance="fill">
-                        <input matInput placeholder="Correo electrónio">
-                    </mat-form-field>
+            <form [formGroup]="form" >
+                <ul>
+                    <li>
+                        <mat-form-field appearance="outline" appearance="fill">
+                            <input formControlName="name" matInput placeholder="Nombre">
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <mat-form-field appearance="outline" appearance="fill">
+                            <input formControlName="phone" matInput placeholder="Teléfono">
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <mat-form-field appearance="outline" appearance="fill">
+                            <input formControlName="email" matInput placeholder="Correo electrónio">
+                        </mat-form-field>
 
-                </li>
-                <li>
-                    <mat-form-field appearance="outline" appearance="fill">
-                        <mat-label>Mensaje</mat-label>
-                        <textarea matInput placeholder="Ingresar tu consulta"></textarea>
-                    </mat-form-field>
-                </li>
-                <li>
-                    <button mat-button mat-flat-button>Enviar</button>
+                    </li>
+                    <li>
+                        <mat-form-field appearance="outline" appearance="fill">
+                            <mat-label>Mensaje</mat-label>
+                            <textarea formControlName="message" matInput placeholder="Ingresar tu consulta"></textarea>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <button mat-button mat-flat-button [disabled]="!form.valid" (click)="onSubmit()" >Enviar</button>
 
-                </li>
-            </ul>
-
+                    </li>
+                </ul>
+            </form>
             <div class="clear"></div>
         </div>
         <div class="footer two">
@@ -39,7 +45,8 @@
             <h3>Contact Information</h3>
             <ul>
                 <li>Nueva era Uruguay</li>
-                <li><a href="tel:+59824810610">2481-0610</a>&nbsp;/&nbsp;<a href="tel:+598092843843">092 843 843</a></li>
+                <li><a href="tel:+59824810610">2481-0610</a>&nbsp;/&nbsp;<a href="tel:+598092843843">092 843 843</a>
+                </li>
                 <li><a href="mailto:veterinarianuevaera@gmail.com">veterinarianuevaera@gmail.com</a> </li>
                 <li>Lunes a Viernes:9.00 am - 19.00 pm<br>
                     Sábados:9.00 am - 14.00 pm
