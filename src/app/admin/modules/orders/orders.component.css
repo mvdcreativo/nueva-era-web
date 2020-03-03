@@ -39,3 +39,6 @@
   color: #424242;
   background-color: transparent;
 }
+.mat-row {
+  cursor: pointer;
+}

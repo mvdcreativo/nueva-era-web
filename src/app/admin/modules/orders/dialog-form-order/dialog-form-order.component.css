@@ -1,0 +1,88 @@
+.container {
+  padding-top: 1rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 32px;
+}
+.container .date {
+  text-align: right;
+}
+.container p {
+  font-size: 14px;
+}
+.container .width-100 {
+  grid-column: 1/7;
+}
+.container .productos table {
+  width: 100%;
+  border-bottom: none;
+}
+.container .productos table tr.mat-footer-row {
+  font-weight: bold;
+  border: none;
+}
+form {
+  display: grid;
+  margin-top: -2rem;
+  grid-template-columns: repeat(4, 1fr);
+  column-gap: 20px;
+  justify-items: center;
+  box-sizing: border-box;
+}
+form textarea {
+  height: 100px;
+}
+form .mat-dialog-title {
+  grid-column: 1/5;
+}
+form .imagePreview {
+  grid-column: 1/3;
+  grid-row: 2/7;
+  max-width: 250px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  border: solid 1px #cbd4d4;
+  padding: 0.5rem;
+  border-radius: 5px;
+  margin-bottom: 1rem;
+}
+form .imagePreview img {
+  max-width: 100%;
+}
+form .c1 {
+  grid-column: span 1;
+}
+form .c2 {
+  grid-column: span 2;
+}
+form .c3 {
+  grid-column: span 3;
+}
+form .c4 {
+  grid-column: span 4;
+}
+form .mat-form-field {
+  font-size: 12px;
+  width: 100%;
+}
+.btn-close {
+  box-shadow: none;
+  color: #424242;
+  background-color: transparent;
+}
+label {
+  align-items: center;
+  padding-top: 10px;
+}
+label .imgPrev {
+  width: 50px;
+  min-height: 50px;
+  cursor: pointer;
+}
+.btn {
+  background-color: #2d86f7;
+  color: white;
+  margin: 1rem;
+}

@@ -7,6 +7,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersDataSourceService } from './services/orders-data-source.service';
 import { tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogFormOrderComponent } from './dialog-form-order/dialog-form-order.component';
 
 @Component({
   selector: 'app-orders',
@@ -26,7 +28,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
   constructor(
     private _orderService: OrdersService,
     private _snackBar: MatSnackBar,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
 
 
   ) { }
@@ -78,5 +81,32 @@ export class OrdersComponent implements OnInit, AfterViewInit {
       },
     )
   }  
+
+
+
+  openDialog(data?): void {
+    console.log(data);
+    
+    const dialogRef = this.dialog.open(DialogFormOrderComponent, {
+      maxWidth: "100vw",
+      minWidth: "800px",
+      maxHeight: "100vh",
+      data: {data : data}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if(result){
+        if(result[0].id){
+  
+          this.update(result)
+        }else{
+          // this.addProduct(result)
+  
+        }
+      }
+
+    });
+  }
 
 }

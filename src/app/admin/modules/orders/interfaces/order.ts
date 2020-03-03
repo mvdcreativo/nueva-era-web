@@ -11,7 +11,7 @@ export interface Order {
     state?: string;
     email: string;
     phone?: string;
-    products: ProductOrder[];
+    productos: ProductOrder[];
     status_id?:number;
     status: Status;
 

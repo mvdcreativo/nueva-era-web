@@ -81,7 +81,7 @@
                     </td>
                 </ng-container>
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
             </table>
 
             <!-- <mat-paginator [length]="totalResut | async" [pageSize]="20" [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator> -->
