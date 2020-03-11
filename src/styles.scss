@@ -33,6 +33,11 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       box-sizing: border-box;
   }
 
+  .pagos-text-row .pagos-text-row{
+    display: flex!important;
+    flex-direction: row!important
+}
+ 
 
 ///////////////////
 //SNACK_BARR COLORES

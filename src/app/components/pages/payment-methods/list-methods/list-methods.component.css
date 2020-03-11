@@ -1,0 +1,30 @@
+.mat-list-option[aria-selected="true"] {
+  background: #ffc111;
+  border-radius: 10px;
+}
+.mat-list-option,
+.mat-list-content {
+  border-radius: 10px;
+}
+.mat-list-option:hover {
+  background-color: #ffffc2;
+}
+.text-content {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+.mat-list-avatar {
+  border-radius: 2px !important;
+  object-fit: contain !important;
+  width: 60px !important;
+}
+.title-list,
+.cuotas {
+  width: 100% !important;
+}
+.cuotas .mat-form-field {
+  text-align: left;
+  width: 35px;
+}

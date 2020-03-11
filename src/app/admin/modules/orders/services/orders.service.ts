@@ -4,22 +4,35 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 import { take, map } from 'rxjs/operators';
 import { Order } from '../interfaces/order';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Observer } from 'rxjs';
 import { SnackBarComponent } from 'src/app/components/shared/snack-bar/snack-bar.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdersService {
 
+    
+    
+  cuotas$ =  new BehaviorSubject<number>(null);
+  id_medio_pago$ = new BehaviorSubject<number>(null);
+
   constructor(
     private _http: HttpClient,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    public authService : AuthService
   ) { }
 
-    // //categoias
+
+    // //Orders
     getOrders() {
-      return this._http.get<Order>(`${environment.API}order`).pipe(
+      return this._http.get<Order[]>(`${environment.API}order`).pipe(
+        take(1)
+      )
+    }
+    getOrder(id) {
+      return this._http.get<Order>(`${environment.API}order/${id}`).pipe(
         take(1)
       )
     }
@@ -42,7 +55,37 @@ export class OrdersService {
     }
 
 
+    registrarCliente(data){
 
+      const user = this.authService.currentUserValue;
+
+
+      if(user.user.id_cliente_cobrosya === null){
+        return this._http.post<any>(`${environment.API}registro_cliente_cobrosya`, data).pipe(
+          take(1)
+        )
+      }
+      
+    }
+
+    crearTalon(data){
+
+      const newData = {
+        order: data,
+        cuotas: this.cuotas$.value,
+        method: this.id_medio_pago$.value,
+        user: this.authService.currentUserValue.user
+      }
+      console.log(newData);
+      
+      const user = this.authService.currentUserValue;
+
+      if(user.user.id_cliente_cobrosya){
+        return this._http.post<any>(`${environment.API}crear_talon_cobrosya`, newData).pipe(
+          take(1)
+        )
+      }
+    }
     
   ////////PAGINACION, FILTRADO Y ORDEN, ANGULAR MATERIAL
 
@@ -68,6 +111,9 @@ export class OrdersService {
             )
       );
   }
+
+
+
 ///////////////////////////////////////////////////////////
   ////////////////////
   openSnackBar(estadoRes, message: string) {

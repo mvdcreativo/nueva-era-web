@@ -54,6 +54,7 @@ export class CheckoutComponent implements OnInit {
     this.form = this.formBuilder.group({
       user_id : [this.user.id, Validators.required],
       name: [this.user.name, Validators.required],
+      lastname: [this.user.lastname, Validators.required],
       ci: [this.user.ci, Validators.required],
       company: [this.user.company],
       rut: [this.user.rut],
@@ -101,9 +102,10 @@ export class CheckoutComponent implements OnInit {
 
 
     this.orderService.addOrder(dataForm).subscribe(      
-      res => {
-        localStorage.removeItem("cartItem");
-        this.router.navigate(['/pages/metodos-de-pago'])
+      (res:any) => {
+        // localStorage.removeItem("cartItem");
+        const id = res.id
+        this.router.navigate(['/pages/metodos-de-pago/', id ])
         console.log(res)
       }
     )

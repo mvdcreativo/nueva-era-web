@@ -30,12 +30,24 @@ export class AuthService {
 
 
   public get currentUserValue(): CurrentUser {
+    console.log(this.currentUserSubject.value);
+    
+    // this.actualizaUser(this.currentUserSubject.value.id);
     return this.currentUserSubject.value;
   }
   public get errorValue(): any {
     return this.errorSubject.value;
   }
 
+
+  actualizaUser(id){
+    return this.http.get<User>(`${environment.API}auth/users/${id}`).pipe(
+      take(1)
+    ).subscribe(
+      (res:any)=> this.currentUserSubject.next(res)
+
+    )
+  }
 
   findUser(id){
     return this.http.get<User>(`${environment.API}auth/users/${id}`)

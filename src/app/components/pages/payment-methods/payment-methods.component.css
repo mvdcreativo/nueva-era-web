@@ -1,10 +1,62 @@
-.mantenimiento {
-  width: 80%;
-  height: 70vh;
-  background-image: url("../../../../assets/images/pagos.svg");
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: top;
-  margin-right: auto;
+.container {
   margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 1024px;
+  min-width: 768px;
+}
+.container .mat-card {
+  width: 100%;
+  box-shadow: none !important;
+}
+.container .mat-card .mat-card-actions {
+  width: 100%;
+  display: inline-grid !important;
+  justify-items: right !important;
+}
+.container .mat-card .mat-card-actions button {
+  width: 150px;
+  height: 50px;
+}
+.logos-pagos li {
+  display: inline-flex;
+  justify-content: space-around;
+  align-content: center;
+  margin-left: 20px;
+  height: 35px;
+  filter: grayscale(100%);
+  opacity: 0.3;
+}
+.logos-pagos li img {
+  height: 35px;
+}
+.mat-expansion-panel {
+  margin-bottom: 2rem;
+}
+.mat-expansion-panel-header {
+  min-height: 100px !important;
+}
+.mat-expansion-panel-header-title {
+  align-items: center;
+  font-weight: 600;
+}
+@media (max-width: 960px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}
+@media (max-width: 768px) {
+  .logos-pagos li {
+    height: 25px;
+  }
+  .logos-pagos li img {
+    height: 25px;
+  }
+}
+@media (max-width: 440px) {
+  .logos-pagos {
+    display: none;
+  }
 }

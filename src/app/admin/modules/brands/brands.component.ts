@@ -26,6 +26,7 @@ export class BrandsComponent implements OnInit {
   destacada: any;
   checkedValue: boolean;
   status: any;
+  valueCheck: any;
 
   constructor(
     private _branService : BrandService,
@@ -75,7 +76,7 @@ export class BrandsComponent implements OnInit {
 
     formData.append('destaca', this.destacada)
 
-    console.log(this.selectedImage[0]);
+    // console.log(this.selectedImage[0]);
     console.log(data);
     
     
@@ -119,6 +120,7 @@ export class BrandsComponent implements OnInit {
 
     ///////EDIT
     openEdit(element: any) {
+      this.imageSrc = null;
       this.mostrar = false;
       this.formAdd.reset();
       this.edit = false;
@@ -130,9 +132,13 @@ export class BrandsComponent implements OnInit {
       )
       this.checkedValue = element.destaca ? true:false;
 
-
       this.idUpdate = element.id;
       this.mostrar = true;
+      if(element.image_url){
+        this.imageSrc = `${this.urlFiles+element.image_url}`
+      }else{
+        this.imageSrc = null;
+      }
       console.log(element);
   
     }
@@ -147,20 +153,21 @@ export class BrandsComponent implements OnInit {
       if (this.selectedImage) {
         formData.append('image_url', this.selectedImage[0])
       }
+      if( this.destacada === undefined) { this.destacada= 0;}
       formData.append('destaca', this.destacada)
 
       formData.append('name', data.name )
-      console.log(formData.get('name'));
+      console.log(formData);
       
       this._branService.updateBrand(id, formData).subscribe(
         res => {
           console.log(res);
           this._branService.openSnackBar('success', `Marca ${res.name} Actualizado con éxito!!`)
           this.getBrand()
-          this.formAdd.reset();
-          this.mostrar = false;
           this.idUpdate = null;
           this.imageSrc=null
+          this.oculta(false)
+
         },
         err => {
           console.log(err);

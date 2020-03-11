@@ -13,7 +13,7 @@ import { PaymentMethodsComponent } from './payment-methods/payment-methods.compo
 const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard]},      
-      { path: 'metodos-de-pago', component: PaymentMethodsComponent, canActivate:[AuthGuard]},
+      { path: 'metodos-de-pago/:order', component: PaymentMethodsComponent, canActivate:[AuthGuard]},
       { path: 'contacto', component: ContactComponent },
 ];
 

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeFourComponent } from '../shop/home-four/home-four.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
+import { ListMethodsComponent } from './payment-methods/list-methods/list-methods.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { PaymentMethodsComponent } from './payment-methods/payment-methods.compo
     CheckoutComponent,
     ErrorPageComponent,
     PaymentMethodsComponent,
+    ListMethodsComponent,
 
   ],
   imports: [

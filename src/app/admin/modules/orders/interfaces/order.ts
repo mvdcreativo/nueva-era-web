@@ -1,8 +1,10 @@
 import { Product } from 'src/app/modals/product.model';
 
 export interface Order {
+    id?:number;
     user_id?:number;
     name:string;
+    lastname:string;
     ci?:string;
     company?: string;
     rut?: string;

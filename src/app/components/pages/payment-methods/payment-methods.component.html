@@ -1,5 +1,73 @@
+<div class="container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Selecione un metodo de pago</mat-card-title>
+            <mat-card-subtitle>subtitulo</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+            <button mat-flat-button  color="accent" (click)="onSubmit()">Pagar ahora</button>
+            
+        </mat-card-actions>
+        <mat-card-content>
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Paganza y Redes de Cobranza
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <ul class="logos-pagos redes">
+                                <li><img src="../../../../assets/images/logos-pagos/abitab.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/redpagos.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/paganza.png" alt=""></li>
+                            </ul>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
 
-    <div class="mantenimiento">
+                    <list-methods *ngIf="payMethodsOffline" [listMethods]="payMethodsOffline"></list-methods>
+
+
+                </mat-expansion-panel>
+                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Tarjestas de Crédito y Bancos
+                        </mat-panel-title>
+                        <mat-panel-description>
+                            <ul class="logos-pagos">
+                                <li><img src="../../../../assets/images/logos-pagos/banred.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/bbva.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/brou.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/cabal.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/creditel.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/diners.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/discover.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/lider.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/master.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/oca.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/santander.png" alt=""></li>
+                                <li><img src="../../../../assets/images/logos-pagos/visa.png" alt=""></li>
+                            </ul>
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+
+                    <list-methods *ngIf="payMethodsOnline" [listMethods]="payMethodsOnline"></list-methods>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+        </mat-card-content>
+ 
+    </mat-card>
+
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="mantenimiento">
         
-    </div>
-
+    </div> -->

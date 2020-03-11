@@ -1,6 +1,7 @@
 export interface User {
     id?: number;
     name?: string;
+    lastname: any;
     email: string;
     password: string;
     role: string;
@@ -16,6 +17,7 @@ export interface User {
     created_at: string;
     updated_at: string;
     state: any;
+    id_cliente_cobrosya?:any;
 
 }
 export interface CurrentUser {
