@@ -1,0 +1,7 @@
+{
+    "/v5.5/*": {
+        "target": "http://api-sandbox5.cobrosya.com",
+        "secure": false,
+        "changeOrigin": true
+    }
+}

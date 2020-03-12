@@ -55,7 +55,7 @@ export class OrdersService {
     }
 
 
-    registrarCliente(data){
+    registrarCliente(data): Observable<any>{
 
       const user = this.authService.currentUserValue;
 
@@ -66,15 +66,17 @@ export class OrdersService {
         )
       }
       
+      
     }
 
-    crearTalon(data){
+    crearTalon(data,id_medio,cuotas){
 
       const newData = {
         order: data,
-        cuotas: this.cuotas$.value,
-        method: this.id_medio_pago$.value,
-        user: this.authService.currentUserValue.user
+        cuotas: cuotas,
+        method: id_medio,
+        user: this.authService.currentUserValue.user,
+        urlRedirect : `${environment.urlRedirectPago}${data.id}/${id_medio}`
       }
       console.log(newData);
       
@@ -86,7 +88,69 @@ export class OrdersService {
         )
       }
     }
+
+
+    redirectNavegadorCobro(data, nro_talon,id_medio,cuotas){
+      const user = this.authService.currentUserValue.user.id_cliente_cobrosya;
+      const newData = {
+        nro_talon : nro_talon,
+        order: data,
+        cuotas: cuotas,
+        method: id_medio,
+        user: user,
+      }
+      console.log(newData);
+      
+      this._http.post<any>(`${environment.API}firma-cobrosya`, newData).pipe(
+        take(1)
+      ).subscribe(
+        firma => {
+          console.log(firma);
+          
+          const dataPago = {
+            nro_talon : nro_talon,
+            id_medio_pago: newData.method,
+            id_cliente_cobrosya: user,
+            cuotas: cuotas,
+            id_tarjeta: "",
+            cvv2: "",
+            terminal:"",
+            firma: firma,
+          };
+          if(dataPago.firma){
+            console.log(dataPago);
+            
+     
+            this.post(dataPago,"http://api-sandbox5.cobrosya.com/v5.5/cobrar-talon");
+            
+
+            }
+
+          }
+      )
+
+
+    }
     
+/*******rREDIRECCIONAMIENTO URL PAGO */
+    post(obj,url) {
+      var mapForm = document.createElement("form");
+      mapForm.target = "_blank";
+      mapForm.method = "POST"; // or "post" if appropriate
+      mapForm.action = url;
+      Object.keys(obj).forEach(function(param){
+        var mapInput = document.createElement("input");
+        mapInput.type = "hidden";
+        mapInput.name = param;
+        mapInput.setAttribute("value", obj[param]);
+        mapForm.appendChild(mapInput);
+    });
+    document.body.appendChild(mapForm);
+    mapForm.submit();
+  }
+/************ */
+
+
   ////////PAGINACION, FILTRADO Y ORDEN, ANGULAR MATERIAL
 
   private totalResultSubject =  new BehaviorSubject<number>(null);

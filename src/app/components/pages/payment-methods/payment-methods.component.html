@@ -24,7 +24,7 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <list-methods *ngIf="payMethodsOffline" [listMethods]="payMethodsOffline"></list-methods>
+                    <list-methods (cuotasChange)= "setCuotas($event)" (methodChange)="setMethod($event)" *ngIf="payMethodsOffline" [listMethods]="payMethodsOffline"></list-methods>
 
 
                 </mat-expansion-panel>
@@ -51,7 +51,7 @@
                         </mat-panel-description>
                     </mat-expansion-panel-header>
 
-                    <list-methods *ngIf="payMethodsOnline" [listMethods]="payMethodsOnline"></list-methods>
+                    <list-methods (cuotasChange)= "setCuotas($event)" (methodChange)="setMethod($event)"  *ngIf="payMethodsOnline" [listMethods]="payMethodsOnline"></list-methods>
                 </mat-expansion-panel>
             </mat-accordion>
 

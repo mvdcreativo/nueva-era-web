@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-    <mat-selection-list (selectionChange)="check()" multiple="false" class="list-item-pagos" formArrayName= "cuotas"  >
+    <mat-selection-list (selectionChange)="check($event)" multiple="false" class="list-item-pagos" formArrayName= "cuotas"  >
         <mat-list-option class="pagos-text-row" checkboxPosition="after"  *ngFor="let method of listMethods; let i=index" [value]="method.id">
 
             <img matListAvatar src="../../../../assets/images/logos-pagos/{{ method.logo }}" alt="...">
@@ -10,7 +10,7 @@
                 <div  class="cuotas" *ngIf="method.installments.length >= 1">
                     <span>Cuotas: </span>   
                     <mat-form-field appearance="none">
-                        <mat-select class="selectCuotas" [formControlName]="i" (click)="changeCuotas()" [value]="1" >
+                        <mat-select class="selectCuotas" [formControlName]="i" (selectionChange)="changeCuotas($event,method.id )" [value]="1" >
                             <mat-option *ngFor="let qcuota of method.installments" [value]="qcuota.quantity">
                                 {{qcuota.quantity}}
                             </mat-option>

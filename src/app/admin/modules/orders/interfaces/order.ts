@@ -16,6 +16,10 @@ export interface Order {
     productos: ProductOrder[];
     status_id?:number;
     status: Status;
+    payment_method_id?:number;
+    url_pdf?:string;
+    talon_cobro?:string;
+
 
 }
 

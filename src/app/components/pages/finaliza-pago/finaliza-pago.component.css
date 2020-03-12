@@ -1,0 +1,32 @@
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  max-width: 1024px;
+  min-width: 768px;
+}
+.container .mat-card {
+  width: 100%;
+}
+.container .mat-card .mat-card-content {
+  padding: 2rem;
+}
+.container .mat-card .mat-card-content h4 {
+  text-transform: none;
+}
+.container .mat-card .mat-card-actions {
+  width: 100%;
+  display: inline-grid !important;
+  justify-items: right !important;
+}
+.container .mat-card .mat-card-actions button {
+  width: 150px;
+  height: 50px;
+}
+@media (max-width: 960px) {
+  .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+  }
+}

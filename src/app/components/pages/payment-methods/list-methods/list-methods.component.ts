@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { MatSelectionList, MatListOption, MatSelectionListChange } from '@angular/material/list';
 import { SelectionModel } from '@angular/cdk/collections';
 import { FormGroup, FormBuilder, FormControl } from '@angular/forms';
@@ -13,6 +13,9 @@ import { PaymentMethodsService } from 'src/app/admin/modules/admin-payment-metho
 export class ListMethodsComponent implements OnInit {
 
   @Input('listMethods') listMethods;
+  @Output() cuotasChange = new EventEmitter<any>();
+  @Output() methodChange = new EventEmitter<any>();
+
 
   form : FormGroup
 
@@ -39,12 +42,17 @@ export class ListMethodsComponent implements OnInit {
 
   }
 
-  changeCuotas(){
-    this.form.reset()
+  changeCuotas(e,method_id){
+    console.log(e);
+    this.selectionList.selectedOptions.selected[0] = method_id
     // console.log(this.form.value);
-    
+    this.methodChange.emit(method_id)
+    this.cuotasChange.emit(e.source.value);
   }
-  check(){
+  check(e){
+
+   
+
 
     let cuotasSelect = Object.assign({},this.form.value)
     cuotasSelect = Object.assign(cuotasSelect, {
@@ -52,11 +60,12 @@ export class ListMethodsComponent implements OnInit {
     }) 
     
     const cuotas = cuotasSelect.cuotas[0]
-    const id_medio_pago = this.selectionList.selectedOptions.selected[0].value;
+    
+    //  this.cuotasChange.emit(cuotas);
+     this.methodChange.emit(e.option.value)
+    //  this.cuotasChange.emit(null);
 
-    this.orderService.cuotas$.next(cuotas)
-    this.orderService.id_medio_pago$.next(id_medio_pago)
-     
+
     
   }
 

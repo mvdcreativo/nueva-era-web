@@ -3,5 +3,7 @@ export const environment = {
   API : "https://api.nuevaerauruguay.tk/api/",
   urlImg : "https://apiv2.jh.nuevaerauruguay.com/Upload/Article/",
   AuthAPI: 'https://api.nuevaerauruguay.tk/api/auth/',
-  urlFiles: 'https://api.nuevaerauruguay.tk/storage/'
+  urlFiles: 'https://api.nuevaerauruguay.tk/storage/',
+  urlRedirectPago: "http://nuevaerauruguay.picaworks.com/pages/finaliza-pago/"
+
 };

@@ -16,9 +16,11 @@ export class ErrorInterceptor implements HttpInterceptor {
                 // this.authService.logout();
                 if(err.error.message === "Unauthorized"){
                     this.authService.errorSubject.next('Usuario o contraseña incorrectos')
-                }else{
-                    this.authService.logout()
+                    
                 }
+                
+                localStorage.removeItem('currentUser')               
+                
                 // 
                 // location.reload(true);
 

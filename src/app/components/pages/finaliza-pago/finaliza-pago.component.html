@@ -1,0 +1,44 @@
+<div class="container">
+    <ng-container *ngIf="online; then onlineTemplate; else offlineTemplate"></ng-container>
+
+
+    <ng-template #onlineTemplate>
+
+         <mat-card>
+            <mat-card-header>
+                <mat-card-title>Pago procesado</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h4 class="width-100">Nº de Orden {{ order.id }} </h4>
+                <br>
+                <h5>Imprima el talón de pago como referencia para el pago en la Red de Cobranza que selecciono</h5>
+                <p>En su panel de administracion se encuentran los detalles y el estado de su compra</p>
+    
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>       
+
+    </ng-template>
+
+
+    <ng-template #offlineTemplate>
+        
+        <mat-card *ngIf="order">
+            <mat-card-header>
+                <mat-card-title>Finalizando el Pago</mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h4 class="width-100">Nº de Orden {{ order.id }} </h4>
+                <br>
+                <h5>Imprima el talón de pago como referencia para el pago en la Red de Cobranza que selecciono</h5>
+                <p>En su panel de administracion se encuentran los detalles y el estado de su compra</p>
+    
+            </mat-card-content>
+            <mat-card-actions>
+                <a mat-flat-button [href]="order.url_pdf" color="accent" target="_blank" ><mat-icon>print</mat-icon> Imprimir Talón para realizar el pago</a>
+            </mat-card-actions>
+        </mat-card>
+    </ng-template>
+    
+</div>

@@ -11,6 +11,7 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import { HomeFourComponent } from '../shop/home-four/home-four.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { ListMethodsComponent } from './payment-methods/list-methods/list-methods.component';
+import { FinalizaPagoComponent } from './finaliza-pago/finaliza-pago.component';
 
 
 @NgModule({
@@ -21,6 +22,7 @@ import { ListMethodsComponent } from './payment-methods/list-methods/list-method
     ErrorPageComponent,
     PaymentMethodsComponent,
     ListMethodsComponent,
+    FinalizaPagoComponent,
 
   ],
   imports: [

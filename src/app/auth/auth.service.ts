@@ -30,9 +30,8 @@ export class AuthService {
 
 
   public get currentUserValue(): CurrentUser {
-    console.log(this.currentUserSubject.value);
     
-    // this.actualizaUser(this.currentUserSubject.value.id);
+    this.actualizaUser(this.currentUserSubject.value.user.id);
     return this.currentUserSubject.value;
   }
   public get errorValue(): any {
@@ -44,7 +43,14 @@ export class AuthService {
     return this.http.get<User>(`${environment.API}auth/users/${id}`).pipe(
       take(1)
     ).subscribe(
-      (res:any)=> this.currentUserSubject.next(res)
+      (res:any)=> {
+        let currenUser: CurrentUser = JSON.parse(localStorage.getItem('currentUser'))
+        currenUser.user = res;
+        this.currentUserSubject.next(currenUser)
+        localStorage.setItem('currentUser', JSON.stringify(currenUser));
+        
+  
+      }
 
     )
   }

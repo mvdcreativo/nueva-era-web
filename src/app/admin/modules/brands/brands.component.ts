@@ -22,7 +22,7 @@ export class BrandsComponent implements OnInit {
   selectedImage: FileList;
   idUpdate: any;
   edit: boolean;
-  imageSrc: string | ArrayBuffer;
+  imageSrc: any;
   destacada: any;
   checkedValue: boolean;
   status: any;
@@ -74,7 +74,9 @@ export class BrandsComponent implements OnInit {
 
     formData.append('name', data.name )
 
-    formData.append('destaca', this.destacada)
+    if( this.destacada === undefined || this.destacada === null ) { this.destacada= 0;}
+      formData.append('destaca', this.destacada)
+
 
     // console.log(this.selectedImage[0]);
     console.log(data);
@@ -181,6 +183,7 @@ export class BrandsComponent implements OnInit {
       this.edit = false;
       this.formAdd.reset();
       this.mostrar = estado
+      this.imageSrc = null;
     }
 
 
