@@ -84,7 +84,9 @@ export class PaymentMethodsComponent implements OnInit {
   onSubmit(){
     
     if(this.id_medio){
-
+      if(this.cuotas === undefined || this.cuotas === null){
+        this.cuotas = 0
+      }
       this.orderService.crearTalon(this.order,this.id_medio,this.cuotas).subscribe(
         (res:any)=> {
 
