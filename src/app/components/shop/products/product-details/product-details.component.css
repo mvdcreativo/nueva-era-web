@@ -10,8 +10,10 @@
 }
 .content {
   height: auto !important;
+  margin-bottom: 10px;
 }
 .info-prod {
+  position: relative;
   margin-top: 30px !important;
   padding-right: 0px !important;
 }
