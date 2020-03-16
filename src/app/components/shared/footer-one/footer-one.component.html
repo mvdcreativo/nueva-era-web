@@ -1,4 +1,14 @@
 <div class="content">
+    <!-- <div class="container">
+        <div class="products sec-padding">
+          <div class="products-four">
+    
+            <h3>Productos Populares</h3>
+            <app-product-carousel-two [product]="products | slice:0:8"></app-product-carousel-two>
+    
+          </div>
+        </div>
+    </div> -->
     <div class="medios-pago">
         <img src="../../../../assets/images/footer/mediospagopie.png" alt="">
     </div>
@@ -8,7 +18,7 @@
             <form [formGroup]="form" >
                 <ul>
                     <li>
-                        <mat-form-field appearance="outline" appearance="fill">
+                        <mat-form-field class="form-campo-footer" appearance="outline" appearance="fill">
                             <input formControlName="name" matInput placeholder="Nombre">
                         </mat-form-field>
                     </li>

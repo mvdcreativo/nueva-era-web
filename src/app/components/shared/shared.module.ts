@@ -37,6 +37,7 @@ import { BtnWspRedirectComponent } from './btn-wsp-redirect/btn-wsp-redirect.com
 import { SnackBarComponent } from './snack-bar/snack-bar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FooterOneComponent } from './footer-one/footer-one.component';
+import { ProductCarouselTwoComponent } from './product-carousel-two/product-carousel-two.component';
 
 
 
@@ -53,7 +54,7 @@ import { FooterOneComponent } from './footer-one/footer-one.component';
     BtnWspRedirectComponent,
     SnackBarComponent,
     FooterOneComponent,
-    
+    ProductCarouselTwoComponent
   ],
   imports: [
     CommonModule,

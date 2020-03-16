@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  API : "http://apinuevaera.test/api/",
+  API : "https://api.nuevaerauruguay.tk/api/",
   urlImg : "https://apiv2.jh.nuevaerauruguay.com/Upload/Article/",
   AuthAPI: 'http://apinuevaera.test/api/auth/',
   // urlFiles: 'http://automoviles.test/storage/'

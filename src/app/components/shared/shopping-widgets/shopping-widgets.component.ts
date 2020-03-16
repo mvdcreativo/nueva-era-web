@@ -4,6 +4,7 @@ import { CartService } from '../services/cart.service';
 import { Observable } from 'rxjs';
 import { CartItem } from 'src/app/modals/cart-item';
 import { ProductService } from '../services/product.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-shopping-widgets',
@@ -14,6 +15,7 @@ export class ShoppingWidgetsComponent implements OnInit {
 
   products: Product[];
   indexProduct: number;
+  urlFiles: string = environment.urlFiles;
 
   public sidenavMenuItems:Array<any>;
 

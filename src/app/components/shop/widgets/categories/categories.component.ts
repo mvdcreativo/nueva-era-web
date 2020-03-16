@@ -25,12 +25,24 @@ export class CategoriesComponent implements OnInit {
 
   ) { 
     this.matIconRegistry.addSvgIcon(
-      "perros",
+      "alimento-perro",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-perro.svg")
     );
     this.matIconRegistry.addSvgIcon(
-      "gatos",
+      "alimento-gato",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "sanitario-gato",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "antipulgas",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/anti-pulga.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "snacks",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/snack.svg")
     );
     this.matIconRegistry.addSvgIcon(
       "accesorios",

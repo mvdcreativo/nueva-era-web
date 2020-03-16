@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/modals/product.model';
 import { CartService } from 'src/app/components/shared/services/cart.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-product-dialog',
@@ -17,6 +18,8 @@ export class ProductDialogComponent implements OnInit {
   public variantImage       :   any = '';
   public selectedColor      :   any = '';
   public selectedSize       :   any = '';
+  urlFiles: string = environment.urlFiles;
+
 
   constructor(private router: Router, public productsService: ProductService, private cartService: CartService, public dialogRef: MatDialogRef<ProductDialogComponent>, @Inject(MAT_DIALOG_DATA) public product: Product) { }
 
@@ -47,7 +50,7 @@ export class ProductDialogComponent implements OnInit {
 
      // Add to cart
      public buyNow() {
-      this.router.navigate(['/home/product', this.product.id]);
+      this.router.navigate(['/tienda/producto', this.product.slug]);
       this.close();
    }
 
