@@ -8,12 +8,24 @@
   text-align: right;
   margin-top: 1rem;
 }
-.content {
-  height: auto !important;
-  margin-bottom: 10px;
-}
-.info-prod {
-  position: relative;
-  margin-top: 30px !important;
-  padding-right: 0px !important;
+@media (max-width: 768px) {
+  .content {
+    position: relative !important;
+    height: auto !important;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+  }
+  .info-prod {
+    position: relative !important;
+    margin-top: 30px !important;
+    padding-right: 0px !important;
+  }
+  .product-right {
+    height: auto !important;
+    min-height: 50% !important;
+  }
+  .product-right .buttons button {
+    width: 100% !important;
+    margin-bottom: 5px;
+  }
 }
