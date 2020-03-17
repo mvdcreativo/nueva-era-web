@@ -44,8 +44,9 @@ const appRoutes: Routes = [
   declarations: [],
   imports: [
     RouterModule.forRoot(appRoutes, {
-    initialNavigation: 'enabled'
-})
+      initialNavigation: 'enabled', 
+      scrollPositionRestoration: 'top'
+    })
   ],
   exports: [RouterModule]
 })

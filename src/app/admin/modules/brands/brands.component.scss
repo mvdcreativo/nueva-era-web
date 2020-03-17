@@ -11,6 +11,10 @@
     }
     .image{
         height: 50px;
+        max-width: 50px;
+        object-fit: contain;
+        object-position: center;
+        
     }
     .btn{
         background-color: #2D86F7;

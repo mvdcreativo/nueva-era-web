@@ -166,6 +166,14 @@ img {
 .footer.three {
   background-color: transparent;
 }
+.container {
+  width: 80%;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+}
 .mat-form-field {
   width: 80%;
   color: white;

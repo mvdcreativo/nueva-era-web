@@ -43,7 +43,7 @@ export function app() {
 }
 
 function run() {
-  const port = process.env.PORT || 4100;
+  const port = process.env.PORT || 4300;
 
   // Start up the Node server
   const server = app();

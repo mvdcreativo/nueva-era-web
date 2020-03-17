@@ -39,7 +39,10 @@ export class HomeFourComponent implements OnInit {
     // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
   ];
 
-  constructor(private productService: ProductService,  private cartService: CartService) {
+  constructor(
+    private productService: ProductService, 
+    private cartService: CartService
+    ) {
     this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
 
   }

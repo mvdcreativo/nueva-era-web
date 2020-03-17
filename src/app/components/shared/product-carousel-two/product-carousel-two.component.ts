@@ -7,33 +7,38 @@ import { Router } from '@angular/router';
 import {  SwiperDirective } from 'ngx-swiper-wrapper';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { environment } from 'src/environments/environment';
+import { Brand } from 'src/app/admin/modules/brands/interfaces/brand';
 
 @Component({
   selector: 'app-product-carousel-two',
   templateUrl: './product-carousel-two.component.html',
-  styleUrls: ['./product-carousel-two.component.sass']
+  styleUrls: ['./product-carousel-two.component.scss']
 })
 export class ProductCarouselTwoComponent implements OnInit {
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
-  @Input('product') product: Array<Product> = [];
+  @Input('brands') brands: Array<Brand> = [];
 
   public config: SwiperConfigInterface = {};
 
   urlFiles: string = environment.urlFiles;
 
 
-   constructor(private cartService: CartService, private productsService: ProductService, private wishlistService: WishlistService, private router: Router) { }
+   constructor(
+     private cartService: CartService, 
+     private productsService: ProductService, 
+     private wishlistService: WishlistService, 
+     private router: Router
+     ) { }
   //  @ViewChild(SwiperDirective) directiveRef: SwiperDirective;
 
    ngOnInit() {
-     console.log(this.product);
+    //  console.log(this.product);
    }
    ngAfterViewInit(){
-
     
      this.config = {
        observer: true,
-       slidesPerView: 5,
+       slidesPerView: 6,
        spaceBetween: 16,
        keyboard: true,
        navigation: true,
@@ -44,39 +49,21 @@ export class ProductCarouselTwoComponent implements OnInit {
        lazy: true,
        breakpoints: {
          480: {
-           slidesPerView: 1
+           slidesPerView: 2
          },
          740: {
            slidesPerView: 2,
          },
          960: {
-           slidesPerView: 3,
+           slidesPerView: 4,
          },
          1280: {
-           slidesPerView: 4,
+           slidesPerView: 6,
          },
 
 
        }
      }
    }
-
-   // Add to cart
-   public addToCart(product: Product,  quantity: number = 1) {
-     this.cartService.addToCart(product,quantity);
-     console.log(product, quantity);
-   }
-
-   // Add to wishlist
-   public addToWishlist(product: Product) {
-     this.wishlistService.addToWishlist(product);
-  }
-
-   // Add to compare
-   public addToCompare(product: Product) {
-     this.productsService.addToCompare(product);
-  }
-
-
 
 }

@@ -11,6 +11,9 @@
 }
 .content .image {
   height: 50px;
+  max-width: 50px;
+  object-fit: contain;
+  object-position: center;
 }
 .content .btn {
   background-color: #2d86f7;

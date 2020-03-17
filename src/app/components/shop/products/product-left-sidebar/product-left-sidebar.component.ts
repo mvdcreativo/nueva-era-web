@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product, ColorFilter } from 'src/app/modals/product.model';
@@ -9,6 +9,20 @@ import { Product, ColorFilter } from 'src/app/modals/product.model';
   styleUrls: ['./product-left-sidebar.component.scss']
 })
 export class ProductLeftSidebarComponent implements OnInit {
+  @HostListener('window:scroll')
+  checkScroll() {
+      
+    // window의 scroll top
+    // Both window.pageYOffset and document.documentElement.scrollTop returns the same result in all the cases. window.pageYOffset is not supported below IE 9.
+
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    console.log(scrollPosition);
+
+  }
+
+
+
   public sidenavOpen: boolean = true;
   public animation: any;   // Animation
   public sortByOrder: string = '';   // sorting
@@ -29,6 +43,8 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    const windows = 
+
     this.route.params.subscribe(
       (params: Params) => {
         console.log(params);
@@ -37,11 +53,21 @@ export class ProductLeftSidebarComponent implements OnInit {
           console.log('aqui1');
           
           this.navegaConParametros(params);
+          window.scroll({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+          });
 
         }else{
           ///Buscador
           this.navegaConQueryParams()
           console.log('aqui2');
+          window.scroll({ 
+            top: 0, 
+            left: 0, 
+            behavior: 'smooth' 
+          });
 
         }
       }

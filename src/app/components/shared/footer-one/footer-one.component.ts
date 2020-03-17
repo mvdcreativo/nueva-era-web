@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from '../services/message.service';
 import { ProductService } from '../services/product.service';
 import { Product } from 'src/app/modals/product.model';
+import { BrandService } from 'src/app/admin/modules/brands/services/brand.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-footer-one',
@@ -12,11 +14,12 @@ import { Product } from 'src/app/modals/product.model';
 export class FooterOneComponent implements OnInit {
   form: FormGroup;
   products: Product[];
+  brands: any;
 
   constructor(
     private fb: FormBuilder,
     private messageService: MessageService,
-    private productService: ProductService
+    private _brandService: BrandService
   ) { }
 
 
@@ -28,13 +31,8 @@ export class FooterOneComponent implements OnInit {
       message: [null, [Validators.required, Validators.minLength(3)]]
     })
 
+    this.getBrands();
 
-    this.productService.getProducts()
-      .subscribe(
-        (product: Product[]) => {
-          this.products = product
-        }
-      )
 
   }
 
@@ -44,4 +42,16 @@ export class FooterOneComponent implements OnInit {
     this.form.reset();
   }
 
+
+
+  getBrands(){
+    this._brandService.getBrands()
+    .pipe(take(1))
+    .subscribe(
+      (res:any) => {
+        this.brands = res.filter(x => x.destaca === 1)
+      }
+    )
+     
+  }
 }
