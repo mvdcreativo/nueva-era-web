@@ -7,7 +7,7 @@ export const environment = {
   API : "http://apinuevaera.test/api/",
   urlImg : "https://apiv2.jh.nuevaerauruguay.com/Upload/Article/",
   AuthAPI: 'http://apinuevaera.test/api/auth/',
-  // urlFiles: 'http://automoviles.test/storage/'
+  urlPago: 'http://apinuevaera.test/mercado-pago',
   urlFiles: 'http://apinuevaera.test/storage/',
   urlRedirectPago: "http://localhost:4200/pages/finaliza-pago/"
 };

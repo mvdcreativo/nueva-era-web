@@ -37,7 +37,7 @@ export class HeaderFourComponent implements OnInit {
     const data = this.formSearch.value
     console.log(data);
     
-    this.router.navigate(['/productos'], { queryParams: data });
+    this.router.navigate(['/tienda/productos'], { queryParams: data });
 
 
   }

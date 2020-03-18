@@ -55,96 +55,54 @@ export class OrdersService {
     }
 
 
-    registrarCliente(data): Observable<any>{
+    // registrarCliente(data): Observable<any>{
 
-      const user = this.authService.currentUserValue;
+    //   const user = this.authService.currentUserValue;
 
 
-      if(user.user.id_cliente_cobrosya === null){
-        return this._http.post<any>(`${environment.API}registro_cliente_cobrosya`, data).pipe(
-          take(1)
-        )
-      }
+    //   if(user.user.id_cliente_cobrosya === null){
+    //     return this._http.post<any>(`${environment.API}registro_cliente_cobrosya`, data).pipe(
+    //       take(1)
+    //     )
+    //   }
       
       
-    }
+    // }
 
-    crearTalon(data,id_medio,cuotas){
+    // crearTalon(data,id_medio,cuotas){
 
-      const newData = {
-        order: data,
-        cuotas: cuotas,
-        method: id_medio,
-        user: this.authService.currentUserValue.user,
-        urlRedirect : `${environment.urlRedirectPago}${data.id}/${id_medio}`
-      }
-      console.log(newData);
+    //   const newData = {
+    //     order: data,
+    //     cuotas: cuotas,
+    //     method: id_medio,
+    //     user: this.authService.currentUserValue.user,
+    //     urlRedirect : `${environment.urlRedirectPago}${data.id}/${id_medio}`
+    //   }
+    //   console.log(newData);
       
-      const user = this.authService.currentUserValue;
+    //   const user = this.authService.currentUserValue;
 
-      if(user.user.id_cliente_cobrosya){
-        return this._http.post<any>(`${environment.API}crear_talon_cobrosya`, newData).pipe(
-          take(1)
-        )
-      }
-    }
+    //   if(user.user.id_cliente_cobrosya){
+    //     return this._http.post<any>(`${environment.API}crear_talon_cobrosya`, newData).pipe(
+    //       take(1)
+    //     )
+    //   }
+    // }
 
 
-    redirectNavegadorCobro(data, nro_talon,id_medio,cuotas){
-      const user = this.authService.currentUserValue.user.id_cliente_cobrosya;
-      const newData = {
-        nro_talon : nro_talon,
-        order: data,
-        cuotas: cuotas,
-        method: id_medio,
-        user: user,
-      }
-      console.log(newData);
-      
-      this._http.post<any>(`${environment.API}firma-cobrosya`, newData).pipe(
-        take(1)
-      ).subscribe(
-        firma => {
-          console.log(firma);
-          
-          const dataPago = {
-            nro_talon : nro_talon,
-            id_medio_pago: newData.method,
-            id_cliente_cobrosya: user,
-            cuotas: cuotas,
-            id_tarjeta: "",
-            cvv2: "",
-            terminal:"",
-            firma: firma,
-          };
-          if(dataPago.firma){
-            console.log(dataPago);
-            
-     
-            this.post(dataPago,"http://api-sandbox5.cobrosya.com/v5.5/cobrar-talon");
-            
+    redirectNavegadorCobro(data){
 
-            }
-
-          }
-      )
-
+            this.redirectForm(`${environment.urlPago}/${data.id}`);
 
     }
     
 /*******rREDIRECCIONAMIENTO URL PAGO */
-    post(obj,url) {
+    redirectForm(url: string) {
       var mapForm = document.createElement("form");
       mapForm.target = "_blank";
-      mapForm.method = "POST"; // or "post" if appropriate
+      mapForm.method = "GET"; // or "post" if appropriate
       mapForm.action = url;
-      Object.keys(obj).forEach(function(param){
-        var mapInput = document.createElement("input");
-        mapInput.type = "hidden";
-        mapInput.name = param;
-        mapInput.setAttribute("value", obj[param]);
-        mapForm.appendChild(mapInput);
-    });
+
     document.body.appendChild(mapForm);
     mapForm.submit();
   }

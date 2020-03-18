@@ -83,40 +83,40 @@ export class PaymentMethodsComponent implements OnInit {
 
   onSubmit(){
     
-    if(this.id_medio){
-      if(this.cuotas === undefined || this.cuotas === null){
-        this.cuotas = 0
-      }
-      this.orderService.crearTalon(this.order,this.id_medio,this.cuotas).subscribe(
-        (res:any)=> {
+    // if(this.id_medio){
+    //   if(this.cuotas === undefined || this.cuotas === null){
+    //     this.cuotas = 0
+    //   }
+    //   this.orderService.crearTalon(this.order,this.id_medio,this.cuotas).subscribe(
+    //     (res:any)=> {
 
-          const nro_talon = res.nro_talon;
-          // localStorage.removeItem('cartItem');
+    //       const nro_talon = res.nro_talon;
+    //       // localStorage.removeItem('cartItem');
 
-          if(res.error === 0){
-            if(this.id_medio=== 1 || this.id_medio === 5 || this.id_medio === 6){
+    //       if(res.error === 0){
+    //         if(this.id_medio=== 1 || this.id_medio === 5 || this.id_medio === 6){
 
-              this.router.navigate(['/pages/finaliza-pago', this.order.id, this.id_medio ])
+    //           this.router.navigate(['/pages/finaliza-pago', this.order.id, this.id_medio ])
 
-            }else{
+    //         }else{
 
-              this.orderService.redirectNavegadorCobro(this.order, nro_talon,this.id_medio,this.cuotas)
+    //           this.orderService.redirectNavegadorCobro(this.order, nro_talon,this.id_medio,this.cuotas)
 
-            }
+    //         }
           
-          }
-        }
+    //       }
+    //     }
   
         
-      )
-      this.msgError=null;
-    }else{
-      let message, status;
-      message = `Seleccione un método de pago`;
-      status = 'error';
-      this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
-      this.msgError = "Seleccione un método de pago"
-    }
+    //   )
+    //   this.msgError=null;
+    // }else{
+    //   let message, status;
+    //   message = `Seleccione un método de pago`;
+    //   status = 'error';
+    //   this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
+    //   this.msgError = "Seleccione un método de pago"
+    // }
   }
 
   getPaymentMethods(){
@@ -155,13 +155,13 @@ setMethod(e){
 
   regitrarClienteCobrosya(){
 
-    this.orderService.registrarCliente(this.order).subscribe(
-      res => {
-        console.log(res)
-        this.authService.currentUserValue;
-      }
+    // this.orderService.registrarCliente(this.order).subscribe(
+    //   res => {
+    //     console.log(res)
+    //     this.authService.currentUserValue;
+    //   }
 
-    )
+    // )
   }
 
 

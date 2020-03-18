@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
 import { Router } from '@angular/router';
+import { environment } from 'src/environments/environment';
 declare let fbq:Function;
 
 
@@ -105,7 +106,9 @@ export class CheckoutComponent implements OnInit {
       (res:any) => {
         // localStorage.removeItem("cartItem");
         const id = res.id
-        this.router.navigate(['/pages/metodos-de-pago/', id ])
+        //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago
+        location.href= `${environment.urlPago}/${id}`
+        // this.router.navigate(['/pages/metodos-de-pago/', id ])
         console.log(res)
       }
     )
