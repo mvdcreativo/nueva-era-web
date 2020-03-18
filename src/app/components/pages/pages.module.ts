@@ -12,6 +12,9 @@ import { HomeFourComponent } from '../shop/home-four/home-four.component';
 import { PaymentMethodsComponent } from './payment-methods/payment-methods.component';
 import { ListMethodsComponent } from './payment-methods/list-methods/list-methods.component';
 import { FinalizaPagoComponent } from './finaliza-pago/finaliza-pago.component';
+import { SuccessComponent } from './pagos/success/success.component';
+import { PendingComponent } from './pagos/pending/pending.component';
+import { FailureComponent } from './pagos/failure/failure.component';
 
 
 @NgModule({
@@ -23,6 +26,9 @@ import { FinalizaPagoComponent } from './finaliza-pago/finaliza-pago.component';
     PaymentMethodsComponent,
     ListMethodsComponent,
     FinalizaPagoComponent,
+    SuccessComponent,
+    PendingComponent,
+    FailureComponent,
 
   ],
   imports: [
