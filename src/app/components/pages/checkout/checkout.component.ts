@@ -106,10 +106,12 @@ export class CheckoutComponent implements OnInit {
       (res:any) => {
         // localStorage.removeItem("cartItem");
         const id = res.id
-        //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago
+        //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago////
         location.href= `${environment.urlPago}/${id}`
+
+        localStorage.removeItem('currentUser');
         // this.router.navigate(['/pages/metodos-de-pago/', id ])
-        console.log(res)
+        // console.log(res)
       }
     )
       
