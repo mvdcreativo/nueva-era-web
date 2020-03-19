@@ -30,8 +30,9 @@ export class AuthService {
 
 
   public get currentUserValue(): CurrentUser {
-    
-    this.actualizaUser(this.currentUserSubject.value.user.id);
+    if(this.currentUserSubject.value && this.currentUserSubject.value.user){
+      this.actualizaUser(this.currentUserSubject.value.user.id);
+    }
     return this.currentUserSubject.value;
   }
   public get errorValue(): any {
