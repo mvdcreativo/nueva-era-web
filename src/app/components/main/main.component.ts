@@ -8,6 +8,8 @@ import { SidebarMenuService } from '../shared/sidebar/sidebar-menu.service';
 import { SidenavMenu } from '../shared/sidebar/sidebar-menu.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
+import { CategoryService } from '../shared/services/category.service';
+import { map, filter } from 'rxjs/operators';
 
 declare let fbq:Function;
 
@@ -33,43 +35,17 @@ export class MainComponent implements OnInit {
 
   public url: any;
 
-  navItems: SidenavMenu[] = [
-    {
-      displayName: 'Inicio',
-      iconName: 'home',
-      route: '/'
-    },
-    {
-      displayName: 'Perros',
-      iconName: '',
-      route: 'productos/1'
-    },
-    {
-      displayName: 'Gatos',
-      iconName: '',
-      route: 'productos/2'
-    },
-    {
-      displayName: 'Accesorios',
-      iconName: '',
-      route: 'productos/3'
-    },
-    {
-      displayName: 'Promociones',
-      iconName: '',
-      route: 'productos/4'
-    },
-    {
-      displayName: 'Contacto',
-      iconName: '',
-      route: '#'
-    }
-  ];
+
+
+
+  navItems: SidenavMenu[] 
+  categorias: any;
 
   constructor(
     public router: Router, 
     private cartService: CartService, 
     public sidenavMenuService: SidebarMenuService,
+    private categoryService : CategoryService,
     private iconRegistry: MatIconRegistry, 
     private sanitizer: DomSanitizer
     ) {
@@ -92,6 +68,23 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     // this.currency = this.currencies[0];
     // this.flag = this.flags[0];
+    this.categoryService.categorias$.subscribe(
+      res => {
+        this.navItems = res.map( 
+
+          v => {
+            console.log(v);
+            let a = {displayName: v.name, iconName:"" , route: `/tienda/productos/${v.slug}`  }
+            return a;
+          }
+          
+        )
+
+        
+      }
+
+    )
+
 
   }
 
