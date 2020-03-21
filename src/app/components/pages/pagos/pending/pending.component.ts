@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-pending',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PendingComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private activatedRoute : ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
+
+    this.activatedRoute.queryParamMap.subscribe(
+      (param:Params)=> console.log(param)
+      
+    )
   }
 
 }
