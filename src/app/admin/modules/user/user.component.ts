@@ -61,6 +61,7 @@ export class UserComponent implements OnInit {
       rut: this.currenUser.rut,
       company: this.currenUser.company,
       discount: this.currenUser.discount,
+      role:this.currenUser.role
 
     })
   }
