@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup, AbstractControl } from '@angular/forms';
 import { UserService } from '../users/services/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -14,6 +14,7 @@ import { NgSwitch } from '@angular/common';
 })
 export class UserComponent implements OnInit {
   formAdd: FormGroup;
+  formPass: FormGroup;
   currenUser: User;
   readOnly: boolean = true;
   edit: boolean = false;
@@ -61,15 +62,52 @@ export class UserComponent implements OnInit {
       rut: this.currenUser.rut,
       company: this.currenUser.company,
       discount: this.currenUser.discount,
-      role:this.currenUser.role
+      role:this.currenUser.role,
+      password:[null],
+      newPassword:[null],
+      newPasswordConfirm:[null]
 
+    })
+
+
+    this.formPass = this.fb.group({
+      password:[null, Validators.required],
+      passwordConfirm:[null, Validators.required]
+
+    },{
+      validator: this.passwordConfirming
     })
   }
 
-
+  passwordConfirming(c: AbstractControl): { invalid: boolean } {
+    if (c.get('password').value !== c.get('passwordConfirm').value) {
+        return {invalid: true};
+    }
+  }
 
   update(id: number) {
     const data = this.formAdd.value;
+
+    this._userService.updateUser(id, data).subscribe(
+      res => {
+        console.log(res);
+        this._userService.openSnackBar('success', `Tipo ${res.name} Actualizado con éxito!!`)
+        this.formAdd.reset();
+        this.checked= false
+        this.getUser()
+        
+
+      },
+      err => {
+        console.log(err);
+
+        this._userService.openSnackBar('error', `${err}`)
+      },
+    )
+  }
+
+  updatePass(id: number){
+    const data = this.formPass.value;
 
     this._userService.updateUser(id, data).subscribe(
       res => {

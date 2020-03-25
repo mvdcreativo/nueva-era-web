@@ -14,19 +14,32 @@
             background-color: #2D86F7;
             color: white;
             margin: 1rem;
+            
+            &:hover{
+                background-color: rgb(106, 166, 245);
+                &:disabled{
+                    background-color: #2D86F7;
+                    color: white;
+                    margin: 1rem;
+                }
+            }
         }
         
         .columns{
             display: grid;
-            grid-template-columns: repeat(1fr, 2);
+            grid-template-columns: repeat(2 , 1fr) auto;
+            column-gap: 2rem;
             .slideEdit{
                 width: 100%;
-                padding-left: 50%;
                 justify-content: right;
             }
             .datos{
+                width: 100%;
                 font-size: 12px;
                 display: grid;
+                padding: 1rem;
+                grid-auto-rows: max-content;
+
                 .mat-list{
                     font-size: 12px;
                     .mat-list.item{
@@ -47,15 +60,15 @@
                 }
                 .mat-form-field {
                     
-                    width: 30%;
+                    width: 100%;
                     margin-left: 1rem;
 
                 }
                 .corto{
-                    width: 15%
+                    width: 50%
                 }
                 .medio{
-                    width: 20%
+                    width: 75%
                 }
                 .content-btn{
                     width: 100%;
@@ -69,10 +82,10 @@
     .acciones{
         width: 13%;
     }
-    .no-shadow{
-        box-shadow: none;
+    .cancel{
+        margin: 1rem;
         color: #424242;
-        background-color: transparent;
+        background-color: white;
     }
 }
 label{
@@ -86,4 +99,26 @@ label{
         // background-image: ;
     }
 
+}
+
+
+
+@media(max-width: 800px){
+    .columns{
+        grid-template-columns: repeat(1 , 100%);
+        .slideEdit{
+            grid-row: 1/2;
+            width: 100%;
+            justify-content: right;
+        }
+        .datos{
+            grid-row: 2/3;
+        }
+        .pass{
+            grid-row: 3/4;
+        }
+
+
+
+    }
 }

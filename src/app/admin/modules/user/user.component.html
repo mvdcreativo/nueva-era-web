@@ -2,11 +2,6 @@
     <mat-card>
 
         <div class="columns" *ngIf="currenUser">
-            <div class="slideEdit">
-                <mat-slide-toggle class="btn-edit" [checked]= "checked" (change)="changeEdit()">
-                    Editar mis Datos
-                </mat-slide-toggle>
-            </div>
             <form *ngIf="edit" [formGroup]="formAdd" class="datos">
                 <h2>Mis datos</h2>
                 <mat-form-field class="add">
@@ -46,16 +41,45 @@
                     <mat-icon matSuffix>mode_edit</mat-icon>
                 </mat-form-field>
 
+
+
                 <div class="content-btn">
                     <!-- <button *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid" mat-button>Agregar</button> -->
                     <button *ngIf="edit" class="btn" (click)="update(currenUser.id)" [disabled]="!formAdd.valid"
                         mat-button>Guardar Cambio</button>
-                    <button class="no-shadow" mat-mini-fab (click)="oculta(mostrar = !mostrar)">
+                    <button class="cancel" mat-stroked-button (click)="oculta(mostrar = !mostrar)">
+                        Cancelar
                         <mat-icon>close</mat-icon>
                     </button>
                 </div>
 
             </form>
+            <form *ngIf="edit" [formGroup]="formPass" class="datos pass">
+                <h4>Cambio de contraseña</h4>
+
+                <mat-form-field appearance="outline">
+                    <input formControlName="password" type="password" matInput placeholder="Nueva Contraseña">
+                    <span matPrefix></span>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <input formControlName="passwordConfirm" type="password" matInput placeholder="Confirmar Nueva Contraseña">
+                    <span matPrefix></span>
+                    <mat-icon matSuffix>vpn_key</mat-icon>
+                </mat-form-field>
+                <div class="content-btn">
+                    <!-- <button *ngIf="!edit" class="btn" (click)="onSubmit()" [disabled]="!formAdd.valid" mat-button>Agregar</button> -->
+                    <button *ngIf="edit" class="btn" (click)="updatePass(currenUser.id)" [disabled]="!formPass.valid"
+                        mat-button>Guardar Contraseña</button>
+                    <button class="cancel" mat-stroked-button (click)="oculta(mostrar = !mostrar)">
+                        Cancelar
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </div>
+            </form>
+
+            
+
 
             <div class="datos" *ngIf="!edit">
 
@@ -91,6 +115,11 @@
                     </mat-list-item>
 
                 </mat-list>
+            </div>
+            <div class="slideEdit">
+                <mat-slide-toggle class="btn-edit" [checked]= "checked" (change)="changeEdit()">
+                    Editar mis Datos
+                </mat-slide-toggle>
             </div>
 
         </div>
