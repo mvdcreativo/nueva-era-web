@@ -3,11 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { first } from 'rxjs/operators';
+import { ResetPassDielogComponent } from './reset-pass-dielog/reset-pass-dielog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { NewPassDilogComponent } from './new-pass-dilog/new-pass-dilog.component';
 
 @Component({
   selector: 'app-access',
   templateUrl: './access.component.html',
-  styleUrls: ['./access.component.sass']
+  styleUrls: ['./access.component.scss']
 })
 export class AccessComponent implements OnInit {
 
@@ -24,6 +27,7 @@ export class AccessComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -44,7 +48,12 @@ export class AccessComponent implements OnInit {
     });
 
     this.route.queryParamMap.subscribe(
-      data => this.returnUrl = data.get('returnUrl')
+      data =>{
+        this.returnUrl = data.get('returnUrl')
+          if(data.get('email')&&data.get('token')){
+            this.openNewPassDialog(data)
+          }
+        }
     );
     // reset login status
     this.reLogout();
@@ -102,5 +111,39 @@ export class AccessComponent implements OnInit {
     }
 
   }
+
+
+    openResetPassDialog(data?): void {
+      const dialogRef = this.dialog.open(ResetPassDielogComponent, {
+        maxWidth: "500px",
+        maxHeight: "100vh",
+        data: {data : data}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        if(result){
+          this.authService.solicitaResetPass(result)
+        }
+  
+      });
+    }
+    
+
+    openNewPassDialog(data?): void {
+      const dialogRef = this.dialog.open(NewPassDilogComponent, {
+        maxWidth: "500px",
+        maxHeight: "100vh",
+        data: {data : data}
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        console.log(result);
+        if(result){
+          this.authService.updatePass(result)
+        }
+  
+      });
+    }
 
 }

@@ -9,6 +9,8 @@ import { SharedModule } from '../components/shared/shared.module';
 import { UserActionsComponent } from './user-actions/user-actions.component';
 // import { ModalAuthComponent } from './modal-auth/modal-auth.component';
 import { AccessComponent } from './access/access.component';
+import { ResetPassDielogComponent } from './access/reset-pass-dielog/reset-pass-dielog.component';
+import { NewPassDilogComponent } from './access/new-pass-dilog/new-pass-dilog.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { AccessComponent } from './access/access.component';
     RegisterComponent,
     UserActionsComponent,
     // ModalAuthComponent,
-    AccessComponent
+    AccessComponent,
+    ResetPassDielogComponent,
+    NewPassDilogComponent
   ],
   imports: [
     CommonModule,
