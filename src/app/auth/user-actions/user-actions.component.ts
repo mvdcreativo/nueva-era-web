@@ -54,7 +54,7 @@ export class UserActionsComponent implements OnInit {
         }
       }
     );
-    console.log(this.currentUser);
+    // console.log(this.currentUser);
     
   }
 

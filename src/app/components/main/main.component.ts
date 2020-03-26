@@ -73,7 +73,6 @@ export class MainComponent implements OnInit {
         this.navItems = res.map( 
 
           v => {
-            console.log(v);
             let a = {displayName: v.name, iconName:"" , route: `/tienda/productos/${v.slug}`  }
             return a;
           }

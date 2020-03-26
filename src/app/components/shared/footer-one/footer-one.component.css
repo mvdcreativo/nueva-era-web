@@ -186,6 +186,12 @@ li button {
   float: right;
   margin-right: 20%;
 }
+.medios-pago {
+  display: grid;
+  justify-content: center;
+  filter: grayscale(1);
+  opacity: 0.6;
+}
 ::ng-deep .mat-step-header .mat-step-icon-selected,
 .mat-step-header .mat-step-icon-state-done,
 .mat-step-header .mat-step-icon-state-edit {

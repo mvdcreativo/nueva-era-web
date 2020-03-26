@@ -106,6 +106,8 @@ export class CheckoutComponent implements OnInit {
       (res:any) => {
         // localStorage.removeItem("cartItem");
         const id = res.id
+        console.log(res);
+        
         //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago////
         location.href= `${environment.urlPago}/${id}`
 
