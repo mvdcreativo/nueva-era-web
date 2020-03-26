@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 import { AuthService } from '../auth.service';
 import { first } from 'rxjs/operators';
 import { ResetPassDielogComponent } from './reset-pass-dielog/reset-pass-dielog.component';
@@ -50,14 +50,28 @@ export class AccessComponent implements OnInit {
     this.route.queryParamMap.subscribe(
       data =>{
         this.returnUrl = data.get('returnUrl')
+
           if(data.get('email')&&data.get('token')){
             this.openNewPassDialog(data)
+          }
+          if(data.get('error')){
+            // console.log(data.get('error'));
+            const error = data.get('error')
+
+            let message, status;
+            message = error;
+            status = 'error';
+            this.authService.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
           }
         }
     );
     // reset login status
     this.reLogout();
   }
+
+
+
+
   onSubmitLogin() {
     this.submitted = true;
 
