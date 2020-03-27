@@ -1,15 +1,18 @@
-<button class="btn-close" mat-mini-fab (click)="onNoClick()">
-    <mat-icon>close</mat-icon>
-</button>
 <div class="container">
-    <h3 class="width-100">Datos de facturacion y envío</h3>
-    <p class="date width-100">{{ order.created_at | date: "dd/MM/yyyy - HH:mm"  }}</p>
-    <p class="name width-100">{{ order.name }}</p>
-    <p class="address width-100">{{ order.address }}</p>
-    <p class="city width-100">{{ order.city }}</p>
-    <p class="state width-100">{{ order.state }}</p>
-    <p class="phone width-100">{{ order.phone }}</p>
-    <p class="email width-100">{{ order.email }}</p>
+    <button class="btn-close" mat-mini-fab (click)="onNoClick()">
+        <mat-icon>close</mat-icon>
+    </button>
+    <h4 class="width-100">Datos de facturacion y envío</h4>
+    <p class="date width-100"><strong> Solicitado:</strong> {{ order.created_at | date: "dd/MM/yyyy - HH:mm"  }}</p>
+    <p class="name width-100"><strong>Nombre:</strong> {{ order.name }}</p>
+    <p class="address width-100"><strong>Dirección:</strong> {{ order.address }}</p>
+    <p class="city width-100"><strong>Ciudad:</strong> {{ order.city }}</p>
+    <p class="state width-100"><strong>Departamento:</strong> {{ order.state }}</p>
+    <p class="phone width-100"><strong>Tel/Cel:</strong> {{ order.phone }}</p>
+    <p class="email width-100"><strong>Email:</strong> {{ order.email }}</p>
+
+    <p class="status">{{ order.status.name }}</p>
+
     <div class="productos width-100">
         <table mat-table #table [dataSource]="dataSource">
                 

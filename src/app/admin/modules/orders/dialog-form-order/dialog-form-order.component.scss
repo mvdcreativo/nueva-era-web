@@ -4,7 +4,17 @@
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     padding: 32px;
+    position: relative;
+
     // background-color: #e2d5c1;
+    .status{
+        position: absolute;
+        top:100px;
+        right: 0px;
+        padding:5px 15px ;
+        background-color: #ffc111;
+        border-radius: 50px;
+    }
     .date{
         text-align: right;
     }
@@ -83,7 +93,9 @@
             }
         }
         .btn-close{
-
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
             box-shadow: none;
             color: #424242;
             background-color: transparent;

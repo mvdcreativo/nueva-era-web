@@ -4,6 +4,15 @@
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   padding: 32px;
+  position: relative;
+}
+.container .status {
+  position: absolute;
+  top: 100px;
+  right: 0px;
+  padding: 5px 15px;
+  background-color: #ffc111;
+  border-radius: 50px;
 }
 .container .date {
   text-align: right;
@@ -68,6 +77,9 @@ form .mat-form-field {
   width: 100%;
 }
 .btn-close {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
   box-shadow: none;
   color: #424242;
   background-color: transparent;

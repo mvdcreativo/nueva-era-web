@@ -49,7 +49,7 @@ export class CategoriesComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-accesorios.svg")
     );
     this.matIconRegistry.addSvgIcon(
-      "promociones",
+      "productos-en-promocion",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
     );
   }
