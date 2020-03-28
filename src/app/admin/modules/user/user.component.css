@@ -1,5 +1,6 @@
 .content {
   width: 100%;
+  min-width: 800px;
 }
 .content .mat-card .mat-table {
   width: 100%;

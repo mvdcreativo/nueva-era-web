@@ -16,6 +16,7 @@ import { DialogFormOrderComponent } from './dialog-form-order/dialog-form-order.
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit, AfterViewInit {
+  remplace = /_/g;
 
   displayedColumns: string[] = ['id', 'date', 'user_id','name','email','phone' ,'total','status','acciones'];
   dataSource: OrdersDataSourceService;///modificado para paginacion

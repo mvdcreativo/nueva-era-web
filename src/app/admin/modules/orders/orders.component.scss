@@ -1,5 +1,6 @@
 .content{
     width: 100%;
+    min-width: 800px;
     .mat-card{
         min-height: 80vh;
         box-shadow: none!important;
@@ -47,4 +48,9 @@
 }
 .mat-row{
     cursor: pointer;
+}
+.status{
+    font-size: 9px!important;
+    border-radius: 50px;
+    padding: 1px 5px;
 }

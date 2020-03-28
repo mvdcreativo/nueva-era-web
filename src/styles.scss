@@ -37,9 +37,36 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     display: flex!important;
     flex-direction: row!important
 }
+.mat-cell, .mat-cell span{
+    font-size: 12px!important;
+}
  
 
 ///////////////////
+
+/////Clases status order
+.payment-in-process{
+    color: black;
+    background-color: #ffdf85;
+}
+.payment-required{
+    color: black;
+    background-color: #ffc111;
+}
+.paid{
+    color: white;
+    background-color: #42a847;
+}
+.partially-reverted{
+    color: white;
+    background-color: #d50000;
+}
+.partially-paid{
+    color: white;
+    background-color: #d50000;
+}
+//////
+
 //SNACK_BARR COLORES
 
 .toastSuccess{

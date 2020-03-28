@@ -11,13 +11,14 @@
   top: 100px;
   right: 0px;
   padding: 5px 15px;
-  background-color: #ffc111;
   border-radius: 50px;
 }
 .container .method {
   position: absolute;
-  top: 85px;
+  font-weight: bold;
+  top: 70px;
   right: 0px;
+  padding: 5px 15px;
   color: #11a0ff;
   text-transform: capitalize;
 }

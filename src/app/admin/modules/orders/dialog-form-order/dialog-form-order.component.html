@@ -14,8 +14,9 @@
     <p class="phone width-100"><strong>Tel/Cel:</strong> {{ order.phone }}</p>
     <p class="email width-100"><strong>Email:</strong> {{ order.email }}</p>
 
-    <p class="status">{{ order.status.name }}</p>
+    <p class="status" [className]="order.status.code.replace( remplace ,'-')">{{ order.status.name }}</p>
     <p *ngIf="order.payment_metod_mp" class="method">{{ order.payment_metod_mp }}</p>
+    <!-- <p class="method">visa</p> -->
 
     <div class="productos width-100">
         <table mat-table #table [dataSource]="dataSource">

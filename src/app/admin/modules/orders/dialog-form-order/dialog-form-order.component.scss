@@ -12,13 +12,15 @@
         top:100px;
         right: 0px;
         padding:5px 15px ;
-        background-color: #ffc111;
+        // background-color: #ffc111;
         border-radius: 50px;
     }
     .method{
         position: absolute;
-        top:85px;
+        font-weight: bold;
+        top:70px;
         right: 0px;
+        padding:5px 15px ;
         color: rgb(17, 160, 255);
         text-transform: capitalize;
     }

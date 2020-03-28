@@ -13,6 +13,7 @@ import { Order } from '../interfaces/order';
 })
 export class DialogFormOrderComponent implements OnInit, AfterViewInit {
   
+  remplace = /_/g;
 
   brand: Product[];
   dataSource: any;

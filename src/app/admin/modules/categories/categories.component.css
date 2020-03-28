@@ -2,35 +2,31 @@
   width: 100%;
   min-width: 800px;
 }
-.content .mat-card {
-  background-color: white;
-  box-shadow: none !important;
-}
-.content .mat-card .mat-table {
+.content .mat-table {
   width: 100%;
 }
-.content .mat-card .mat-form-field {
+.content .mat-form-field {
   font-size: 14px;
   width: 20%;
   margin-left: 1rem;
 }
-.content .mat-card .image {
+.content .image {
   height: 50px;
 }
-.content .mat-card .btn {
+.content .btn {
   background-color: #2d86f7;
   color: white;
   margin: 1rem;
 }
-.content .mat-card form .mat-form-field {
+.content form .mat-form-field {
   font-size: 14px;
   width: 30%;
   margin-left: 1rem;
 }
-.content .mat-card .acciones {
+.content .acciones {
   width: 10%;
 }
-.content .mat-card .no-shadow {
+.content .no-shadow {
   box-shadow: none;
   color: #424242;
   background-color: transparent;

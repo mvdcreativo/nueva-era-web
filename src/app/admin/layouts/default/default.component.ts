@@ -7,12 +7,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
 
-  sideBarOpen = true;
+  sideBarOpen;
   config 
 
   constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const width= window.innerWidth;
+    console.log(width);
+    
+    if(width <= 800){
+      this.sideBarOpen = false;
+
+    }else{
+      this.sideBarOpen = true;
+    }
+   }
 
 
   sideBarToggler() {
