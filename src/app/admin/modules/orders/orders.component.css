@@ -34,6 +34,7 @@
 }
 .content .mat-card .acciones {
   width: 13%;
+  text-align: right;
 }
 .content .mat-card .no-shadow {
   box-shadow: none;
@@ -47,4 +48,10 @@
   font-size: 9px !important;
   border-radius: 50px;
   padding: 1px 5px;
+}
+.id {
+  text-align: center;
+}
+.searcher {
+  width: 500px;
 }

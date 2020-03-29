@@ -38,6 +38,9 @@
         .acciones{
             width: 13%;
         }
+        .id{
+            text-align: center!important;
+        }
         .no-shadow{
             box-shadow: none;
             color: #424242;
@@ -59,4 +62,7 @@ label{
         // background-image: ;
     }
 
+}
+.searcher{
+    width: 500px;
 }

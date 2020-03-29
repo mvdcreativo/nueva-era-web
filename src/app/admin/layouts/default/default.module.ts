@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { DefaultComponent } from './default.component';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
@@ -16,7 +15,6 @@ import { AuthModule } from 'src/app/auth/auth.module';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BrandsComponent } from '../../modules/brands/brands.component';
 import { MatInputModule } from '@angular/material/input';
-import { repeat } from 'rxjs/operators';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CategoriesComponent } from '../../modules/categories/categories.component';
 import { AdminProductsComponent } from '../../modules/admin-products/admin-products.component';
@@ -97,8 +95,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     MatPaginatorModule,
     MatSlideToggleModule,
     ScrollingModule,
-    
-
+    MatInputModule,
     FlexLayoutModule,
 
     AuthModule,

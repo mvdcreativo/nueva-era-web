@@ -30,6 +30,9 @@
 .content .mat-card .acciones {
   width: 10%;
 }
+.content .mat-card .id {
+  text-align: center !important;
+}
 .content .mat-card .no-shadow {
   box-shadow: none;
   color: #424242;

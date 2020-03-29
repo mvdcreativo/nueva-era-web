@@ -53,6 +53,9 @@
 .content .acciones {
   width: 10%;
 }
+.content .id {
+  padding-left: 1rem !important;
+}
 .content .no-shadow {
   box-shadow: none;
   color: #424242;

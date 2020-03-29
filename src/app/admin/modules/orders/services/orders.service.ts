@@ -114,7 +114,7 @@ export class OrdersService {
   private totalResultSubject =  new BehaviorSubject<number>(null);
   public totalResult$ = this.totalResultSubject.asObservable();
 
-  findOrders(filter = '', sortOrder = 'asc', pageNumber= 1 , pageSize = 20):  Observable<Order[]> {
+  findOrders(filter = '', sortOrder = 'asc', pageNumber= 0 , pageSize = 20):  Observable<Order[]> {
 
       return this._http.get(`${environment.API}order`, {
         params: new HttpParams()        

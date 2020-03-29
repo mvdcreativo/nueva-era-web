@@ -14,12 +14,12 @@ export class OrdersDataSourceService {
 
   private loadingSubject = new BehaviorSubject<boolean>(false);
 
- 
+
 
   public loading$ = this.loadingSubject.asObservable();
 
 
-  constructor(private orderServices: OrdersService) {}
+  constructor(private orderServices: OrdersService) { }
 
 
   connect(collectionViewer: CollectionViewer): Observable<Order[]> {
@@ -27,23 +27,23 @@ export class OrdersDataSourceService {
   }
 
   disconnect(collectionViewer: CollectionViewer): void {
-      this.ordersSubject.complete();
-      this.loadingSubject.complete();
+    this.ordersSubject.complete();
+    this.loadingSubject.complete();
   }
 
-  loadOrders(filter= '', sortDirection='asc', pageIndex= 1, pageSize= 20) {
+  loadOrders(filter = '', sortDirection = 'asc', pageIndex = 0, pageSize = 20) {
 
     this.loadingSubject.next(true);
     this.orderServices.findOrders(filter, sortDirection, pageIndex, pageSize).pipe(
       catchError(() => of([])),
       finalize(() => this.loadingSubject.next(false))
-      )
-      .subscribe((orders:any) => {
+    )
+      .subscribe((orders: any) => {
         console.log(orders);
         const data = orders.data
-        
+
         this.ordersSubject.next(data)
       })
 
-  }  
+  }
 }

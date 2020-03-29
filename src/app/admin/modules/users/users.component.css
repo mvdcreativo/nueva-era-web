@@ -35,6 +35,9 @@
 .content .mat-card .acciones {
   width: 13%;
 }
+.content .mat-card .id {
+  text-align: center !important;
+}
 .content .mat-card .no-shadow {
   box-shadow: none;
   color: #424242;
@@ -49,4 +52,7 @@ label .imgPrev {
   width: 50px;
   min-height: 50px;
   cursor: pointer;
+}
+.searcher {
+  width: 500px;
 }

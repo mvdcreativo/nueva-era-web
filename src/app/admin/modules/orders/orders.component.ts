@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { Order } from './interfaces/order';
 import { FormGroup } from '@angular/forms';
@@ -6,9 +6,10 @@ import { OrdersService } from './services/orders.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
 import { OrdersDataSourceService } from './services/orders-data-source.service';
-import { tap } from 'rxjs/operators';
+import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFormOrderComponent } from './dialog-form-order/dialog-form-order.component';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-orders',
@@ -18,56 +19,73 @@ import { DialogFormOrderComponent } from './dialog-form-order/dialog-form-order.
 export class OrdersComponent implements OnInit, AfterViewInit {
   remplace = /_/g;
 
-  displayedColumns: string[] = ['id', 'date', 'user_id','name','email','phone' ,'total','status','acciones'];
+  displayedColumns: string[] = ['id', 'date', 'user_id', 'name', 'email', 'phone', 'total', 'status', 'acciones'];
   dataSource: OrdersDataSourceService;///modificado para paginacion
 
   pageSize = 20;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('input') input: ElementRef;
+
   totalResut: any;
 
   constructor(
     private _orderService: OrdersService,
-    private _snackBar: MatSnackBar,
-    private route: ActivatedRoute,
     public dialog: MatDialog
 
 
   ) { }
-  ngOnInit(): void {
+  ngOnInit() {
     this.dataSource = new OrdersDataSourceService(this._orderService);////paginacion
     this.dataSource.loadOrders('', 'asc', 1, this.pageSize);
     this.totalResut = this._orderService.totalResult$
 
-    console.log(this.totalResut);
-    
-  
+
+
+
   }
 
   ngAfterViewInit() {
+
+
+
+
+
     this.paginator.page
-        .pipe(
-            tap(() => this.loadOrderPage())
-        )
-        .subscribe();
+      .pipe(
+        tap(() => this.loadOrderPage())
+      )
+      .subscribe();
+
+    // server-side search
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadOrderPage();
+        })
+      )
+      .subscribe();
   }
 
   loadOrderPage() {
     this.dataSource.loadOrders(
-        '',
-        'asc',
-        this.paginator.pageIndex,
-        this.paginator.pageSize
-        );
+      this.input.nativeElement.value,
+      'asc',
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
 
     // this.totalResut = this.orderService.totalResult$
 
   }
 
 
-  update(id:number) {
-    const data ="" //= this.formAdd.value;
-    
+  update(id: number) {
+    const data = "" //= this.formAdd.value;
+
     this._orderService.updateOrder(id, data).subscribe(
       res => {
         console.log(res);
@@ -81,29 +99,29 @@ export class OrdersComponent implements OnInit, AfterViewInit {
         this._orderService.openSnackBar('error', `${err}`)
       },
     )
-  }  
+  }
 
 
 
   openDialog(data?): void {
     console.log(data);
-    
+
     const dialogRef = this.dialog.open(DialogFormOrderComponent, {
       maxWidth: "100vw",
-      minWidth: "800px",
+      minWidth: "600px",
       maxHeight: "100vh",
-      data: {data : data}
+      data: { data: data }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result){
-        if(result[0].id){
-  
+      if (result) {
+        if (result[0].id) {
+
           this.update(result)
-        }else{
+        } else {
           // this.addProduct(result)
-  
+
         }
       }
 

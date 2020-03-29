@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
 import { User } from 'src/app/auth/interfaces/user';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from './services/user.service';
@@ -8,7 +8,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { UsersDataSource } from './services/users-data-source.service';
 import { ActivatedRoute } from '@angular/router';
-import { tap } from 'rxjs/operators';
+import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -18,14 +19,14 @@ import { tap } from 'rxjs/operators';
 export class UsersComponent implements OnInit, AfterViewInit {
 
   tipoUser = [
-    {name: "Usuario", value: "USER"},
-    {name: "Usuario Mayorista", value: "UMAY"},
-    {name: "Administrador", value: "ADM"},
-    
+    { name: "Usuario", value: "USER" },
+    { name: "Usuario Mayorista", value: "UMAY" },
+    { name: "Administrador", value: "ADM" },
+
   ]
 
-  
-  displayedColumns: string[] = ['id', 'name','email','phone','role','acciones'];
+
+  displayedColumns: string[] = ['id', 'name', 'email', 'phone', 'role', 'acciones'];
   dataSource: UsersDataSource;///modificado para paginacion
 
   formAdd: FormGroup
@@ -37,13 +38,14 @@ export class UsersComponent implements OnInit, AfterViewInit {
   pageSize = 20;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild('input') input: ElementRef;
+
   totalResut: any;
 
   constructor(
     private _userService: UserService,
     private fb: FormBuilder,
-    private _snackBar: MatSnackBar,
-    private route: ActivatedRoute
+
 
 
   ) { }
@@ -57,21 +59,35 @@ export class UsersComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.paginator.page);
+
     this.paginator.page
-        .pipe(
-            tap(() => this.loadUserPage())
-        )
-        .subscribe();
+      .pipe(
+        tap(() => this.loadUserPage())
+      )
+      .subscribe();
+
+    // server-side search
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadUserPage();
+        })
+      )
+      .subscribe();
   }
 
 
   loadUserPage() {
     this.dataSource.loadUsers(
-        '',
-        'asc',
-        this.paginator.pageIndex,
-        this.paginator.pageSize
-        );
+      this.input.nativeElement.value,
+      'asc',
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
 
     // this.totalResut = this.userService.totalResult$
 
@@ -82,18 +98,18 @@ export class UsersComponent implements OnInit, AfterViewInit {
   createForm() {
     this.formAdd = this.fb.group({
       name: [null, Validators.required],
-      email: [{value : null, disabled: true }],
-      role:[null],
-      address:[null],
-      city:[null],
-      phone:[null],
-      ci:[null],
-      rut:[null],
-      company:[null],
-      discount:[null],
+      email: [{ value: null, disabled: true }],
+      role: [null],
+      address: [null],
+      city: [null],
+      phone: [null],
+      ci: [null],
+      rut: [null],
+      company: [null],
+      discount: [null],
 
     })
-    
+
   }
 
   onSubmit() {
@@ -161,9 +177,9 @@ export class UsersComponent implements OnInit, AfterViewInit {
 
   }
 
-  update(id:number) {
+  update(id: number) {
     const data = this.formAdd.value;
-    
+
     this._userService.updateUser(id, data).subscribe(
       res => {
         console.log(res);
@@ -179,8 +195,8 @@ export class UsersComponent implements OnInit, AfterViewInit {
         this._userService.openSnackBar('error', `${err}`)
       },
     )
-  }  
-  
+  }
+
   oculta(estado) {
     this.edit = false;
     this.formAdd.reset();
