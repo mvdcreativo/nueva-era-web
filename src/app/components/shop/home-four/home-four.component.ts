@@ -50,6 +50,7 @@ export class HomeFourComponent implements OnInit {
   ngOnInit() {
     this.productService.getBanners()
     .subscribe(
+
       data => this.banners = data
     );
 
@@ -63,6 +64,8 @@ export class HomeFourComponent implements OnInit {
        x => x.category.id === 13
 
      )
+     console.log(this.products);
+     
    }
  )
 //  this.currency = this.currencies[0];

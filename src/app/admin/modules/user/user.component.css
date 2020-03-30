@@ -1,6 +1,14 @@
 .content {
   width: 100%;
   min-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.content .mat-card {
+  min-height: 80vh;
+  box-shadow: none !important;
+  background-color: white;
+  border-top: solid 6px #ffd740;
 }
 .content .mat-card .mat-table {
   width: 100%;

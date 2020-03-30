@@ -1,35 +1,43 @@
 .content {
   width: 100%;
   min-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
 }
-.content .mat-table {
+.content .mat-card {
+  min-height: 80vh;
+  box-shadow: none !important;
+  background-color: white;
+  border-top: solid 6px #ffd740;
+}
+.content .mat-card .mat-table {
   width: 100%;
 }
-.content .mat-form-field {
+.content .mat-card .mat-form-field {
   font-size: 14px;
   width: 20%;
   margin-left: 1rem;
 }
-.content .image {
+.content .mat-card .image {
   height: 50px;
 }
-.content .btn {
+.content .mat-card .btn {
   background-color: #2d86f7;
   color: white;
   margin: 1rem;
 }
-.content form .mat-form-field {
+.content .mat-card form .mat-form-field {
   font-size: 14px;
   width: 30%;
   margin-left: 1rem;
 }
-.content .acciones {
+.content .mat-card .acciones {
   width: 10%;
 }
-.content .id {
+.content .mat-card .id {
   padding-left: 1rem !important;
 }
-.content .no-shadow {
+.content .mat-card .no-shadow {
   box-shadow: none;
   color: #424242;
   background-color: transparent;

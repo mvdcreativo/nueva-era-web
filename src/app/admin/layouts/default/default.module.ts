@@ -97,7 +97,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ScrollingModule,
     MatInputModule,
     FlexLayoutModule,
-
+    
     AuthModule,
     FormsModule,
     ReactiveFormsModule,

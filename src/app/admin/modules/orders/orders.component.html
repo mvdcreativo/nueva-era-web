@@ -7,18 +7,28 @@
             </mat-card-title>
         </mat-card-header>
         <mat-card-content>
-            
+
 
             <mat-form-field class="searcher">
                 <input matInput placeholder="Buscar por nº de orden, nombre, email o teléfono " #input>
             </mat-form-field>
             <h4 *ngIf="!totalResut.source.value">Sin pedidos</h4>
 
-            <mat-paginator [length]="totalResut | async" [pageSize]="20"
-                [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>
+            <div class="tools">
+                <ul>
+                    <li>
+                        <button mat-button aria-label="Recargar datos" (click)="cargar()">
+                            <mat-icon>refresh</mat-icon>
+                        </button>
+                    </li>
+                </ul>
+                <mat-paginator [length]="totalResut | async" [pageSize]="20" [pageSizeOptions]="[20,50,100]"
+                    showFirstLastButtons>
+                </mat-paginator>
+            </div>
 
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-                
+
                 <!-- ID Column -->
                 <ng-container matColumnDef="id">
                     <th mat-header-cell *matHeaderCellDef> Orden Nº </th>
@@ -64,7 +74,9 @@
                 <!-- name Column -->
                 <ng-container matColumnDef="status">
                     <th mat-header-cell *matHeaderCellDef> Estado </th>
-                    <td mat-cell *matCellDef="let element"><span class="status" [className]="element.status.code.replace( remplace ,'-')">{{element.status.name}}</span> </td>
+                    <td mat-cell *matCellDef="let element"><span class="status"
+                            [className]="element.status.code.replace( remplace ,'-')">{{element.status.name}}</span>
+                    </td>
                 </ng-container>
 
                 <ng-container matColumnDef="acciones">

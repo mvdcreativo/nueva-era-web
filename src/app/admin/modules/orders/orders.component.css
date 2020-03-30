@@ -1,42 +1,56 @@
 .content {
   width: 100%;
   min-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .content .mat-card {
   min-height: 80vh;
   box-shadow: none !important;
   background-color: white;
+  border-top: solid 6px #ffd740;
 }
-.content .mat-card .mat-table {
+.content .mat-card .mat-card-content .tools {
+  display: grid;
+  grid-template-columns: auto auto;
+  align-items: center;
+}
+.content .mat-card .mat-card-content .tools ul li {
+  color: #42a847;
+}
+.content .mat-card .mat-card-content .tools .mat-paginator {
+  background-color: transparent !important;
+}
+.content .mat-card .mat-card-content .mat-table {
   width: 100%;
 }
-.content .mat-card .image {
+.content .mat-card .mat-card-content .image {
   height: 50px;
 }
-.content .mat-card .btn {
+.content .mat-card .mat-card-content .btn {
   background-color: #2d86f7;
   color: white;
   margin: 1rem;
 }
-.content .mat-card form .mat-form-field {
+.content .mat-card .mat-card-content form .mat-form-field {
   font-size: 14px;
   width: 30%;
   margin-left: 1rem;
 }
-.content .mat-card form .corto {
+.content .mat-card .mat-card-content form .corto {
   width: 15%;
 }
-.content .mat-card form .medio {
+.content .mat-card .mat-card-content form .medio {
   width: 20%;
 }
-.content .mat-card form .content-btn {
+.content .mat-card .mat-card-content form .content-btn {
   width: 100%;
 }
-.content .mat-card .acciones {
+.content .mat-card .mat-card-content .acciones {
   width: 13%;
   text-align: right;
 }
-.content .mat-card .no-shadow {
+.content .mat-card .mat-card-content .no-shadow {
   box-shadow: none;
   color: #424242;
   background-color: transparent;

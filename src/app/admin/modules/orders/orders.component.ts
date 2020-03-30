@@ -36,13 +36,15 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
   ) { }
   ngOnInit() {
+    this.cargar();
+
+  }
+
+
+  cargar(){
     this.dataSource = new OrdersDataSourceService(this._orderService);////paginacion
     this.dataSource.loadOrders('', 'asc', 1, this.pageSize);
     this.totalResut = this._orderService.totalResult$
-
-
-
-
   }
 
   ngAfterViewInit() {

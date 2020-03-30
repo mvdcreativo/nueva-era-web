@@ -1,27 +1,35 @@
 .content {
   width: 100%;
   min-width: 800px;
+  border-radius: 10px;
+  overflow: hidden;
 }
-.content .mat-table {
+.content .mat-card {
+  min-height: 80vh;
+  box-shadow: none !important;
+  background-color: white;
+  border-top: solid 6px #ffd740;
+}
+.content .mat-card .mat-table {
   width: 100%;
 }
-.content .mat-form-field {
+.content .mat-card .mat-form-field {
   font-size: 14px;
   width: 20%;
   margin-left: 1rem;
 }
-.content .image {
+.content .mat-card .image {
   height: 50px;
   max-width: 50px;
   object-fit: contain;
   object-position: center;
 }
-.content .btn {
+.content .mat-card .btn {
   background-color: #2d86f7;
   color: white;
   margin: 1rem;
 }
-.content form {
+.content .mat-card form {
   width: 100%;
   display: grid;
   box-sizing: border-box;
@@ -29,12 +37,12 @@
   align-items: center;
   column-gap: 1rem;
 }
-.content form .mat-form-field {
+.content .mat-card form .mat-form-field {
   font-size: 14px;
   width: 90%;
   margin-left: 1rem;
 }
-.content form .image-content label {
+.content .mat-card form .image-content label {
   height: 84px;
   width: 84px;
   display: flex;
@@ -44,19 +52,19 @@
   border-radius: 5px;
   padding: 2px;
 }
-.content form .image-content label .imgPrev {
+.content .mat-card form .image-content label .imgPrev {
   width: 80px;
   height: 80px;
   cursor: pointer;
   object-fit: cover;
 }
-.content .acciones {
+.content .mat-card .acciones {
   width: 10%;
 }
-.content .id {
+.content .mat-card .id {
   padding-left: 1rem !important;
 }
-.content .no-shadow {
+.content .mat-card .no-shadow {
   box-shadow: none;
   color: #424242;
   background-color: transparent;
