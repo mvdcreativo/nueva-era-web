@@ -58,7 +58,11 @@ export class HomeFourComponent implements OnInit {
  this.productService.getProducts()
  .subscribe(
    (product: Product[]) => {
-     this.products = product
+
+     this.products = product.filter(
+       x => x.category.id === 13
+
+     )
    }
  )
 //  this.currency = this.currencies[0];

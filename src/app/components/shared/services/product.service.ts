@@ -45,7 +45,7 @@ export class ProductService {
     return this.banners();
   }
 
-  // Get Banners
+  
   public getProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${environment.API}product`).pipe(
       take(1)
