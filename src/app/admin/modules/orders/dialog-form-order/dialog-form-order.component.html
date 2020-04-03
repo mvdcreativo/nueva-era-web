@@ -14,13 +14,24 @@
     <p class="phone width-100"><strong>Tel/Cel:</strong> {{ order.phone }}</p>
     <p class="email width-100"><strong>Email:</strong> {{ order.email }}</p>
 
-    <p class="status" [className]="order.status.code.replace( remplace ,'-')">{{ order.status.name }}</p>
+    <form [formGroup]="statusForm" class="status">
+        <mat-form-field >
+            <mat-label>Estado</mat-label>
+            <mat-select formControlName="status" (selectionChange)="updateStatus()"> 
+                <mat-option *ngFor="let option of status | async" [value]="option.id">
+                    {{option.name}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </form>
+    <!-- <p class="status" [className]="order.status.code.replace( remplace ,'-')">{{ order.status.name }}</p> -->
     <p *ngIf="order.payment_metod_mp" class="method">{{ order.payment_metod_mp }}</p>
+
     <!-- <p class="method">visa</p> -->
 
     <div class="productos width-100">
         <table mat-table #table [dataSource]="dataSource">
-                
+
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>
                 <td mat-cell *matCellDef="let row"> {{row.id}} </td>
@@ -48,7 +59,7 @@
                 <td mat-footer-cell *matFooterCellDef> {{ order.total | currency}} </td>
             </ng-container>
 
-            
+
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

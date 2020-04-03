@@ -8,6 +8,8 @@
 }
 .container .status {
   position: absolute;
+  width: 180px;
+  display: block;
   top: 100px;
   right: 0px;
   padding: 5px 15px;
@@ -16,11 +18,13 @@
 .container .method {
   position: absolute;
   font-weight: bold;
-  top: 70px;
-  right: 0px;
+  top: 40px;
+  right: 10px;
   padding: 5px 15px;
-  color: #11a0ff;
+  background-color: #11a0ff;
+  color: white;
   text-transform: capitalize;
+  border-radius: 50px;
 }
 .container .date {
   text-align: right;

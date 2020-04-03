@@ -54,6 +54,11 @@ export class OrdersService {
       )
     }
 
+    getStatus() {
+      return this._http.get<any[]>(`${environment.API}status`).pipe(
+        take(1)
+      )
+    }
 
     // registrarCliente(data): Observable<any>{
 

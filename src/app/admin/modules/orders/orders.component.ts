@@ -116,7 +116,8 @@ export class OrdersComponent implements OnInit, AfterViewInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+
+      this.cargar();
       if (result) {
         if (result[0].id) {
 
