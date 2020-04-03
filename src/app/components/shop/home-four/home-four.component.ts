@@ -32,10 +32,10 @@ export class HomeFourComponent implements OnInit {
 
 
   public slides = [
-    { title: 'Pagas en línea', subtitle: 'Aceptamos todas las tarjetas', image: 'assets/images/carousel/292945-P6WQQK-740.jpg' },
-    { title: 'Envíos', subtitle: 'Sin costo a todo el País', image: 'assets/images/carousel/518693-PILN5U-159.jpg' },
-    { title: 'Cuida a tu mascota', subtitle: 'Las marcas más prestigiosas', image: 'assets/images/carousel/518761-PILND3-941.jpg' },
-    { title: 'Accesorios', subtitle: 'Recreación y confort para tu mascota', image: 'assets/images/carousel/3050639.jpg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/en-casa.jpeg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/envio-express.jpeg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/envio.jpeg' },
+    // { title: '', subtitle: '', image: 'assets/images/carousel/3050639.jpg' },
     // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
   ];
 
