@@ -7,8 +7,9 @@ import { CartService } from 'src/app/components/shared/services/cart.service';
 import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 import { environment } from 'src/environments/environment';
+import { SeoService } from 'src/app/seo/services/seo.service';
 
-declare let fbq:Function;
+declare let fbq: Function;
 
 
 @Component({
@@ -18,43 +19,84 @@ declare let fbq:Function;
 })
 export class ProductDetailsComponent implements OnInit {
 
-  public config: SwiperConfigInterface={};
+  public config: SwiperConfigInterface = {};
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
 
   // @ViewChild('zoomViewer', { static: true }) zoomViewer;
   @ViewChild(SwiperDirective, { static: true }) directiveRef: SwiperDirective;
 
-  public product : Product;
-  public products           :   Product[] = [];
+  public product: Product;
+  public products: Product[] = [];
 
   public image: any;
   public zoomImage: any;
 
-  public counter            :   number = 1;
+  public counter: number = 1;
   urlFiles: string = environment.urlFiles;
-  
+
   index: number;
   bigProductImageIndex = 0;
 
   constructor(
-    private route: ActivatedRoute, 
-    public productsService: ProductService, 
-    public dialog: MatDialog, 
-    private router: Router, 
-    private cartService: CartService
-    ) {
+    private route: ActivatedRoute,
+    public productsService: ProductService,
+    public dialog: MatDialog,
+    private router: Router,
+    private cartService: CartService,
+    private seoService: SeoService
+
+  ) {
     this.route.params.subscribe(params => {
       const slug = params['slug'];
       this.productsService.getProduct(slug).subscribe(
-        res=> {this.product = res
-
-        console.log(this.product)}
+        res => {
+        this.product = res
+          this.setSeo(this.product)
+          console.log(this.product)
+        }
       )
-      
+
     });
-   }
+  }
+
+  //////  funcion para Titulos
+  titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+  }
+  ///////////////////////////////
+
+  setSeo(dataProduct) {
+    //////seo/////
+    // console.log(dataProduct);
+    
+    let t: string = dataProduct.name;
+
+    this.seoService.genrateTags({
+
+      title: `Nueva Era Uruguay | ${t}`,
+      description: `Información del producto ${t}`,
+      slug: `tienda/producto/${dataProduct.slug}`,
+      brand: dataProduct.brand.name,
+      category: dataProduct.category.name,
+      image: this.urlFiles+dataProduct.picture,
+      amount: dataProduct.price,
+      currency: "UYU",
+      availability:"in stock",
+      retailer_item_id: dataProduct.id,
+
+
+    })
+    ////////////
+
+  }
+
 
   ngOnInit() {
+
     this.productsService.getProducts().subscribe(product => this.products = product);
 
 
@@ -63,40 +105,13 @@ export class ProductDetailsComponent implements OnInit {
 
 
   ngAfterViewInit() {
-    this.config = {
-      observer: true,
-      slidesPerView: 3,
-      spaceBetween: 10,
-      keyboard: true,
-      navigation: true,
-      pagination: false,
-      grabCursor: true,
-      loop: false,
-      preloadImages: false,
-      lazy: true,
-      breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        740: {
-          slidesPerView: 2,
-        },
-        960: {
-          slidesPerView: 3,
-        },
-        1280: {
-          slidesPerView: 3,
-        },
 
-
-      }
-    }
   }
 
 
   public openProductDialog(product, bigProductImageIndex) {
     let dialogRef = this.dialog.open(ProductZoomComponent, {
-      data: {product, index: bigProductImageIndex },
+      data: { product, index: bigProductImageIndex },
       panelClass: 'product-dialog',
     });
     dialogRef.afterClosed().subscribe(product => {
@@ -116,23 +131,23 @@ export class ProductDetailsComponent implements OnInit {
 
 
 
-public increment() {
-  this.counter += 1;
-}
-
-public decrement() {
-  if(this.counter >1){
-     this.counter -= 1;
+  public increment() {
+    this.counter += 1;
   }
-}
 
-getRelatedProducts() {
-  this.productsService.getProducts()
-  .subscribe(
-    (product: Product[]) => {
-      this.products = product
-    });
-}
+  public decrement() {
+    if (this.counter > 1) {
+      this.counter -= 1;
+    }
+  }
+
+  getRelatedProducts() {
+    this.productsService.getProducts()
+      .subscribe(
+        (product: Product[]) => {
+          this.products = product
+        });
+  }
 
   // Add to cart
   public addToCart(product: Product, quantity) {
@@ -140,55 +155,55 @@ getRelatedProducts() {
     this.cartService.addToCart(product, parseInt(quantity));
     this.facebookAddToCart(product);
   }
-////facebok pixel
-  facebookAddToCart(product){
+  ////facebok pixel
+  facebookAddToCart(product) {
     fbq('track', 'AddToCart', {
       content_name: product.name,
       content_ids: product.id,
       content_type: 'product_group',
-      value: product.price,   
+      value: product.price,
       currency: 'UYU'
     });
   }
-////////
-   // Add to cart
-   public buyNow(product: Product, quantity) {
+  ////////
+  // Add to cart
+  public buyNow(product: Product, quantity) {
     if (quantity > 0)
-      this.cartService.addToCart(product,parseInt(quantity));
-      this.router.navigate(['/pages/checkout']);
-      this.facebookAddToCart(product);
- }
+      this.cartService.addToCart(product, parseInt(quantity));
+    this.router.navigate(['/pages/checkout']);
+    this.facebookAddToCart(product);
+  }
 
 
 
- public onMouseMove(e){
-  if(window.innerWidth >= 1280){
-    var image, offsetX, offsetY, x, y, zoomer;
-    image = e.currentTarget;
-    offsetX = e.offsetX;
-    offsetY = e.offsetY;
-    x = offsetX/image.offsetWidth*100;
-    y = offsetY/image.offsetHeight*100;
-    // zoomer = this.zoomViewer.nativeElement.children[0];
-    if(zoomer){
-      zoomer.style.backgroundPosition = x + '% ' + y + '%';
-      zoomer.style.display = "block";
-      zoomer.style.height = image.height + 'px';
-      zoomer.style.width = image.width + 'px';
+  public onMouseMove(e) {
+    if (window.innerWidth >= 1280) {
+      var image, offsetX, offsetY, x, y, zoomer;
+      image = e.currentTarget;
+      offsetX = e.offsetX;
+      offsetY = e.offsetY;
+      x = offsetX / image.offsetWidth * 100;
+      y = offsetY / image.offsetHeight * 100;
+      // zoomer = this.zoomViewer.nativeElement.children[0];
+      if (zoomer) {
+        zoomer.style.backgroundPosition = x + '% ' + y + '%';
+        zoomer.style.display = "block";
+        zoomer.style.height = image.height + 'px';
+        zoomer.style.width = image.width + 'px';
+      }
     }
   }
-}
 
-public onMouseLeave(event){
-  // this.zoomViewer.nativeElement.children[0].style.display = "none";
-}
+  public onMouseLeave(event) {
+    // this.zoomViewer.nativeElement.children[0].style.display = "none";
+  }
 
-public openZoomViewer(){
-  this.dialog.open(ProductZoomComponent, {
-    data: this.zoomImage,
-    panelClass: 'zoom-dialog'
-  });
-}
+  public openZoomViewer() {
+    this.dialog.open(ProductZoomComponent, {
+      data: this.zoomImage,
+      panelClass: 'zoom-dialog'
+    });
+  }
 
 
 

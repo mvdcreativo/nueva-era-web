@@ -9,6 +9,7 @@ import { Product, ColorFilter } from 'src/app/modals/product.model';
   styleUrls: ['./product-left-sidebar.component.scss']
 })
 export class ProductLeftSidebarComponent implements OnInit {
+  
   @HostListener('window:scroll')
   checkScroll() {
       
@@ -37,6 +38,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   public products: Product[] = [];
   public tags: any[] = [];
   public colors: any[] = [];
+  public seoData: any;
 
   constructor(private productService: ProductService, private route: ActivatedRoute) {
 
@@ -50,7 +52,10 @@ export class ProductLeftSidebarComponent implements OnInit {
         console.log(params);
         
         if(Object.keys(params).length !== 0 ){
-          console.log('aqui1');
+          console.log(params);
+
+          this.seoData = {category: params.category, brand: params.marca || null}
+          console.log(this.seoData);
           
           this.navegaConParametros(params);
           window.scroll({ 
@@ -62,7 +67,7 @@ export class ProductLeftSidebarComponent implements OnInit {
         }else{
           ///Buscador
           this.navegaConQueryParams()
-          console.log('aqui2');
+          console.log(params);
           window.scroll({ 
             top: 0, 
             left: 0, 

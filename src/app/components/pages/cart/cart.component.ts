@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
 import { environment } from 'src/environments/environment';
+import { SeoService } from 'src/app/seo/services/seo.service';
 
 @Component({
   selector: 'app-cart',
@@ -16,7 +17,28 @@ export class CartComponent implements OnInit {
   urlFiles: string = environment.urlFiles;
 
 
-  constructor(private cartService: CartService) { }
+  constructor(
+    private cartService: CartService,
+    private seoService: SeoService
+    ) { 
+      this.setSeo()
+    }
+
+  setSeo(dataProduct?) {
+    //////seo/////
+    // console.log(dataProduct);
+    
+
+    this.seoService.genrateTags({
+
+      title: `Nueva Era Uruguay | Carrito de compras`,
+      description: `Carrito de compras`,
+      slug: `pages/cart`,
+
+
+
+    })
+  }
 
   ngOnInit() {
     this.cartItems = this.cartService.getItems();

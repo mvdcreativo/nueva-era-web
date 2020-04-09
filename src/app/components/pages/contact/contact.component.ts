@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from '../../shared/services/message.service';
+import { SeoService } from 'src/app/seo/services/seo.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,9 +13,27 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private messageService: MessageService
-  ) { }
+    private messageService: MessageService,
+    private seoService: SeoService
+    ) { 
+      this.setSeo()
+    }
 
+  setSeo(dataProduct?) {
+    //////seo/////
+    // console.log(dataProduct);
+    
+
+    this.seoService.genrateTags({
+
+      title: `Nueva Era Uruguay | Contacto`,
+      description: `Contáctanos - Dirección: Bv. José Batlle y Ordóñez 3171, Montevideo, Teléfonos: (+598) 2481 0610 o al (+598) 092 843 843, Correo Eletrónico: veterinarianuevaera@gmail.com`,
+      slug: `pages/contacto`,
+
+
+
+    })
+  }
 
   ngOnInit() {
     this.form = this.fb.group({

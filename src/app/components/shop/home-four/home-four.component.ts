@@ -3,6 +3,7 @@ import { Product } from 'src/app/modals/product.model';
 import { ProductService } from '../../shared/services/product.service';
 import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
+import { SeoService } from 'src/app/seo/services/seo.service';
 
 
 
@@ -41,13 +42,19 @@ export class HomeFourComponent implements OnInit {
 
   constructor(
     private productService: ProductService, 
-    private cartService: CartService
+    private cartService: CartService,
+    private seoService: SeoService
     ) {
-    this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
+      
+      this.setSeo()
+      this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
 
   }
 
   ngOnInit() {
+
+    
+
     this.productService.getBanners()
     .subscribe(
 
@@ -74,6 +81,31 @@ export class HomeFourComponent implements OnInit {
 
 }
 
+
+
+  //////  funcion para Titulos
+  titleCase(str) {
+    str = str.toLowerCase().split(' ');
+    for (var i = 0; i < str.length; i++) {
+      str[i] = str[i].charAt(0).toUpperCase() + str[i].slice(1);
+    }
+    return str.join(' ');
+  }
+  ///////////////////////////////
+setSeo(dataProduct?) {
+  //////seo/////
+  // console.log(dataProduct);
+  
+  let t: string = "Inicio";
+
+  this.seoService.genrateTags({
+
+    title: `Nueva Era Uruguay | ${t}`,
+
+
+  })
+  ////////////
+}
 
 
 

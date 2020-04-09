@@ -9,6 +9,7 @@ import { User } from 'src/app/auth/interfaces/user';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { SeoService } from 'src/app/seo/services/seo.service';
 declare let fbq:Function;
 
 
@@ -35,8 +36,27 @@ export class CheckoutComponent implements OnInit {
     private cartService: CartService,
     public productService: ProductService,
     public orderService: OrdersService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private seoService: SeoService
+    ) { 
+      this.setSeo()
+    }
+
+  setSeo(dataProduct?) {
+    //////seo/////
+    // console.log(dataProduct);
+    
+
+    this.seoService.genrateTags({
+
+      title: `Nueva Era Uruguay | Datos de pago y envío`,
+      description: `Datos de pago y envío`,
+      slug: `pages/checkout`,
+
+
+
+    })
+  }
 
   ngOnInit() {
     this.cartItems = this.cartService.getItems();

@@ -81,7 +81,7 @@
                     <div *ngFor="let products of allItems | orderBy:sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
                         fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="col">
                         <div class="product-box">
-                            <app-product [product]="products"></app-product>
+                            <app-product [seo]="seoData" [product]="products"></app-product>
                         </div>
                     </div>
                 </div>

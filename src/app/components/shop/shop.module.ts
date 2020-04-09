@@ -22,7 +22,6 @@ import { PopularProductsComponent } from './widgets/popular-products/popular-pro
 import { ProductZoomComponent } from './products/product-details/product-zoom/product-zoom.component';
 import { HomeFourComponent } from './home-four/home-four.component';
 import { BrandsComponent } from './widgets/brands/brands.component';
-import { MatExpansionModule, MatExpansionPanel } from '@angular/material/expansion';
 
 
 @NgModule({
