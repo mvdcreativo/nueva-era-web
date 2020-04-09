@@ -14,17 +14,28 @@
     <p class="phone width-100"><strong>Tel/Cel:</strong> {{ order.phone }}</p>
     <p class="email width-100"><strong>Email:</strong> {{ order.email }}</p>
 
-    <form [formGroup]="statusForm" class="status">
-        <mat-form-field >
-            <mat-label>Estado</mat-label>
-            <mat-select formControlName="status" (selectionChange)="updateStatus()"> 
-                <mat-option *ngFor="let option of status | async" [value]="option.id">
-                    {{option.name}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </form>
-    <!-- <p class="status" [className]="order.status.code.replace( remplace ,'-')">{{ order.status.name }}</p> -->
+    <ng-container *ngIf="!auth; then user; else admin"></ng-container>
+    <ng-template #admin>
+        <form [formGroup]="statusForm" class="status">
+            <mat-form-field >
+                <mat-label>Estado</mat-label>
+                <mat-select formControlName="status" (selectionChange)="updateStatus()"> 
+                    <mat-option *ngFor="let option of status | async" [value]="option.id">
+                        {{option.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </form>
+    </ng-template>
+    <ng-template #user>
+        <p class="status" [className]="order.status.code.replace( remplace ,'-')">{{ order.status.name }}</p>
+        
+    </ng-template>
+    
+
+
+
+    
     <p *ngIf="order.payment_metod_mp" class="method">{{ order.payment_metod_mp }}</p>
 
     <!-- <p class="method">visa</p> -->

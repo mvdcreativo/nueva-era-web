@@ -6,6 +6,8 @@ import { environment } from 'src/environments/environment';
 import { OrdersService } from '../services/orders.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { Order } from '../interfaces/order';
+import { AuthService } from 'src/app/auth/auth.service';
+import { CurrentUser, User } from 'src/app/auth/interfaces/user';
 
 @Component({
   templateUrl: './dialog-form-order.component.html',
@@ -30,6 +32,8 @@ export class DialogFormOrderComponent implements OnInit, AfterViewInit {
   dataResult: any = { form: null, image: null }
   order: any;
   status: any;
+  user: User;
+  auth: boolean;
 
 
 
@@ -38,6 +42,7 @@ export class DialogFormOrderComponent implements OnInit, AfterViewInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private fb: FormBuilder,
     private _orderService: OrdersService,
+    private authService: AuthService
   ) { }
   displayedColumns: string[] = ['id', 'name', 'quantity', 'price', 'total'];
 
@@ -51,7 +56,10 @@ export class DialogFormOrderComponent implements OnInit, AfterViewInit {
     
     this.createForm();
 
-
+    this.user = this.authService.currentUserValue.user;
+    if(this.user.role === "ADM"){
+      this.auth = true
+    }
 
     // if(this.data.data !== undefined){
     //   this.openEdit(this.data.data)
