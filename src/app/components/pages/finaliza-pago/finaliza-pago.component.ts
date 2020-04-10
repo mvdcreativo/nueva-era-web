@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
 import { Order } from 'src/app/admin/modules/orders/interfaces/order';
+declare let fbq:Function;
+
 
 @Component({
   selector: 'app-finaliza-pago',
@@ -39,6 +41,14 @@ export class FinalizaPagoComponent implements OnInit {
       })
       
 
+
+      //////PIXEL
+      fbq('track', 'Purchase', {
+        currency: 'UYU',
+        content_ids: '150754082143164',
+        content_type: 'product_group',
+      });
+      //////
   }
 
 
