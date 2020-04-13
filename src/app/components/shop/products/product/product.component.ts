@@ -66,8 +66,8 @@ export class ProductComponent implements OnInit {
       description: `Listado de los productos de ${this.seo.category} ${this.seo.brand || ""}`,
       slug: `tienda/productos/${slug}`,
 
-      brand: `${this.titleCase(this.seo.brand.replace(/-/gi, " ")) || ""}`,
-      category: `${this.titleCase(this.seo.category.replace(/-/gi, " ")) || ""}`,
+      // brand: `${this.titleCase(this.seo.brand.replace(/-/gi, " ")) || ""}`,
+      // category: `${this.titleCase(this.seo.category.replace(/-/gi, " ")) || ""}`,
     })
 
 

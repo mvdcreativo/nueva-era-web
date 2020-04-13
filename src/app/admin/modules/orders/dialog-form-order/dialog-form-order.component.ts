@@ -13,7 +13,7 @@ import { CurrentUser, User } from 'src/app/auth/interfaces/user';
   templateUrl: './dialog-form-order.component.html',
   styleUrls: ['./dialog-form-order.component.scss']
 })
-export class DialogFormOrderComponent implements OnInit, AfterViewInit {
+export class DialogFormOrderComponent implements OnInit {
 
   remplace = /_/g;
 
@@ -68,10 +68,7 @@ export class DialogFormOrderComponent implements OnInit, AfterViewInit {
     // }
 
   }
-  ngAfterViewInit() {
-    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
-    //Add 'implements AfterViewInit' to the class.
-  }
+
 
   updateStatus(){
     console.log(this.statusForm.value);
