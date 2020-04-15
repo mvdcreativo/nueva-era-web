@@ -21,21 +21,41 @@ export class SuccessComponent implements OnInit {
     
     this.activatedRoute.queryParamMap.subscribe(
       (param:Params)=>{
-        console.log(param.params)
+        console.log(param.params.external_reference)
+
         // param.param
-        // this.ordersService.updateOrder(param.param.)
+        this.ordersService.getOrder(param.params.external_reference).subscribe(
+          (res:any)=> {
+            console.log(res)
+              //////PIXEL
+              fbq('track', 'Purchase', {
+                currency: 'UYU',
+                content_ids: '150754082143164',
+                value: res.total,
+                content_type: 'product_group',
+              });
+              //////
+
+          }
+          
+        )
         }
       
     )
 
 
-          //////PIXEL
-          fbq('track', 'Purchase', {
-            currency: 'UYU',
-            content_ids: '150754082143164',
-            content_type: 'product_group',
-          });
-          //////
+
   }
+
+
+  // facebookAddToCart(product) {
+  //   fbq('track', 'Purchase', {
+  //     content_name: product.name,
+  //     content_ids: product.id,
+  //     content_type: 'product_group',
+  //     value: product.price,
+  //     currency: 'UYU'
+  //   });
+  // }
 
 }
