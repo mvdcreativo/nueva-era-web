@@ -27,12 +27,9 @@ export class ProductCarouselThreeComponent implements OnInit {
 
 
 
-  urlImg: string = environment.urlImg;
   urlFiles: string = environment.urlFiles;
 
   ngOnInit() {
-  }
-  ngAfterViewInit(){
     this.config = {
       observer: true,
       slidesPerView: 4,
@@ -45,22 +42,25 @@ export class ProductCarouselThreeComponent implements OnInit {
       preloadImages: false,
       lazy: true,
       breakpoints: {
-        480: {
-          slidesPerView: 1
-        },
-        740: {
-          slidesPerView: 2,
+        1280: {
+          slidesPerView: 4,
         },
         960: {
           slidesPerView: 3,
         },
-        1280: {
-          slidesPerView: 4,
+        740: {
+          slidesPerView: 2,
         },
-
+        480: {
+          slidesPerView: 1
+        },
+        
 
       }
     }
+  }
+  ngAfterViewInit(){
+
   }
 
   // Add to cart

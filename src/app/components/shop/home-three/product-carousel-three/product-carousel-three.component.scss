@@ -1,30 +1,37 @@
-   .mat-card{
-        min-height: 350px;
-        .product-img{
-            padding: 0px;
-            background-color: white!important;
-            img{
-                max-width: 75%;
-            }
-        }
+   .product-img{
+        background-color: #ffffff!important;
+
+   }
+
+        // min-height: 350px;
+        // max-height: 350px;
         
-        .product-info-wrapper{
-            padding: 0.5rem!important;
-            margin-bottom: auto;
-            flex-grow: 1;
-            .title-wrap{
+        // .product-img{
+        //     padding: 0px;
+        //     background-color: white!important;
+        //     img{
+        //         max-width: 500px;
+        //         // width: 500px;
+        //     }
+        // }
+        
+        // .product-info-wrapper{
+        //     padding: 0.5rem!important;
+        //     margin-bottom: auto;
+        //     flex-grow: 1;
+        //     .title-wrap{
                 
-                h4{
-                    font-size: 0.9em;
-                    font-weight: 300;
-                    white-space: normal;
-                }
-            }
-            .price-wrap{
-                position: absolute;
-                bottom: 0;
-                margin-bottom: 0.8rem;
-                width: calc(100% - 1rem);     
-            }
-        }
-    }
+        //         h4{
+        //             font-size: 0.9em;
+        //             font-weight: 300;
+        //             white-space: normal;
+        //         }
+        //     }
+        //     .price-wrap{
+        //         position: absolute;
+        //         bottom: 0;
+        //         margin-bottom: 0.8rem;
+        //         width: calc(100% - 1rem);     
+        //     }
+        // }
+    // }
