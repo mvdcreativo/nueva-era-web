@@ -24,7 +24,6 @@ export class ProductComponent implements OnInit {
   @Input() seo: Seo;
 
 
-  urlImg: string = environment.urlImg;
   urlFiles: string = environment.urlFiles;
 
   constructor(

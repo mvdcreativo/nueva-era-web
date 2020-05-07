@@ -5,7 +5,6 @@
 export const environment = {
   production: false,
   API : "http://apinuevaera.test/api/",
-  urlImg : "https://apiv2.jh.nuevaerauruguay.com/Upload/Article/",
   AuthAPI: 'http://apinuevaera.test/api/auth/',
   urlPago: 'http://apinuevaera.test/mercado-pago',
   urlFiles: 'http://apinuevaera.test/storage/',

@@ -45,7 +45,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   }
 
   ngOnInit() {
-    const windows = 
+ 
 
     this.route.params.subscribe(
       (params: Params) => {

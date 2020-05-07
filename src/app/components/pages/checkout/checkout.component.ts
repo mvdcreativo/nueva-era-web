@@ -85,11 +85,6 @@ export class CheckoutComponent implements OnInit {
       email: [this.user.email, Validators.required],
       phone: [this.user.phone, Validators.required]
     })    
-
-
-
-    
-
   }
 
   // productos = [

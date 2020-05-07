@@ -54,13 +54,13 @@ public observer   :  Subscriber<{}>;
      } );
 
      // If Products does not exist (Add New Products)
-     if(!hasItem) {
+    if(!hasItem) {
       item = { product: product, quantity: quantity };
       products.push(item);
       message = 'El producto ' + product.name + ' se agrego tu carrito';
       status = 'success';
       this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 3000 });
-  }
+    }
   
       ///ejecuta Pixel Facebook
       this.facebookAddToCart(product);
