@@ -33,8 +33,8 @@ export class HomeFourComponent implements OnInit {
 
 
   public slides = [
-    { title: '', subtitle: '', image: 'assets/images/carousel/en-casa.jpeg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/envio-express.jpeg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/ciberlunes1.jpeg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/ciberlunes1.jpeg' },
     { title: '', subtitle: '', image: 'assets/images/carousel/envio.jpeg' },
     // { title: '', subtitle: '', image: 'assets/images/carousel/3050639.jpg' },
     // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
