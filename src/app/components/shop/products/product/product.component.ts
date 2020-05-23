@@ -53,16 +53,16 @@ export class ProductComponent implements OnInit {
   
   ngOnInit() {
 
-    let t: string = this.titleCase(`${this.seo.category} ${this.seo.brand || ""}`.replace(/-/gi, " "));
+    let t: string = this.titleCase(`${this.seo?.category?? ""} ${this.seo?.brand?? ""}`.replace(/-/gi, " "));
     var slug;
-    if (this.seo.brand) {
-      slug = this.seo.category + '/' + this.seo.brand;
+    if (this.seo?.brand) {
+      slug = this.seo?.category + '/' + this.seo.brand;
     } else {
-      slug = this.seo.category
+      slug = this.seo?.category
     }
     this.seoService.genrateTags({
       title: `Nueva Era Uruguay | ${t}`,
-      description: `Listado de los productos de ${this.seo.category} ${this.seo.brand || ""}`,
+      description: `Listado de los productos de ${this.seo?.category?? ""} ${this.seo?.brand?? ""}`,
       slug: `tienda/productos/${slug}`,
 
       // brand: `${this.titleCase(this.seo.brand.replace(/-/gi, " ")) || ""}`,
