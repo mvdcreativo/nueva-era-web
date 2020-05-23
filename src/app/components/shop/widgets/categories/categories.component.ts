@@ -52,6 +52,10 @@ export class CategoriesComponent implements OnInit {
       "productos-en-promocion",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
     );
+    this.matIconRegistry.addSvgIcon(
+      "cyberlunes",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
+    );
   }
 
   ngOnInit() {
