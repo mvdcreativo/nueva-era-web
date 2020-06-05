@@ -1,65 +1,71 @@
 <div class="container">
-  <div class="cart-wrapper sec-padding">
-     <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!shoppingCartItems.length">
-        <mat-chip-list>
-           <mat-chip color="warn" selected="true">NO TIENE ARTÍCULOS EN SU CARRITO DE COMPRAS.</mat-chip>
-        </mat-chip-list>
-        <div>
-           <a  mat-raised-button color="primary" class="btn-project mt-20" [routerLink]="['/tienda/productos']" routerLinkActive="router-link-active" >Continuar comprando</a>
-        </div>
-     </div>
-     <mat-card *ngIf="shoppingCartItems.length"  class="p-0">
-        <div class="mat-table cart-table">
-           <div class="mat-header-row">
-              <div class="mat-header-cell">Producto</div>
-              <div class="mat-header-cell">Nombre</div>
-              <div class="mat-header-cell">Precio</div>
-              <div class="mat-header-cell">Cantidad</div>
-              <div class="mat-header-cell">Total</div>
-              <div class="mat-header-cell">Acciones</div>
-           </div>
-           <div *ngFor="let item of shoppingCartItems"  class="mat-row">
-              <div class="mat-cell"><img [src]="urlFiles+item.product.picture"></div>
-              <div class="mat-cell"><a  class="product-name">{{item.product.name}}</a></div>
-              <div class="mat-cell price">{{item.product.price | number : '1.2-2'}}</div>
-              <div class="mat-cell text-muted">
-                 <div fxLayout="row" fxLayout.xs="column"  class="text-muted">
-                    <div fxLayout="row" fxLayoutAlign="center start">
-                       <button mat-icon-button matTooltip="Remove" (click)="decrement(item.product)">
-                          <mat-icon>remove</mat-icon>
-                       </button>
-                       <input type="text" name="quantity"  [(ngModel)]="item.quantity" disabled class="form-control input-number">
-                       <button mat-icon-button matTooltip="Add" (click)="increment(item.product)">
-                          <mat-icon>add</mat-icon>
-                       </button>
-                    </div>
-                    <!-- <div *ngIf="type!='wish'">
+   <div class="cart-wrapper sec-padding">
+      <div fxLayout="column" fxLayoutAlign="space-around center" *ngIf="!shoppingCartItems.length">
+         <mat-chip-list>
+            <mat-chip color="warn" selected="true">NO TIENE ARTÍCULOS EN SU CARRITO DE COMPRAS.</mat-chip>
+         </mat-chip-list>
+         <div>
+            <a mat-raised-button color="primary" class="btn-project mt-20" [routerLink]="['/tienda/productos']"
+               routerLinkActive="router-link-active">Continuar comprando</a>
+         </div>
+      </div>
+      <mat-card *ngIf="shoppingCartItems.length" class="p-0">
+         <div class="mat-table cart-table">
+            <div class="mat-header-row">
+               <div class="mat-header-cell">Producto</div>
+               <div class="mat-header-cell">Nombre</div>
+               <div class="mat-header-cell media-hidden">Precio</div>
+               <div class="mat-header-cell">Cantidad</div>
+               <div class="mat-header-cell">Total</div>
+               <div class="mat-header-cell">Acciones</div>
+            </div>
+            <div *ngFor="let item of shoppingCartItems" class="mat-row">
+               <div class="mat-cell"><img [src]="urlFiles+item.product.picture"></div>
+               <div class="mat-cell"><a class="product-name">{{item.product.name}}</a></div>
+               <div class="mat-cell price  media-hidden">{{item.product.price | number : '1.2-2'}}</div>
+               <div class="mat-cell text-muted">
+                  <div fxLayout="row" fxLayout.xs="column" class="text-muted">
+                     <div fxLayout="row" fxLayoutAlign="center start">
+                        <button mat-icon-button matTooltip="Remove" (click)="decrement(item.product)">
+                           <mat-icon>remove</mat-icon>
+                        </button>
+                        <input type="text" name="quantity" [(ngModel)]="item.quantity" disabled
+                           class="form-control input-number quantity">
+                        <button mat-icon-button matTooltip="Add" (click)="increment(item.product)">
+                           <mat-icon>add</mat-icon>
+                        </button>
+                     </div>
+                     <!-- <div *ngIf="type!='wish'">
                        <button mat-icon-button matTooltip="Add to wishlist" (click)="addToWishList(product)"><mat-icon>favorite</mat-icon></button>
                        <button mat-icon-button matTooltip="Add to cart" *ngIf="product?.availibilityCount > 0" (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon></button>
                        <button mat-icon-button matTooltip="Add to compare" (click)="addToCompare(product)"><mat-icon>compare</mat-icon></button>
                        <button *ngIf="type!='all'" mat-icon-button matTooltip="Quick view" (click)="openProductDialog(product)"><mat-icon>remove_red_eye</mat-icon></button>
                        </div> -->
-                 </div>
-              </div>
-              <div class="mat-cell total">{{item.product.price * item.quantity | number : '1.2-2' }}</div>
-              <div class="mat-cell text-center">
-                 <div class="p-1">
-                    <mat-icon (click)="removeItem(item)">close</mat-icon>
-                 </div>
-              </div>
-           </div>
-           <div class="mat-row">
-              <div class="mat-cell"><a  mat-raised-button  class="btn-project" [routerLink]="['/tienda/productos']" routerLinkActive="router-link-active" >Continuar comprando</a></div>
-              <div class="mat-cell"></div>
-              <div class="mat-cell"></div>
-              <div class="mat-cell text-right">
-                 <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
-                    <span class="new-price">Total: {{getTotal()  | async | currency }}</span>
-                 </div>
-              </div>
-              <div class="mat-cell text-center"><a mat-raised-button  class="btn-project" [routerLink]="['/pages/checkout']" routerLinkActive="router-link-active" >Procesar el pago</a></div>
-           </div>
-        </div>
-     </mat-card>
-  </div>
+                  </div>
+               </div>
+               <div class="mat-cell total">{{item.product.price * item.quantity | number : '1.2-2' }}</div>
+               <div class="mat-cell text-center">
+                  <div class="p-1">
+                     <mat-icon style="cursor: pointer;" (click)="removeItem(item)">close</mat-icon>
+                  </div>
+               </div>
+            </div>
+            <div class="footer-table">
+               <div class="text-center total">
+                  <div fxLayout="column" fxLayoutAlign="center end" class="grand-total px-2">
+                     <span class="new-price">Total: {{getTotal()  | async | currency }}</span>
+                  </div>
+               </div>
+               <div class="continuar">
+                  <a mat-raised-button class="btn-project" [routerLink]="['/tienda/productos']"
+                     routerLinkActive="router-link-active">Continuar comprando</a>
+               </div>
+               <div class="procesar">
+                  <a mat-raised-button class="btn-project" [routerLink]="['/pages/checkout']"
+                     routerLinkActive="router-link-active">Procesar el pago</a>
+               </div>
+            </div>
+         </div>
+      </mat-card>
+   </div>
 </div>

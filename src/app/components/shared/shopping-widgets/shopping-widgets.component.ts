@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-shopping-widgets',
   templateUrl: './shopping-widgets.component.html',
-  styleUrls: ['./shopping-widgets.component.sass']
+  styleUrls: ['./shopping-widgets.component.scss']
 })
 export class ShoppingWidgetsComponent implements OnInit {
 

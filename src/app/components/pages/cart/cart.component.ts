@@ -8,7 +8,7 @@ import { SeoService } from 'src/app/seo/services/seo.service';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.sass']
+  styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
 
