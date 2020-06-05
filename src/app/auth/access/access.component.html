@@ -31,7 +31,27 @@
                                 mat-raised-button color="accent">
                                 Entrar
                             </button>
+                        </div>
+
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <button class="btn-project  btn-google" (click)="signInWithGoogle()" mat-raised-button>
+                                <img class="ico" src="../../../assets/images/ico-google.svg">
+                                Entrar con Google
+                            </button>
+
+                        </div>
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
+                            <button class="btn-project btn-facebook" (click)="signInWithFB()" mat-raised-button>
+                                <img class="ico" src="../../../assets/images/ico-facebook.svg"> Entrar con Facebook
+                            </button>
+
+                        </div>
+                        <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
+                            ngClass.xs="mt-1" fxLayoutAlign="space-between center">
                             <span class="reset-pass"><a (click)="openResetPassDialog()">Olvidé mi contraseña</a></span>
+
                         </div>
                     </form>
                 </div>
@@ -93,7 +113,8 @@
                             </div> -->
                             <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1"
                                 ngClass.xs="mt-1">
-                                <button class="btn-project" mat-raised-button (click)="onSubmitRegister()" color="accent">Enviar Datos</button>
+                                <button class="btn-project" mat-raised-button (click)="onSubmitRegister()"
+                                    color="accent">Enviar Datos</button>
                             </div>
                         </form>
                         <!-- <form fxLayout="row wrap">

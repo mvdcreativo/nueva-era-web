@@ -7,6 +7,9 @@ import { ResetPassDielogComponent } from './reset-pass-dielog/reset-pass-dielog.
 import { MatDialog } from '@angular/material/dialog';
 import { NewPassDilogComponent } from './new-pass-dilog/new-pass-dilog.component';
 
+
+ 
+
 @Component({
   selector: 'app-access',
   templateUrl: './access.component.html',
@@ -21,6 +24,8 @@ export class AccessComponent implements OnInit {
   public error = '';
   public returnUrl: string;
   errorLogin = null;
+
+
 
   constructor(
     private formBuilder: FormBuilder,
@@ -160,4 +165,47 @@ export class AccessComponent implements OnInit {
       });
     }
 
+
+
+
+    /////LOGIN SOCIAL
+    signInWithGoogle(): void {
+      this.authService.signInWithGoogle().then(
+        data => {
+          // console.log(data);
+          if (this.returnUrl) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
+        }
+      ).catch(
+        error => {
+          this.error = error;
+          // this.loading = false;
+        }
+      )
+    }
+   
+    signInWithFB(): void {
+      this.authService.signInWithFB().then(
+        data => {
+          console.log(data);
+          if (this.returnUrl) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
+        }
+      ).catch(
+        error => {
+          this.error = error;
+          // this.loading = false;
+        }
+      )
+    } 
+   
+    signOut(): void {
+      this.authService.signOut();
+    }
 }

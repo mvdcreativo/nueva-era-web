@@ -1,9 +1,12 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, OnInit } from '@angular/core';
 import { User, CurrentUser } from './interfaces/user';
 import { Router } from '@angular/router';
 import { map, tap, take } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+
+import { AuthService as AuthServiceSocial, SocialUser  } from "angularx-social-login";
+import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
 
 import { environment } from 'src/environments/environment';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,23 +14,36 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit{
 
   private currentUserSubject: BehaviorSubject<CurrentUser>;
   public currentUser: Observable<CurrentUser>;
   public errorSubject: BehaviorSubject<any> = new BehaviorSubject<any>(null)
   public error$: Observable<any>;
 
+  private user: SocialUser;
+  private loggedIn: boolean;
+
   constructor(
     private router: Router,
     private http: HttpClient,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    private authServiceSocial: AuthServiceSocial,
+
   ) {
     this.currentUserSubject = new BehaviorSubject<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.error$ = this.errorSubject.asObservable();
   }
 
+  ngOnInit(){
+    //observable user social
+    this.authServiceSocial.authState.subscribe((user) => {
+      this.user = user;
+      this.loggedIn = (user != null);
+    });
+    
+  }
 
   public get currentUserValue(): CurrentUser {
     if (this.currentUserSubject.value && this.currentUserSubject.value.user) {
@@ -126,6 +142,7 @@ export class AuthService {
         // remove user from local storage to log user out
         localStorage.removeItem('cartItem');
         localStorage.removeItem('currentUser');
+        this.signOut();
         this.currentUserSubject.next(null);
         this.router.navigate(['/']);
       },
@@ -188,4 +205,74 @@ export class AuthService {
     )
   }
 
+
+
+
+  
+    /////LOGIN SOCIAL
+    signInWithGoogle() {
+      return this.authServiceSocial.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+        res => {
+          let credentials: SocialUser = res;
+          this.http.post<any>(`${environment.API}social-auth`, credentials).pipe(
+            take(1)).
+            subscribe(user => {
+              // login successful if there's a jwt token in the response
+              if (user && user.token) {
+                // store user details ands token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+    
+                let message, status;
+                message = `Hola de nuevo ${user.user.name}, gracias por preferirnos!`;
+                status = 'success';
+                this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
+                // this.router.navigate(['admin'])
+                // console.log(user);
+    
+              }
+    
+              return user;
+            })
+         
+          // console.log(this.user);
+          // console.log(res);
+        });
+
+    }
+   
+    signInWithFB(){
+      return this.authServiceSocial.signIn(FacebookLoginProvider.PROVIDER_ID)
+      .then(
+        res => {
+          let credentials: SocialUser = res;
+          this.http.post<any>(`${environment.API}social-auth`, credentials).pipe(
+            take(1)).
+            subscribe(user => {
+              // login successful if there's a jwt token in the response
+              if (user && user.token) {
+                // store user details ands token in local storage to keep user logged in between page refreshes
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                this.currentUserSubject.next(user);
+    
+                let message, status;
+                message = `Hola de nuevo ${user.user.name}, gracias por preferirnos!`;
+                status = 'success';
+                this.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
+                // this.router.navigate(['admin'])
+                // console.log(user);
+    
+              }
+    
+              return user;
+            })
+         
+          console.log(this.user);
+          console.log(res);
+        });
+    } 
+   
+    signOut(): void {
+      this.authServiceSocial.signOut();
+    }
 }
