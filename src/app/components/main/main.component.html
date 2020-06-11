@@ -4,12 +4,11 @@
 <div class="sophia-app">
   <mat-sidenav-container fullscreen>
     <mat-sidenav [opened]="false" mode="over" #start class="sidenav">
-      <button mat-icon-button color="warn" class="close" (click)="start.close()">
-        <mat-icon color="warn">close</mat-icon>
+      <button mat-icon-button color="accent" class="close" (click)="start.close()">
+        <mat-icon color="accent" class="material-icons-round">keyboard_backspace</mat-icon>
       </button>
-      <div class="divider"></div>
       <div class="sidebar-items" fxLayout="column">
-        <app-sidebar *ngFor="let item of navItems" [item]="item"></app-sidebar>
+        <app-sidebar *ngFor="let item of navItems" [item]="item" (closed)="start.close()"></app-sidebar>
       </div>
     </mat-sidenav>
     <mat-toolbar class="main-topbar" [ngClass]="{topbar_four: url == '/inicio'}">

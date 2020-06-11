@@ -10,6 +10,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import { CategoryService } from '../shared/services/category.service';
 import { map, filter } from 'rxjs/operators';
+import { MatSidenav } from '@angular/material/sidenav';
 
 declare let fbq:Function;
 
@@ -19,6 +20,8 @@ declare let fbq:Function;
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit {
+
+  @ViewChild('sidenav') sidenav: MatSidenav;
 
   public sidenavMenuItems: Array<any>;
 
@@ -73,7 +76,7 @@ export class MainComponent implements OnInit {
         this.navItems = res.map( 
 
           v => {
-            let a = {displayName: v.name, iconName:"" , route: `/tienda/productos/${v.slug}`  }
+            let a = {displayName: v.name, iconName: v.slug , route: `/tienda/productos/${v.slug}`  }
             return a;
           }
           
@@ -86,6 +89,7 @@ export class MainComponent implements OnInit {
 
 
   }
+
 
 
   contactFacebook(){

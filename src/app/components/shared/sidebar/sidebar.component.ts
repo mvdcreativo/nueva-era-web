@@ -1,8 +1,10 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, Output, EventEmitter } from '@angular/core';
 import { SidebarMenuService } from './sidebar-menu.service';
-import {animate, state, style, transition, trigger} from '@angular/animations';
-import {  SidenavMenu } from './sidebar-menu.model';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { SidenavMenu } from './sidebar-menu.model';
 import { Router } from '@angular/router';
+import { MatIconRegistry } from '@angular/material/icon';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -11,8 +13,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./sidebar.component.scss'],
   animations: [
     trigger('indicatorRotate', [
-      state('collapsed', style({transform: 'rotate(0deg)'})),
-      state('expanded', style({transform: 'rotate(180deg)'})),
+      state('collapsed', style({ transform: 'rotate(0deg)' })),
+      state('expanded', style({ transform: 'rotate(180deg)' })),
       transition('expanded <=> collapsed',
         animate('225ms cubic-bezier(0.4,0.0,0.2,1)')
       ),
@@ -24,11 +26,50 @@ export class SidebarComponent implements OnInit {
   @HostBinding('attr.aria-expanded') ariaExpanded = this.expanded;
   @Input() item: SidenavMenu;
   @Input() depth: number;
+  @Output() closed = new EventEmitter();
 
-  constructor(private sidenavMenuService:SidebarMenuService, public router: Router) {
+  constructor(
+    private sidenavMenuService: SidebarMenuService,
+    public router: Router,
+    private matIconRegistry: MatIconRegistry,
+    private domSanitizer: DomSanitizer) {
+
     if (this.depth === undefined) {
       this.depth = 0;
     }
+
+    this.matIconRegistry.addSvgIcon(
+      "alimento-perro",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-perro.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "alimento-gato",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "sanitario-gato",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "antipulgas",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/anti-pulga.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "snacks",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/snack.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "accesorios",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-accesorios.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "productos-en-promocion",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "cyberlunes",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
+    );
   }
 
   ngOnInit() {
@@ -41,12 +82,18 @@ export class SidebarComponent implements OnInit {
       }
     });
   }
+
+
   onItemSelected(item: SidenavMenu) {
     if (!item.children || !item.children.length) {
       this.router.navigate([item.route]);
+      this.closed.emit(true)
+
     }
     if (item.children && item.children.length) {
-      this.expanded = !this.expanded;
+      console.log("click okkk");
+      this.ariaExpanded = !this.expanded;
+
     }
   }
 
