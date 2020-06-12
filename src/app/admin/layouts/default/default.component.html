@@ -3,7 +3,7 @@
 <mat-drawer-container>
     <mat-drawer mode="side" [opened]="sideBarOpen">
         <perfect-scrollbar style="max-width: 600px; max-height: 600px;" [config]="config">
-            <app-sidebar></app-sidebar>
+            <app-sidebar (sidebarClose)="sideBarToggler()"></app-sidebar>
         </perfect-scrollbar>
     </mat-drawer>
 

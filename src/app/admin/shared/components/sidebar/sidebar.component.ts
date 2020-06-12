@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter} from '@angular/core';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/interfaces/user';
 import { environment } from 'src/environments/environment';
@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class SidebarComponent implements OnInit {
 
+  @Output() sidebarClose = new EventEmitter()
   user: User
   auth: boolean = false
   urlExportFaceboock: string = `${environment.API}products-faceboock`;
@@ -23,14 +24,15 @@ export class SidebarComponent implements OnInit {
       this.auth = true
     }
 
-    
-
-
    }
 
   ngOnInit() {
 
 
+  }
+
+  clicLink(){
+      this.sidebarClose.emit()
   }
 
 }

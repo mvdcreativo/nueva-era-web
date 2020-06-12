@@ -14,17 +14,17 @@
     <ng-template #user>
         <h2 matSubheader>Mi Cuenta</h2>
 
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="mis-pedidos">Mis pedidos</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="mis-datos">Mis datos</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="mis-pedidos">Mis pedidos</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="mis-datos">Mis datos</a>
     </ng-template>
     <ng-template #admin>
         <mat-divider></mat-divider>
 
         <h2 matSubheader>Administrador</h2>
 
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="usuarios">Usuarios</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="pedidos">Pedidos</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="productos">Artículos</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="usuarios">Usuarios</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="pedidos">Pedidos</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="productos">Artículos</a>
 
 
 
@@ -32,14 +32,14 @@
 
         <h2 matSubheader>Categorías y Marcas</h2>
 
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="categorias">Categorías</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="marcas">Marcas</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="categorias">Categorías</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="marcas">Marcas</a>
 
         <mat-divider></mat-divider>
 
         <h2 matSubheader>Importar Exportar</h2>
-        <a mat-list-item [href]="urlExportFaceboock">Exportar Catálogo para Faceboock</a>
-        <a mat-list-item routerLinkActive="list-item-active" routerLink="#">Importar Artículos Masivamente<i>(pendeiente)</i></a>
+        <a mat-list-item (click)="clicLink()" [href]="urlExportFaceboock">Exportar Catálogo para Faceboock</a>
+        <a mat-list-item (click)="clicLink()" routerLinkActive="list-item-active" routerLink="#">Importar Artículos Masivamente<i>(pendeiente)</i></a>
 
     </ng-template>
     
