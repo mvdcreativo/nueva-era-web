@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-default',
@@ -10,18 +11,14 @@ export class DefaultComponent implements OnInit {
   sideBarOpen;
   config 
 
-  constructor() { }
+  constructor(
+    public breakpointObserver: BreakpointObserver
+  ) { }
 
   ngOnInit() {
-    const width= window.innerWidth;
-    console.log(width);
-    
-    if(width <= 800){
-      this.sideBarOpen = false;
 
-    }else{
-      this.sideBarOpen = true;
-    }
+
+    this.responsive()
    }
 
 
@@ -29,4 +26,16 @@ export class DefaultComponent implements OnInit {
     this.sideBarOpen = !this.sideBarOpen;
   }
 
+
+  responsive(){
+    this.breakpointObserver
+      .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
+      .subscribe((state: BreakpointState) => {
+        if (state.matches) {
+          this.sideBarOpen = false;
+        }else{
+          this.sideBarOpen = true;
+        }
+      });
+  }
 }
