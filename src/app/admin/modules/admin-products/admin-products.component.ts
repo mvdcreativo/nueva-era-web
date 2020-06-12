@@ -7,6 +7,7 @@ import { Product } from 'src/app/modals/product.model';
 import { ProductAdminService } from './services/product-admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogFormComponent } from './dialog-form/dialog-form.component';
+import StatusOptions from "./status-options.json";
 
 @Component({
   selector: 'app-admin-products',
@@ -14,8 +15,9 @@ import { DialogFormComponent } from './dialog-form/dialog-form.component';
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
+  statusOptions : any = StatusOptions;
   brand: Product[];
-  displayedColumns: string[] = ['id', 'name', 'marca', 'categoria', 'price', 'state', 'acciones'];
+  displayedColumns: string[] = ['id', 'name', 'status', 'marca', 'categoria', 'price', 'acciones'];
   dataSource: any;
   formAdd: FormGroup
   mostrar: boolean = false;
@@ -42,9 +44,6 @@ export class AdminProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct();
-    
-
-
   }
 
 
@@ -146,6 +145,19 @@ export class AdminProductsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  updateStatus(event,element){
+    const data = new FormData;
+    data.append('status', event.value)
+    data.append('_method', 'PUT')
+    this._productService.updateProducto(element.id, data).subscribe(
+      res=>{
+        this.getProduct()
+        this._productService.openSnackBar('success', `Producto ${res.name} Actualizado con éxito!!`)
+
+      }
+    )
+    
+  }
 
 
 
@@ -188,7 +200,7 @@ export class AdminProductsComponent implements OnInit {
 
     this._productService.updateProducto(id, data).subscribe(
       res => {
-        console.log(res);
+        // console.log(res);
         this._productService.openSnackBar('success', `Producto ${res.name} Actualizado con éxito!!`)
         this.getProduct()
         this.mostrar = false;

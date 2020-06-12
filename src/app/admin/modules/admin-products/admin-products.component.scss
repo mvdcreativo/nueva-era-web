@@ -63,3 +63,21 @@ label{
     
     // justify-items: stretch;
 }
+.DIS{
+    .mat-cell, ::ng-deep.mat-select-value{
+        color: #ccc!important
+
+    }
+}
+.STK{
+    .mat-cell, ::ng-deep.mat-select-value{
+        color: red!important
+
+    }
+}
+.PRX{
+    .mat-cell, ::ng-deep.mat-select-value{
+        color: green!important;
+
+    }
+}

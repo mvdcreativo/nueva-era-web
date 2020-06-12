@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Activo",
+        "value": "ACT",
+        "color": ""
+    },
+    {
+        "title": "Sin Stock",
+        "value": "STK",
+        "color": "red"
+    },
+    {
+        "title": "Inactivo",
+        "value": "DIS",
+        "color": "grey"
+    },
+    {
+        "title": "Proximamente",
+        "value": "PRX",
+        "color": "green"
+    }
+]

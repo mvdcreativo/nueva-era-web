@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
+import { BreakpointObserver, Breakpoints, BreakpointState, MediaMatcher } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-default',
@@ -12,8 +12,11 @@ export class DefaultComponent implements OnInit {
   config 
 
   constructor(
-    public breakpointObserver: BreakpointObserver
-  ) { }
+    public breakpointObserver: BreakpointObserver,
+  ) {
+
+    
+   }
 
   ngOnInit() {
 
@@ -31,11 +34,8 @@ export class DefaultComponent implements OnInit {
     this.breakpointObserver
       .observe([Breakpoints.Small, Breakpoints.HandsetPortrait])
       .subscribe((state: BreakpointState) => {
-        if (state.matches) {
-          this.sideBarOpen = false;
-        }else{
-          this.sideBarOpen = true;
-        }
+          this.sideBarOpen = !state.matches;
+
       });
   }
 }

@@ -10,6 +10,9 @@
         <!-- <span class="category">{{product.category.name}}</span> -->
         <div class="title-wrap">
            <h4>{{product.name}}</h4>
+           <p *ngIf='product.status === "STK"' style="color: red; font-size: 12px;" >Sin Stock</p>
+           <p *ngIf='product.status === "PRX"' style="color: #2D86F7;" >Proximamente</p>
+
         </div>
         <!-- <div class="stars">
            <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>

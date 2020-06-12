@@ -29,6 +29,7 @@ export class Product {
   brand_id?:number;
   category_id?:number;
   pictures?:string;
+  status?: string;
 
   constructor(
     id?: number,

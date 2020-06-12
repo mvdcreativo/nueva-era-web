@@ -105,9 +105,16 @@ export class ProductLeftSidebarComponent implements OnInit {
           
           this.productService.searchProduct(params).subscribe(
             (res:any)=> {
-              console.log(res);
-              this.allItems = res
-              this.products = res.slice(0.8)
+              // console.log(res);
+              this.products = res.filter(
+                v => {
+                  if(v.status !== "DIS" ){
+                    return v;
+                  }
+                }
+                )
+              this.allItems = this.products
+              this.products = this.products.slice(0.8)
             }
           )
           
@@ -120,11 +127,15 @@ export class ProductLeftSidebarComponent implements OnInit {
   categories(category){
     this.productService.getProductByCategory(category).subscribe(
       (products:any) => {
-        this.allItems = products.products;
-        console.log(products);
-        this.products = products.products.slice(0.8);
-        console.log(this.allItems);
-
+        this.products = products.products.filter(
+          v => {
+            if(v.status !== "DIS" ){
+              return v;
+            }
+          }
+          )
+        this.allItems = this.products
+        this.products = this.products.slice(0.8)
 
         // this.getTags(products)
         // this.getColors(products)
@@ -134,16 +145,17 @@ export class ProductLeftSidebarComponent implements OnInit {
   brands(brands){
     this.productService.getProductByBrand(brands).subscribe(
       (products:any) => {
-        this.allItems = products.products;
 
-        
-        // console.log(products);
-        this.products = products.products.slice(0.8);
-        // console.log(this.allItems);
+        this.products = products.products.filter(
+          v => {
+            if(v.status !== "DIS" ){
+              return v;
+            }
+          }
+          )
+        this.allItems = this.products
+        this.products = this.products.slice(0.8)
 
-
-        // this.getTags(products)
-        // this.getColors(products)
     })
   }
 
@@ -175,27 +187,27 @@ export class ProductLeftSidebarComponent implements OnInit {
     this.animation == 'fadeOut' ? this.fadeIn() : this.fadeOut(); // animation
   }
 
-  // Initialize filetr Items
-  public filterItems(): Product[] {
-    return this.items.filter((item: Product) => {
-      const Colors: boolean = this.colorFilters.reduce((prev, curr) => { // Match Color
-        if (item.colors) {
-          if (item.colors.includes(curr.color)) {
-            return prev && true;
-          }
-        }
-      }, true);
-      const Tags: boolean = this.tagsFilters.reduce((prev, curr) => { // Match Tags
-        if (item.tags) {
-          if (item.tags.includes(curr)) {
-            return prev && true;
-          }
-        }
-      }, true);
-      return Colors && Tags; // return true
-    });
+  // // Initialize filetr Items
+  // public filterItems(): Product[] {
+  //   return this.items.filter((item: Product) => {
+  //     const Colors: boolean = this.colorFilters.reduce((prev, curr) => { // Match Color
+  //       if (item.colors) {
+  //         if (item.colors.includes(curr.color)) {
+  //           return prev && true;
+  //         }
+  //       }
+  //     }, true);
+  //     const Tags: boolean = this.tagsFilters.reduce((prev, curr) => { // Match Tags
+  //       if (item.tags) {
+  //         if (item.tags.includes(curr)) {
+  //           return prev && true;
+  //         }
+  //       }
+  //     }, true);
+  //     return Colors && Tags; // return true
+  //   });
 
-  }
+  // }
 
   public onPageChanged(event) {
     this.page = event;
@@ -217,17 +229,17 @@ export class ProductLeftSidebarComponent implements OnInit {
 
 
   // Update price filter
-  public updatePriceFilters(price: any) {
-    console.log(price);
-    console.log(this.products);
+  // public updatePriceFilters(price: any) {
+  //   // console.log(price);
+  //   console.log(this.products);
 
 
-    this.allItems = this.products.filter((item: Product) => {
-      return item.price >= price.priceFrom && item.price <= price.priceTo
-    });
-    console.log(this.products);
+  //   this.allItems = this.products.filter((item: Product) => {
+  //     return item.price >= price.priceFrom && item.price <= price.priceTo
+  //   });
+  //   console.log(this.products);
 
-  }
+  // }
 
   onBrendsChanged(newBrend) {
     console.log(newBrend);
