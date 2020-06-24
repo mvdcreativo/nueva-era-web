@@ -50,6 +50,9 @@ export class ProductDetailsComponent implements OnInit {
       const slug = params['slug'];
       this.productsService.getProduct(slug).subscribe(
         res => {
+          if(res?.status === "DIS"){
+            this.router.navigate(["error"])
+          }
         this.product = res
           this.setSeo(this.product)
           console.log(this.product)

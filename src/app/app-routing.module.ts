@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { BtnWspRedirectComponent } from './components/shared/btn-wsp-redirect/btn-wsp-redirect.component';
 import { AuthGuard } from './auth/guards/auth.guard';
+import { ErrorPageComponent } from './components/pages/error-page/error-page.component';
 
 
 const appRoutes: Routes = [
@@ -36,6 +37,7 @@ const appRoutes: Routes = [
 
     // ]
   },
+
 
   
 ];

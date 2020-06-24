@@ -33,10 +33,10 @@ export class HomeFourComponent implements OnInit {
 
 
   public slides = [
-    { title: '', subtitle: '', image: 'assets/images/carousel/diamadre1.jpeg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/diamadre.jpeg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/envio-express.jpeg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/envio.jpeg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/image.jpg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/image2.jpg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/image3.jpg' },
+    { title: '', subtitle: '', image: 'assets/images/carousel/image4.jpg' },
     // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
   ];
 
@@ -68,7 +68,7 @@ export class HomeFourComponent implements OnInit {
    (product: Product[]) => {
 
      this.products = product.filter(
-       x => x.category.id === 13
+       x => x.category.id === 13 && x.status !== "DIS"
 
      )
      console.log(this.products);
