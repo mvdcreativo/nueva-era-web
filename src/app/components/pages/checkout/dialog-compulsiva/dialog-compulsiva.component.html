@@ -8,7 +8,7 @@
             <mat-card fxLayout="column">
                 <div class="product-img">
                     <!-- <a class="product-link" [routerLink]="['/producto', product.id]"> -->
-                    <a class="product-link" [routerLink]="['/tienda/producto', product.slug]">
+                    <a class="product-link" (click)="onNoClick()" [routerLink]="['/tienda/producto', product.slug]">
                         <img [src]="urlFiles+product.picture">
                     </a>
                 </div>
@@ -51,5 +51,5 @@
 </div>
 <div mat-dialog-actions  align="end">
     <h4>Total: {{ getTotal()  | async | currency:productsService?.currency:'symbol' }}</h4>
-    <button mat-flat-button cdkFocusInitial (click)="onNoClick()" color="accent">Continuar</button>
+    <button mat-flat-button cdkFocusInitial [mat-dialog-close]="true" color="accent">Continuar</button>
 </div>

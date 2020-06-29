@@ -160,7 +160,10 @@ export class CheckoutComponent implements OnInit {
 
     
     dialogRef.afterClosed().subscribe(result => {
-      this.onSubmit()
+      console.log(result);
+      if(result === true){this.onSubmit()}
+      
+      
     });
   }
 
