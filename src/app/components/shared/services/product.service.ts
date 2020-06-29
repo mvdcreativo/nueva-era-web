@@ -5,6 +5,7 @@ import { Product } from 'src/app/modals/product.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { map, take } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { Category } from 'src/app/admin/modules/categories/interfaces/category';
 
 
 
@@ -135,7 +136,7 @@ export class ProductService {
 
   public getProductByCategory(category) {
 
-    return this.httpClient.get<Product[]>(`${environment.API}category-by-slug/${category}`)
+    return this.httpClient.get<Category>(`${environment.API}category-by-slug/${category}`)
   }
 
   public getProductByBrand(brand){

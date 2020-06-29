@@ -1,0 +1,55 @@
+<h3>Te puede interesar</h3>
+<p>Algunos productos que quizá te hacen falta. Agrega lo que necesites y continúa con el pago</p>
+<div mat-dialog-content>
+
+
+    <div *ngFor="let product of data">
+        <div class="product-item">
+            <mat-card fxLayout="column">
+                <div class="product-img">
+                    <!-- <a class="product-link" [routerLink]="['/producto', product.id]"> -->
+                    <a class="product-link" [routerLink]="['/tienda/producto', product.slug]">
+                        <img [src]="urlFiles+product.picture">
+                    </a>
+                </div>
+                <div class="product-info-wrapper">
+                    <!-- <span class="category">{{product.category.name}}</span> -->
+                    <div class="title-wrap">
+                        <h4>{{product.name}}</h4>
+                        <p *ngIf='product.status === "STK"' style="color: red; font-size: 12px;">Sin Stock</p>
+                        <p *ngIf='product.status === "PRX"' style="color: #2D86F7;">Proximamente</p>
+
+                    </div>
+                    <!-- <div class="stars">
+                     <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
+                     <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
+                     <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
+                     <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
+                     <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
+                  </div> -->
+                    <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
+                        <p>{{product.price | currency:productsService?.currency:'symbol'}}</p>
+                        <a (click)="addToCart(product)">
+                            <mat-icon class="mat-icon-lg mat-icon material-icons orange600 md-48">shopping_cart
+                            </mat-icon>
+                        </a>
+                    </div>
+                    <div class="icons" fxLayout="column">
+                        <!-- <a (click)="addToWishlist(product)"><mat-icon class="mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon></a> -->
+                        <a (click)="openProductDialog(product)">
+                            <mat-icon  class="material-icons orange600">remove_red_eye</mat-icon>
+                        </a>
+                        <!-- <a (click)="addToCompare(product)"><mat-icon>cached</mat-icon></a> -->
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+
+    </div>
+
+
+</div>
+<div mat-dialog-actions  align="end">
+    <h4>Total: {{ getTotal()  | async | currency:productsService?.currency:'symbol' }}</h4>
+    <button mat-flat-button cdkFocusInitial (click)="onNoClick()" color="accent">Continuar</button>
+</div>

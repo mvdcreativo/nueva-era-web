@@ -59,7 +59,8 @@ import { BrandsComponent } from './widgets/brands/brands.component';
   exports: [
     ProductDialogComponent,
     ProductZoomComponent,
-    HomeFourComponent
+    HomeFourComponent,
+    ProductComponent
 
   ],
 

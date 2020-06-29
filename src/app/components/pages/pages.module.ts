@@ -15,6 +15,9 @@ import { FinalizaPagoComponent } from './finaliza-pago/finaliza-pago.component';
 import { SuccessComponent } from './pagos/success/success.component';
 import { PendingComponent } from './pagos/pending/pending.component';
 import { FailureComponent } from './pagos/failure/failure.component';
+import { DialogCompulsivaComponent } from './checkout/dialog-compulsiva/dialog-compulsiva.component';
+import { ProductsComponent } from '../shop/products/products.component';
+import { ShopModule } from '../shop/shop.module';
 
 
 @NgModule({
@@ -29,7 +32,8 @@ import { FailureComponent } from './pagos/failure/failure.component';
     SuccessComponent,
     PendingComponent,
     FailureComponent,
-
+    DialogCompulsivaComponent,
+    
   ],
   imports: [
     CommonModule,
@@ -37,6 +41,7 @@ import { FailureComponent } from './pagos/failure/failure.component';
     ReactiveFormsModule,
     PagesRoutingModule,
     SharedModule,
+    ShopModule
   ]
 })
 export class PagesModule { }

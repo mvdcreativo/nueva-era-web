@@ -10,7 +10,12 @@ import { OrdersService } from 'src/app/admin/modules/orders/services/orders.serv
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/seo/services/seo.service';
-declare let fbq:Function;
+declare let fbq: Function;
+
+import { MatDialog } from '@angular/material/dialog';
+import { DialogCompulsivaComponent } from './dialog-compulsiva/dialog-compulsiva.component';
+import { Product } from 'src/app/modals/product.model';
+
 
 
 @Component({
@@ -29,6 +34,7 @@ export class CheckoutComponent implements OnInit {
   payments: string[] = ['Create an Account?', 'Flat Rate'];
   paymantWay: string[] = ['Direct Bank Transfer', 'PayPal'];
   user: User;
+  productsCompulsiva: Product[];
 
   constructor(
     public formBuilder: FormBuilder,
@@ -37,15 +43,16 @@ export class CheckoutComponent implements OnInit {
     public productService: ProductService,
     public orderService: OrdersService,
     private router: Router,
-    private seoService: SeoService
-    ) { 
-      this.setSeo()
-    }
+    private seoService: SeoService,
+    public dialog: MatDialog
+  ) {
+    this.setSeo()
+  }
 
   setSeo(dataProduct?) {
     //////seo/////
     // console.log(dataProduct);
-    
+
 
     this.seoService.genrateTags({
 
@@ -69,11 +76,20 @@ export class CheckoutComponent implements OnInit {
     this.getTotal().subscribe(amount => this.amount = amount);
     this.user = this.authService.currentUserValue.user
     this.createForm()
+
+    this.productService.getProductByCategory('accesorios').subscribe(
+      res =>{
+        console.log(res);
+        
+        this.productsCompulsiva = res.products
+      }
+
+    );
   }
 
   createForm() {
     this.form = this.formBuilder.group({
-      user_id : [this.user.id, Validators.required],
+      user_id: [this.user.id, Validators.required],
       name: [this.user.name, Validators.required],
       lastname: [this.user.lastname, Validators.required],
       ci: [this.user.ci, Validators.required],
@@ -84,7 +100,7 @@ export class CheckoutComponent implements OnInit {
       state: [this.user.state, Validators.required],
       email: [this.user.email, Validators.required],
       phone: [this.user.phone, Validators.required]
-    })    
+    })
   }
 
   // productos = [
@@ -105,38 +121,47 @@ export class CheckoutComponent implements OnInit {
 
     const dataProduct = this.buyProducts.map(
       value => {
-        const a = {[value.product.id] : { quantity: value.quantity, price: value.product.price }}
+        const a = { [value.product.id]: { quantity: value.quantity, price: value.product.price } }
         return a
       }
     )
 
     let dataForm = this.form.value
     dataForm.total = this.amount,
-    dataForm.products = dataProduct
+      dataForm.products = dataProduct
     console.log(dataForm);
 
 
 
-    this.orderService.addOrder(dataForm).subscribe(      
-      (res:any) => {
+    this.orderService.addOrder(dataForm).subscribe(
+      (res: any) => {
         // localStorage.removeItem("cartItem");
         const id = res.id
         console.log(res);
-        
+
+        // >
         //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago////
-        location.href= `${environment.urlPago}/${id}`
+        location.href = `${environment.urlPago}/${id}`
 
         localStorage.removeItem('cartItem');
         // this.router.navigate(['/pages/metodos-de-pago/', id ])
         // console.log(res)
       }
     )
-      
-    
-
   }
 
-  
 
+  openDialog() {
+    const dialogRef = this.dialog.open(DialogCompulsivaComponent, {
+      width: '100%',
+      maxWidth: '800px',
+      data: this.productsCompulsiva
+    });
+
+    
+    dialogRef.afterClosed().subscribe(result => {
+      this.onSubmit()
+    });
+  }
 
 }

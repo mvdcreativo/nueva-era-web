@@ -1,0 +1,95 @@
+.mat-dialog-content{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 0.5rem;
+    width: 100%;
+    padding: 1rem;
+    margin: 0px!important;
+    .product-item{
+        width: 100%;
+        // padding: 0.5rem!important;
+        .mat-card{
+            // min-height: 250px;
+            height: 200px;
+            padding: 0.5rem;
+            justify-items:center ;
+            .product-img{
+                padding: 0px;
+                background-color: white!important;
+                height: 50%;
+                img{
+                    max-width: 100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover!important;
+                }
+            }
+            
+            .product-info-wrapper{
+                padding: 0.5rem!important;
+                margin-bottom: auto;
+                flex-grow: 1;
+                .title-wrap{
+                    
+                    h4{
+                        font-size: 0.9em;
+                        font-weight: 300;
+                        white-space: normal;
+                    }
+                }
+                .price-wrap{
+                    position: absolute;
+                    bottom: 10px;
+                    
+                    width: calc(100% - 2.1rem);
+                    
+                }
+                .icons{
+                    position: absolute;
+                    top: 1rem;
+                    right: 1rem;
+                    cursor: pointer;
+                    
+                }
+            }
+        }
+    }
+
+}
+.mat-dialog-actions button{
+    margin: 1rem;
+}
+.material-icons.orange600 { color: #FB8C00; }
+.material-icons.md-48 { font-size: 36px;}
+a{
+    cursor: pointer;
+}
+
+
+@media(max-width: 960px){
+    .mat-dialog-content{
+        margin: 0px!important;
+        width: 100%;
+        .product-item{
+            width: 100%;
+            // padding: 0.5rem!important;
+            .mat-card{
+                min-height: 200px;
+            }
+        }
+    }
+}
+@media(max-width: 600px){
+    .mat-dialog-content{
+        margin: 0px!important;
+        grid-template-columns: repeat(2,1fr);
+        width: 100%;
+        .product-item{
+            width: 100%;
+            // padding: 0.5rem!important;
+            .mat-card{
+                min-height: 200px;
+            }
+        }
+    }
+}
