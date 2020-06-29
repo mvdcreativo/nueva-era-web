@@ -1,0 +1,111 @@
+.content{
+    width: 100%;
+    min-width: 800px;
+    border-radius: 10px;
+    overflow: hidden;
+    .mat-card{
+        min-height: 80vh;
+        box-shadow: none!important;
+        background-color: white;
+        border-top: solid 6px #ffd740;
+        .mat-table {
+            width: 100%;
+        }
+        .mat-form-field {
+            font-size: 14px;
+            width: 20%;
+            margin-left: 1rem;
+
+        }
+        .image{
+            height: 50px;
+            max-width: 50px;
+            object-fit: contain;
+            object-position: center;
+            
+        }
+        .btn{
+            background-color: #2D86F7;
+            color: white;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+
+            &:disabled{
+                background-color: rgba(45, 133, 247, 0.1);
+            }
+        }
+        .btn-stroked{
+            color: #2D86F7;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        form{
+            width: 100%;
+            display: grid;
+            box-sizing: border-box;
+            grid-template-columns: 30% 10% 10% 15% auto;
+            align-items: center;
+            column-gap: 1rem;
+            .mat-form-field {
+                font-size: 14px;
+                width: 90%;
+                margin-left: 1rem;
+            }
+            .image-content{
+
+                label{
+                    height: 84px;
+                    width: 84px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border: 1px solid #ccc;
+                    border-radius: 5px;
+                    padding: 2px;
+                    .imgPrev{
+                        width: 80px;
+                        height: 80px;
+                        cursor: pointer;
+                        object-fit: cover;
+                        // background-image: ;
+                    }
+                
+                }
+            }
+        }
+        .acciones{
+            width: 10%;
+        }
+        .id{
+            padding-left: 1rem!important;
+        }
+        .no-shadow{
+            box-shadow: none;
+            color: #424242;
+            background-color: transparent;
+        }
+    }
+}
+
+.images{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    .image{
+        display: flex;
+        margin-left: 5px;
+        align-content: center;
+        border-radius: 5px;
+
+        // margin: 0 5px;
+        img{
+            border-radius: 5px;
+            object-fit: cover;
+            width: 100%;
+        }
+        
+    }
+}
+

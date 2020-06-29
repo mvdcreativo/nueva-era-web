@@ -1,0 +1,115 @@
+<div class="content">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Slides</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+
+            <button class="btn" *ngIf="!add" mat-mini-fab aria-label="Agregar Nuevo" (click)="openAdd()">
+                <mat-icon>add</mat-icon>
+            </button>
+            <form [formGroup]="form" *ngIf="add">
+                <mat-form-field>
+                    <input formControlName="name" matInput placeholder="Nombre descriptivo">
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Plataforma de destino</mat-label>
+                    <mat-select formControlName="platform" >
+                        <mat-option *ngFor="let option of platformOptions" [value]="option.value">{{ option.title }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <button mat-flat-button *ngIf="btnSiguiente && edit === false" (click)="onSubmit()" class="btn" type="submit" [disabled]="!form.valid">
+                    Siguiente
+                </button>
+
+                <button mat-flat-button *ngIf="btnGuardar || edit === true" class="btn" (click)="guardar()">
+                    Guardar
+                </button>
+                <button mat-stroked-button *ngIf="edit === false" (click)="cancelar()" type="button" class="btn-stroked">
+                    Cancelar
+                </button>
+
+            </form>
+
+            <images-drag-drop *ngIf="add"></images-drag-drop>
+
+
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <!-- ID Column -->
+                <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef> ID </th>
+                    <td class="id" mat-cell *matCellDef="let element"> {{element.id}} </td>
+                </ng-container>
+
+                <!-- name Column -->
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                    <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                </ng-container>
+
+                <!-- name Column -->
+                <ng-container matColumnDef="images">
+                    <th mat-header-cell *matHeaderCellDef> Imagenes </th>
+                    <td mat-cell *matCellDef="let element">
+                        <div class="images">
+                            <div class="image mat-elevation-z2" *ngFor="let item of element.images">
+                                <img [src]="item.url">
+                            </div>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <!-- name Column -->
+                <ng-container matColumnDef="platform">
+                    <th mat-header-cell *matHeaderCellDef> Plataforma </th>
+                    <td mat-cell *matCellDef="let element">{{element.platform}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef> Estado </th>
+                    <td mat-cell *matCellDef="let element">      
+                        <mat-slide-toggle
+                            class="example-margin"
+                            color="accent"
+                            [checked]="element.status"
+                            (change)="activar(element)"
+                            >
+                        </mat-slide-toggle>
+                    </td>
+                </ng-container>
+
+
+
+
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef> Accioes </th>
+                    <td class="acciones" mat-cell *matCellDef="let element">
+                        <button mat-icon-button [matMenuTriggerFor]="menuAcciones" aria-label="Acciones">
+                            <mat-icon>more_vert</mat-icon>
+                        </button>
+                        <mat-menu #menuAcciones="matMenu">
+                        <button mat-menu-item (click)="openEdit(element)">
+                            <mat-icon>edit</mat-icon>
+                            <span>Editar Registro</span>
+                        </button>
+                        <button mat-menu-item (click)="deleteReg(element.id)">
+                            <mat-icon>delete</mat-icon>
+                            <span>Eliminar Registro</span>
+                        </button> 
+
+                        </mat-menu>
+                    </td>
+                </ng-container>
+
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[20,50,100]" showFirstLastButtons></mat-paginator>
+        </mat-card-content>
+    </mat-card>
+</div>
