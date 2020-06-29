@@ -67,8 +67,12 @@ export class SidebarComponent implements OnInit {
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
     );
     this.matIconRegistry.addSvgIcon(
-      "cyberlunes",
+      "animal-planet-sale",
       this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
+    );
+    this.matIconRegistry.addSvgIcon(
+      "casitas",
+      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/casitas.svg")
     );
   }
 
