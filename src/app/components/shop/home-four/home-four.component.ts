@@ -4,6 +4,7 @@ import { ProductService } from '../../shared/services/product.service';
 import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
 import { SeoService } from 'src/app/seo/services/seo.service';
+import { CarouselService } from 'src/app/admin/modules/carousel/services/carousel.service';
 
 
 
@@ -30,20 +31,22 @@ export class HomeFourComponent implements OnInit {
   indexProduct: number;
   shoppingCartItems: CartItem[] = [];
   wishlistItems  :   Product[] = [];
+  slides: any;
 
 
-  public slides = [
-    { title: '', subtitle: '', image: 'assets/images/carousel/image.jpg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/image2.jpg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/image3.jpg' },
-    { title: '', subtitle: '', image: 'assets/images/carousel/image4.jpg' },
-    // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
-  ];
+  // public slides = [
+  //   { title: '', subtitle: '', image: 'assets/images/carousel/image.jpg' },
+  //   { title: '', subtitle: '', image: 'assets/images/carousel/image2.jpg' },
+  //   { title: '', subtitle: '', image: 'assets/images/carousel/image3.jpg' },
+  //   { title: '', subtitle: '', image: 'assets/images/carousel/image4.jpg' },
+  //   // { title: 'Massive sale', subtitle: 'Only for today', image: 'assets/images/carousel/banner5.jpg' }
+  // ];
 
   constructor(
     private productService: ProductService, 
     private cartService: CartService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private carouselService: CarouselService
     ) {
       
       this.setSeo()
@@ -53,7 +56,9 @@ export class HomeFourComponent implements OnInit {
 
   ngOnInit() {
 
-    
+    this.carouselService.carouselActive().subscribe(
+      res=> this.slides = res.images
+    )
 
     this.productService.getBanners()
     .subscribe(

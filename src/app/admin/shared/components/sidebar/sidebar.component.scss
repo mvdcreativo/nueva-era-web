@@ -1,7 +1,18 @@
 :host {
   background-color: #f0eeeb;
+  
+  h2{
+    color: #000000;
+    height: 40px;
+    width: 95%;
+    // background-color: rgb(232, 232, 232);
+    border-radius: 50px;
+  }
   a{
     font-size: 14px;
+    border-radius: 50px;
+    padding-left: 1rem;
+    width: 95%;
   }
   .mat-icon {
     vertical-align: middle;
@@ -15,6 +26,23 @@
       height: 100px;
       object-fit: cover;
       border-radius: 50%;
+    }
+  }
+  .mat-list-base .mat-list-item{
+    height: 40px;
+    margin: 2px 0;
+    border-radius: 50px;
+    margin-left: 2px;
+  }
+  .mat-ripple, .mat-list-item-ripple{
+    border-radius: 50px!important;
+  }
+  .list-item-active{
+    background-color:#2D86F7 ;
+    color: white;
+    &:hover{
+      background-color: #2d85f7e1;
+      color:  white;
     }
   }
 }

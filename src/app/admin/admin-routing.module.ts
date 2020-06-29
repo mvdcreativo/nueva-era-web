@@ -11,6 +11,7 @@ import { UsersComponent } from './modules/users/users.component';
 import { UserComponent } from './modules/user/user.component';
 import { OrdersComponent } from './modules/orders/orders.component';
 import { AuthGuard } from '../auth/guards/auth.guard';
+import { CarouselComponent } from './modules/carousel/carousel.component';
 
 
 
@@ -49,6 +50,11 @@ const appRoutes: Routes = [
         component: OrdersComponent,
         canActivate: [AdministradorGuard]
       },      
+      {
+        path: 'slides',
+        component: CarouselComponent,
+        canActivate: [AdministradorGuard]
+      },
       {
         path: 'mis-pedidos',
         component: OrdersComponent,

@@ -48,6 +48,8 @@ import { DialogFormComponent } from '../../modules/admin-products/dialog-form/di
 import { OrdersComponent } from '../../modules/orders/orders.component';
 import { DialogFormOrderComponent } from '../../modules/orders/dialog-form-order/dialog-form-order.component';
 import { AdminPaymentMethodsComponent } from '../../modules/admin-payment-methods/admin-payment-methods.component';
+import { CarouselComponent } from '../../modules/carousel/carousel.component';
+import { ImagesDragDropComponent } from '../../modules/carousel/images-drag-drop/images-drag-drop.component';
  
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -66,7 +68,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     DialogFormComponent,
     OrdersComponent,
     DialogFormOrderComponent,
-    AdminPaymentMethodsComponent
+    AdminPaymentMethodsComponent,
+    CarouselComponent,
+    ImagesDragDropComponent
   ],
   imports: [
     CommonModule,

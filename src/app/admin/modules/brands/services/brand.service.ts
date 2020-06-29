@@ -21,30 +21,7 @@ export class BrandService {
 
   }
 
-  // //categoias
-  // getCategory() {
-  //   return this._http.get<VehicleCategory>(`${environment.API}category`).pipe(
-  //     take(1)
-  //   )
-  // }
-  // addCategory(data) {
-  //   return this._http.post<VehicleCategory>(`${environment.API}category`, data).pipe(
-  //     take(1)
-  //   )
-  // }
 
-  // deleteCategory(id) {
-  //   return this._http.delete<VehicleCategory>(`${environment.API}category/${id}`).pipe(
-  //     take(1)
-  //   )
-  // }
-
-  // updateCategory(id, data){
-  //   return this._http.put<VehicleCategory>(`${environment.API}category/${id}`, data).pipe(
-  //     take(1)
-  //   )
-  // }
-  ////
 
   ///Brands
   getBrands() {

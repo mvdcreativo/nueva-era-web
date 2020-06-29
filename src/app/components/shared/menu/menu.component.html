@@ -2,10 +2,35 @@
   <div class="main-menu"  fxLayout="row" fxHide fxShow.gt-sm>
       <a  mat-button class="mat-button" [routerLink]="['/']" routerLinkActive="router-link-active">Inicio</a>
       
-      <span *ngFor="let item of categories | async as list">
-        <a [routerLink]="['/tienda/productos', item.slug]" routerLinkActive="router-link-active"  mat-button class="mat-button">{{ item.name }}</a>
+      <!-- [routerLink]="['/tienda/productos', item.slug]" -->
+      <span *ngFor="let item of categories | slice:0:2" >
+        <a  [matMenuTriggerFor]="megamenu" routerLinkActive="router-link-active"  mat-button class="mat-button">
+          {{ item.name }}
+          <mat-icon class="material-icons-round">expand_more</mat-icon>
+        </a>
+        <mat-menu #megamenu="matMenu" class="megamenu mat-elevation-z18">
+          <button *ngFor="let brand of item.brands"  [routerLink]="['/tienda/productos/marca', brand.slug]" mat-menu-item>
+            <mat-icon class="material-icons-round">chevron_right</mat-icon>
+            {{ brand.name }}
+          </button>
+        </mat-menu>
       </span>
-      
+
+      <span *ngFor="let item of categories | slice:2:6 ">
+        <a  [routerLink]="['/tienda/productos', item.slug]" routerLinkActive="router-link-active"  mat-button class="mat-button">
+          {{ item.name }}
+        </a>
+      </span>
+
+      <a mat-button [matMenuTriggerFor]="menuMas" class="mat-button">
+        Mas
+        <mat-icon class="material-icons-round">expand_more</mat-icon>
+      </a>
+      <mat-menu #menuMas="matMenu">
+        <button mat-menu-item *ngFor="let item of categories | slice:6 "  [routerLink]="['/tienda/productos', item.slug]">
+          {{ item.name }}
+        </button>
+      </mat-menu>
       <a   mat-button [routerLink]="['/pages/contacto']" class="mat-button">Contacto</a>
     </div>
 </mat-toolbar-row>

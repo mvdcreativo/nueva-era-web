@@ -8,6 +8,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -38,7 +40,8 @@ import { AuthModule } from 'src/app/auth/auth.module';
     FlexLayoutModule,
     MatMenuModule,
     MatListModule,
-    
+    MatProgressBarModule,
+    DragDropModule,
     RouterModule,
     HighchartsChartModule,
     AuthModule
@@ -55,7 +58,9 @@ import { AuthModule } from 'src/app/auth/auth.module';
     SidebarComponent,
     AreaComponent,
     CardComponent,
-    PieComponent
+    PieComponent,
+    MatProgressBarModule,
+    DragDropModule
   ]
 })
 export class SharedModule { }

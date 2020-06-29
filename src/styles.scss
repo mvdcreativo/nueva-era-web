@@ -152,3 +152,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
+.megamenu{
+    max-width: 800px!important;
+    .mat-menu-content{
+        display: flex!important;
+        flex-flow: row wrap;
+        width: 100%!important;
+        .mat-menu-item{
+            border-bottom: none;
+            width: 25%!important;
+        }     
+    }
+}

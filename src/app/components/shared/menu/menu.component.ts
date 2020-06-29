@@ -13,9 +13,12 @@ export class MenuComponent implements OnInit {
     private _categoryServices : CategoryService
     ) { }
   
-    ngOnInit() {
-  
-      this.categories = this._categoryServices.categories()
+  ngOnInit() {
+      this._categoryServices.categories().subscribe(
+        res=>{
+          this.categories = res
+        }
+      )
   }
   
   openMegaMenu(){
