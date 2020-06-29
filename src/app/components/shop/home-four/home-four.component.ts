@@ -51,14 +51,14 @@ export class HomeFourComponent implements OnInit {
       
       this.setSeo()
       this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
-
+      this.carouselService.carouselActive().subscribe(
+        res=> this.slides = res.images
+      )
   }
 
   ngOnInit() {
 
-    this.carouselService.carouselActive().subscribe(
-      res=> this.slides = res.images
-    )
+
 
     this.productService.getBanners()
     .subscribe(
