@@ -2,6 +2,8 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { ProductService } from 'src/app/components/shared/services/product.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Product, ColorFilter } from 'src/app/modals/product.model';
+import { fromEvent } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-left-sidebar',
@@ -9,18 +11,7 @@ import { Product, ColorFilter } from 'src/app/modals/product.model';
   styleUrls: ['./product-left-sidebar.component.scss']
 })
 export class ProductLeftSidebarComponent implements OnInit {
-  
-  @HostListener('window:scroll')
-  checkScroll() {
-      
-    // window의 scroll top
-    // Both window.pageYOffset and document.documentElement.scrollTop returns the same result in all the cases. window.pageYOffset is not supported below IE 9.
 
-    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-
-    console.log(scrollPosition);
-
-  }
 
 
 
@@ -40,7 +31,10 @@ export class ProductLeftSidebarComponent implements OnInit {
   public colors: any[] = [];
   public seoData: any;
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) {
+  constructor(
+    private productService: ProductService, 
+    private route: ActivatedRoute,
+    ) {
 
   }
 
@@ -58,22 +52,11 @@ export class ProductLeftSidebarComponent implements OnInit {
           console.log(this.seoData);
           
           this.navegaConParametros(params);
-          window.scroll({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'smooth' 
-          });
 
         }else{
           ///Buscador
           this.navegaConQueryParams()
           console.log(params);
-          window.scroll({ 
-            top: 0, 
-            left: 0, 
-            behavior: 'smooth' 
-          });
-
         }
       }
     )
@@ -212,7 +195,7 @@ export class ProductLeftSidebarComponent implements OnInit {
   public onPageChanged(event) {
     this.page = event;
     this.allItems;
-    window.scrollTo(0, 0);
+    
   }
 
 
@@ -251,4 +234,5 @@ export class ProductLeftSidebarComponent implements OnInit {
 
 
   }
+  
 }

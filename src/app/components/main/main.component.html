@@ -2,7 +2,7 @@
   <mat-icon svgIcon="ico-wsp" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
 <div class="sophia-app">
-  <mat-sidenav-container fullscreen>
+  <mat-sidenav-container>
     <mat-sidenav [opened]="false" mode="over" #start class="sidenav">
       <button mat-icon-button color="accent" class="close" (click)="start.close()">
         <mat-icon color="accent" class="material-icons-round">keyboard_backspace</mat-icon>
@@ -33,7 +33,7 @@
   <app-header-three *ngIf="url == '/home/four' || url == '/home/four'"></app-header-three> -->
     <!-- <app-header-four *ngIf="url == '/home/five' || url == '/home/five'"></app-header-four> -->
     <app-header-four></app-header-four>
-    <router-outlet></router-outlet>
+    <router-outlet ></router-outlet>
     <!-- <app-footer></app-footer> -->
     
     <app-footer-one></app-footer-one>
