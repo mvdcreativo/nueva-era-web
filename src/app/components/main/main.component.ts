@@ -11,6 +11,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { CategoryService } from '../shared/services/category.service';
 import { map, filter } from 'rxjs/operators';
 import { MatSidenav } from '@angular/material/sidenav';
+import { environment } from 'src/environments/environment';
 
 declare let fbq:Function;
 
@@ -24,7 +25,7 @@ export class MainComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
   public sidenavMenuItems: Array<any>;
-
+  urlFiles = environment.urlFiles;
   public flag: any;
 
   products: Product[];
@@ -76,7 +77,7 @@ export class MainComponent implements OnInit {
         this.navItems = res.map( 
 
           v => {
-            let a = {displayName: v.name, iconName: v.slug , route: `/tienda/productos/${v.slug}`  }
+            let a = {displayName: v.name, iconName: `${this.urlFiles}images/icons-app/${v.slug}.svg` , route: `/tienda/productos/${v.slug}`  }
             return a;
           }
           

@@ -1,6 +1,6 @@
-<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" class="menu-list-item" (click)="onItemSelected(item)"
+<a mat-list-item [ngStyle]="{'padding-left': (depth * 12) + 'px'}" class="menu-list-item align-center" (click)="onItemSelected(item)"
   [ngClass]="{'active': item.route ? router.isActive(item.route, true): false, 'expanded': expanded}">
-  <mat-icon [svgIcon]="item.iconName"></mat-icon> {{item.displayName}}
+  <img class="img-ico" [src]="item.iconName"> {{item.displayName}}
   <span fxFlex *ngIf="item.children && item.children.length">
     <span fxFlex></span>
     <mat-icon [@indicatorRotate]="expanded ? 'expanded': 'collapsed'">

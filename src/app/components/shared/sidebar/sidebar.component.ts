@@ -38,42 +38,7 @@ export class SidebarComponent implements OnInit {
       this.depth = 0;
     }
 
-    this.matIconRegistry.addSvgIcon(
-      "alimento-perro",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-perro.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "alimento-gato",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "sanitario-gato",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "antipulgas",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/anti-pulga.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "snacks",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/snack.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "accesorios",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-accesorios.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "productos-en-promocion",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "animal-planet-sale",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "casitas",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/casitas.svg")
-    );
+    
   }
 
   ngOnInit() {

@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/components/shared/services/category.service';
 import { BrandService } from 'src/app/admin/modules/brands/services/brand.service';
 import { Router } from '@angular/router';
-import { Product } from 'src/app/modals/product.model';
 import { Brand } from 'src/app/admin/modules/brands/interfaces/brand';
-import { MatIconRegistry } from '@angular/material/icon';
-import { DomSanitizer } from '@angular/platform-browser';
+
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-categories',
@@ -15,55 +14,15 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class CategoriesComponent implements OnInit {
   categories: any;
   brands: any;
+  urlFiles = environment.urlFiles;
 
   constructor(
     private _categoryServices : CategoryService,
     private _brandServices: BrandService,
     public router : Router,
-    private matIconRegistry: MatIconRegistry,
-    private domSanitizer: DomSanitizer
 
   ) { 
-    this.matIconRegistry.addSvgIcon(
-      "alimento-perro",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-perro.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "alimento-gato",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "sanitario-gato",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-pata-gato.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "antipulgas",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/anti-pulga.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "snacks",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/snack.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "accesorios",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-accesorios.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "productos-en-promocion",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "cyberlunes",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "animal-planet-sale",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/ico-promociones.svg")
-    );
-    this.matIconRegistry.addSvgIcon(
-      "casitas",
-      this.domSanitizer.bypassSecurityTrustResourceUrl("../../../../../assets/images/casitas.svg")
-    );
+
   }
 
   ngOnInit() {

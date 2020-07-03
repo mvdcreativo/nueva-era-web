@@ -3,7 +3,7 @@
         <li *ngFor="let item of categories | async as list">
             <a routerLinkActive="router-link-active" 
                 [routerLink]="['/tienda/productos', item.slug]">
-                <mat-icon [svgIcon]="item.slug"></mat-icon>
+                <img [src]= "urlFiles +'images/icons-app/'+item.slug+'.svg'">
                 {{ item.name }}
             </a>
 
