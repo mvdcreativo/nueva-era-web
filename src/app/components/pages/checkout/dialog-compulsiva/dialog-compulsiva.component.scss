@@ -3,8 +3,10 @@
     grid-template-columns: repeat(4,1fr);
     gap: 0.5rem;
     width: 100%;
+    
     padding: 1rem;
     margin: 0px!important;
+
     .product-item{
         width: 100%;
         // padding: 0.5rem!important;
@@ -84,6 +86,7 @@ a{
         margin: 0px!important;
         grid-template-columns: repeat(2,1fr);
         width: 100%;
+        
         .product-item{
             width: 100%;
             // padding: 0.5rem!important;
@@ -91,5 +94,14 @@ a{
                 min-height: 200px;
             }
         }
+    }
+    .mat-dialog-actions{
+        position: absolute;
+        bottom: 0px;
+        left: 0px;
+        background-color: #ffffff;
+        width: 100%;
+        padding-left: 1rem;
+        padding-bottom: 1rem;
     }
 }
