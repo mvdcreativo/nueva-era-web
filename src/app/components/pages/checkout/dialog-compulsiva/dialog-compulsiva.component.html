@@ -49,7 +49,7 @@
 
 
 </div>
-<div mat-dialog-actions  align="end">
-    <h4>Total: {{ getTotal()  | async | currency:productsService?.currency:'symbol' }}</h4>
-    <button mat-flat-button cdkFocusInitial [mat-dialog-close]="true" color="accent">Continuar</button>
+<div mat-dialog-actions>
+    <h4 align="start">Total: {{ getTotal()  | async | currency:productsService?.currency:'symbol' }}</h4>
+    <button align="end" mat-flat-button cdkFocusInitial [mat-dialog-close]="true" color="accent">Continuar</button>
 </div>
