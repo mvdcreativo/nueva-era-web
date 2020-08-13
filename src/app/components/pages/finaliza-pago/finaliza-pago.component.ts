@@ -41,14 +41,6 @@ export class FinalizaPagoComponent implements OnInit {
       })
       
 
-
-      //////PIXEL
-      fbq('track', 'Purchase', {
-        currency: 'UYU',
-        content_ids: '150754082143164',
-        content_type: 'product_group',
-      });
-      //////
   }
 
 

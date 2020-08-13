@@ -29,10 +29,12 @@ export class SuccessComponent implements OnInit {
             console.log(res)
               //////PIXEL
               fbq('track', 'Purchase', {
-                currency: 'UYU',
-                content_ids: '150754082143164',
-                value: res.total,
-                content_type: 'product_group',
+                content_ids : res.productos.map(v => v.id ), 
+                content_name: "Compra Finalizada", 
+                content_type: "product_group" , 
+                contents: res.productos.map( v => { return {'id' : v.id , 'quantity': v.pivot.quantity , 'name': v.name , 'price': v.pivot.price}}), 
+                currency: "UYU",
+                value: res.total
               });
               //////
 
@@ -47,15 +49,5 @@ export class SuccessComponent implements OnInit {
 
   }
 
-
-  // facebookAddToCart(product) {
-  //   fbq('track', 'Purchase', {
-  //     content_name: product.name,
-  //     content_ids: product.id,
-  //     content_type: 'product_group',
-  //     value: product.price,
-  //     currency: 'UYU'
-  //   });
-  // }
 
 }

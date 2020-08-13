@@ -19,7 +19,7 @@ const routes: Routes = [
       { path: 'checkout', component: CheckoutComponent, canActivate:[AuthGuard]},      
       { path: 'metodos-de-pago/:order', component: PaymentMethodsComponent, canActivate:[AuthGuard]},
       { path: 'contacto', component: ContactComponent },
-      { path: 'finaliza-pago/:order/:method', component: FinalizaPagoComponent },
+      // { path: 'finaliza-pago/:order/:method', component: FinalizaPagoComponent },
       { path: 'pago/exitoso', component: SuccessComponent },
       { path: 'pago/pendiente', component: PendingComponent },
       { path: 'pago/error', component: FailureComponent},

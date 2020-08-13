@@ -63,7 +63,7 @@ public observer   :  Subscriber<{}>;
     }
   
       ///ejecuta Pixel Facebook
-      this.facebookAddToCart(product);
+      this.facebookAddToCart(product, quantity);
 
      localStorage.setItem("cartItem", JSON.stringify(products));
      return item;
@@ -83,7 +83,7 @@ public calculateStockCounts(product: CartItem, quantity): CartItem | Boolean {
   return true
 }
 
-facebookAddToCart(product : Product){
+facebookAddToCart(product : Product , quantity){
 
   // fbq('track', 'AddToCart', { 
   //   currency: 'UYU',
@@ -92,10 +92,12 @@ facebookAddToCart(product : Product){
   // });
   fbq('track', 'AddToCart', {
     content_name: product.name,
-    content_ids: product.id,
-    content_type: 'product_group',
+    content_ids: [product.id],
     value: product.price,   
-    currency: 'UYU'
+    currency: 'UYU',
+    content_type: 'product',
+    contents: [{'id': product.id, 'quantity': quantity}]
+    // content_category: product.category.name,
    });
 }
 

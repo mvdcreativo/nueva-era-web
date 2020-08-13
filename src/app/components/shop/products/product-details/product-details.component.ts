@@ -156,16 +156,16 @@ export class ProductDetailsComponent implements OnInit {
   public addToCart(product: Product, quantity) {
     if (quantity == 0) return false;
     this.cartService.addToCart(product, parseInt(quantity));
-    this.facebookAddToCart(product);
   }
   ////facebok pixel
-  facebookAddToCart(product) {
+  facebookAddToCart(product, quantity) {
     fbq('track', 'AddToCart', {
       content_name: product.name,
-      content_ids: product.id,
-      content_type: 'product_group',
-      value: product.price,
-      currency: 'UYU'
+      content_ids: [product.id],
+      value: product.price,   
+      currency: 'UYU',
+      content_type: 'product',
+      contents: [{'id': product.id, 'quantity': quantity}]
     });
   }
   ////////
@@ -174,7 +174,7 @@ export class ProductDetailsComponent implements OnInit {
     if (quantity > 0)
       this.cartService.addToCart(product, parseInt(quantity));
     this.router.navigate(['/pages/checkout']);
-    this.facebookAddToCart(product);
+    this.facebookAddToCart(product, quantity);
   }
 
 

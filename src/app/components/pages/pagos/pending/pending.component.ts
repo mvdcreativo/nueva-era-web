@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { OrdersService } from 'src/app/admin/modules/orders/services/orders.service';
+import { Order } from 'src/app/admin/modules/orders/interfaces/order';
 declare let fbq:Function;
 
 
@@ -28,10 +29,13 @@ export class PendingComponent implements OnInit {
             console.log(res)
               //////PIXEL
               fbq('track', 'Purchase', {
-                currency: 'UYU',
-                content_ids: '150754082143164',
-                value: res.total,
-                content_type: 'product_group',
+
+                content_ids : res.productos.map(v => v.id ), 
+                content_name: "Compra Finalizada", 
+                content_type: "product_group" , 
+                contents: res.productos.map( v => { return {'id' : v.id , 'quantity': v.pivot.quantity , 'name': v.name , 'price': v.pivot.price}}), 
+                currency: "UYU",
+                value: res.total
               });
               //////
 
@@ -42,13 +46,6 @@ export class PendingComponent implements OnInit {
       
     )
 
-              // //////PIXEL
-              // fbq('track', 'Purchase', {
-              //   currency: 'UYU',
-              //   content_ids: '150754082143164',
-              //   content_type: 'product_group',
-              // });
-              // //////
   }
 
 }
