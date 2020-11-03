@@ -239,10 +239,19 @@ p.adam{
 color:#908F8F;	
 display:block;
 }
-.footer.two ul li a.fb {
-	background: url('../../../../assets/images/footer/social2.png') no-repeat 0px 4px;  
-    padding: 10px 0 12px 52px;
+.footer.two ul li .social {
+	// background: url('../../../../assets/images/footer/logo-facebook.svg') no-repeat 0px 4px;
+	display: flex;
+	gap: 5px;
+	padding: 10px 0;
+	align-items: center;
+	svg{
+		width: 40px;
+		fill: white;
+	}
+	
 }
+
 .footer.two ul li a.fb1 {
 	background: url('../../../../assets/images/footer/ico-wsp.svg') no-repeat 0px 4px;
 	padding: 10px 0 12px 52px;
@@ -322,9 +331,9 @@ display:block;
 .copy-right ul li:nth-child(1) {
     border: none;
 }
-.footer.two ul li a.fb:hover {
-    background: url('../../../../assets/images/footer/social3hover.png') no-repeat 0px 4px;
-}
+// .footer.two ul li a.fb:hover {
+//     background: url('../../../../assets/images/footer/social3hover.png') no-repeat 0px 4px;
+// }
 .footer.two ul li a.fb1:hover {
     background: url('../../../../assets/images/footer/ico-wsp.svg') no-repeat 0px 4px;
 }
@@ -339,6 +348,9 @@ display:block;
 }
 .footer.two ul li a:hover,.copy-right ul li a:hover,.footer.three ul li a:hover{
 	color:#2e99ff;
+	svg{
+		fill: #2e99ff;
+	}
 }
 /*-- responsive media queries --*/
 
