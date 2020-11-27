@@ -4,6 +4,9 @@
             <mat-card-title>
                 Usuarios
             </mat-card-title>
+            <span>
+                <a [href]="routeExportExcel" mat-flat-button class="export-btn"><mat-icon>get_app</mat-icon> Exportar a Excel</a>
+            </span>
         </mat-card-header>
         <ng-container *ngIf="mostrar; then muestra; else oculto"></ng-container>
         <ng-template #muestra>

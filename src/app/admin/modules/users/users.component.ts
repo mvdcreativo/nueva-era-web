@@ -10,6 +10,7 @@ import { UsersDataSource } from './services/users-data-source.service';
 import { ActivatedRoute } from '@angular/router';
 import { tap, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { fromEvent } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-users',
@@ -17,6 +18,9 @@ import { fromEvent } from 'rxjs';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, AfterViewInit {
+
+  routeExportExcel = `${environment.API}export_user`
+
 
   tipoUser = [
     { name: "Usuario", value: "USER" },
