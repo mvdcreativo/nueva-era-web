@@ -252,6 +252,20 @@ display:block;
 	
 }
 
+.title-apps{
+	margin-bottom: 20px!important;
+	margin-top: 2rem
+}
+.a-apps{
+	border-radius: 10px;
+	border: solid 1px white;
+	padding-left: 0.5rem!important;
+	width: 80%;
+	&:hover{
+		border-color: #2e99ff;
+	}
+}
+
 .footer.two ul li a.fb1 {
 	background: url('../../../../assets/images/footer/ico-wsp.svg') no-repeat 0px 4px;
 	padding: 10px 0 12px 52px;
