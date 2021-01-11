@@ -8,7 +8,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { NewPassDilogComponent } from './new-pass-dilog/new-pass-dilog.component';
 
 
- 
+
 
 @Component({
   selector: 'app-access',
@@ -19,7 +19,7 @@ export class AccessComponent implements OnInit {
 
   public formLogin: FormGroup;
   public formRegister: FormGroup;
-  
+
   public submitted = false;
   public error = '';
   public returnUrl: string;
@@ -53,22 +53,22 @@ export class AccessComponent implements OnInit {
     });
 
     this.route.queryParamMap.subscribe(
-      data =>{
+      data => {
         this.returnUrl = data.get('returnUrl')
 
-          if(data.get('email')&&data.get('token')){
-            this.openNewPassDialog(data)
-          }
-          if(data.get('error')){
-            // console.log(data.get('error'));
-            const error = data.get('error')
-
-            let message, status;
-            message = error;
-            status = 'error';
-            this.authService.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
-          }
+        if (data.get('email') && data.get('token')) {
+          this.openNewPassDialog(data)
         }
+        if (data.get('error')) {
+          // console.log(data.get('error'));
+          const error = data.get('error')
+
+          let message, status;
+          message = error;
+          status = 'error';
+          this.authService.snackBar.open(message, '×', { panelClass: [status], verticalPosition: 'top', duration: 5000 });
+        }
+      }
     );
     // reset login status
     this.reLogout();
@@ -98,29 +98,29 @@ export class AccessComponent implements OnInit {
 
   }
 
-  onSubmitRegister(){
+  onSubmitRegister() {
     this.submitted = true;
     // if (this.form.invalid) {
     //   return;
     // }
     console.log(this.formRegister.value)
-     this.authService.register(this.formRegister.value)
+    this.authService.register(this.formRegister.value)
       .pipe(first())
       .subscribe(
-          data => {
+        data => {
 
-            if (this.returnUrl) {
-              this.router.navigate([this.returnUrl]);
-            } else {
-              this.router.navigate(['/']);
-            }
-              
-          },
-          error => {
-              this.error = error;
-              // this.loading = false;
-          });
-       
+          if (this.returnUrl) {
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
+
+        },
+        error => {
+          this.error = error;
+          // this.loading = false;
+        });
+
   }
 
   reLogout() {
@@ -132,80 +132,80 @@ export class AccessComponent implements OnInit {
   }
 
 
-    openResetPassDialog(data?): void {
-      const dialogRef = this.dialog.open(ResetPassDielogComponent, {
-        maxWidth: "500px",
-        maxHeight: "100vh",
-        data: {data : data}
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        if(result){
-          this.authService.solicitaResetPass(result)
-        }
-  
-      });
-    }
-    
+  openResetPassDialog(data?): void {
+    const dialogRef = this.dialog.open(ResetPassDielogComponent, {
+      maxWidth: "500px",
+      maxHeight: "100vh",
+      data: { data: data }
+    });
 
-    openNewPassDialog(data?): void {
-      const dialogRef = this.dialog.open(NewPassDilogComponent, {
-        maxWidth: "500px",
-        maxHeight: "100vh",
-        data: {data : data}
-      });
-  
-      dialogRef.afterClosed().subscribe(result => {
-        console.log(result);
-        if(result){
-          this.authService.updatePass(result)
-        }
-  
-      });
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.authService.solicitaResetPass(result)
+      }
+
+    });
+  }
 
 
+  openNewPassDialog(data?): void {
+    const dialogRef = this.dialog.open(NewPassDilogComponent, {
+      maxWidth: "500px",
+      maxHeight: "100vh",
+      data: { data: data }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      if (result) {
+        this.authService.updatePass(result)
+      }
+
+    });
+  }
 
 
-    /////LOGIN SOCIAL
-    signInWithGoogle(): void {
-      this.authService.signInWithGoogle().then(
-        data => {
-          // console.log(data);
-          if (this.returnUrl) {
-            this.router.navigate([this.returnUrl]);
-          } else {
-            this.router.navigate(['/']);
-          }
+
+
+  /////LOGIN SOCIAL
+  signInWithGoogle(): void {
+    this.authService.signInWithGoogle().then(
+      data => {
+        // console.log(data);
+        if (this.returnUrl) {
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.router.navigate(['/']);
         }
-      ).catch(
-        error => {
-          this.error = error;
-          // this.loading = false;
+      }
+    ).catch(
+      error => {
+        this.error = error;
+        // this.loading = false;
+      }
+    )
+  }
+
+  signInWithFB(): void {
+    this.authService.signInWithFB().then(
+      data => {
+        console.log(data);
+        if (this.returnUrl) {
+          this.router.navigate([this.returnUrl]);
+        } else {
+          this.router.navigate(['/']);
         }
-      )
-    }
-   
-    signInWithFB(): void {
-      this.authService.signInWithFB().then(
-        data => {
-          console.log(data);
-          if (this.returnUrl) {
-            this.router.navigate([this.returnUrl]);
-          } else {
-            this.router.navigate(['/']);
-          }
-        }
-      ).catch(
-        error => {
-          this.error = error;
-          // this.loading = false;
-        }
-      )
-    } 
-   
-    signOut(): void {
-      this.authService.signOut();
-    }
+      }
+    ).catch(
+      error => {
+        this.error = error;
+        // this.loading = false;
+      }
+    )
+  }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
 }
