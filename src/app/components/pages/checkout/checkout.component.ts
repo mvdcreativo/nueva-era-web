@@ -99,7 +99,7 @@ export class CheckoutComponent implements OnInit {
       city: [this.user.city, Validators.required],
       state: [this.user.state, Validators.required],
       email: [this.user.email, Validators.required],
-      phone: [this.user.phone, Validators.required]
+      phone: [this.user.phone, [Validators.required, Validators.pattern("^[0-9]*$")]]
     })
   }
 
