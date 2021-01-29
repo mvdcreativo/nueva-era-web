@@ -35,6 +35,7 @@ export class CheckoutComponent implements OnInit {
   paymantWay: string[] = ['Direct Bank Transfer', 'PayPal'];
   user: User;
   productsCompulsiva: Product[];
+  total: Observable<number>;
 
   constructor(
     public formBuilder: FormBuilder,
@@ -47,6 +48,7 @@ export class CheckoutComponent implements OnInit {
     public dialog: MatDialog
   ) {
     this.setSeo()
+    this.createForm()
   }
 
   setSeo(dataProduct?) {
@@ -73,9 +75,9 @@ export class CheckoutComponent implements OnInit {
       this.buyProducts = products
 
     });
-    this.getTotal().subscribe(amount => this.amount = amount);
+    
     this.user = this.authService.currentUserValue.user
-    this.createForm()
+    this.updateForm()
 
     this.productService.getProductByCategory('accesorios').subscribe(
       res =>{
@@ -85,22 +87,43 @@ export class CheckoutComponent implements OnInit {
       }
 
     );
+    this.total = this.cartService.getTotalAmount();
   }
 
   createForm() {
+
     this.form = this.formBuilder.group({
-      user_id: [this.user.id, Validators.required],
-      name: [this.user.name, Validators.required],
-      lastname: [this.user.lastname, Validators.required],
-      ci: [this.user.ci, Validators.required],
-      company: [this.user.company],
-      rut: [this.user.rut],
-      address: [this.user.address, Validators.required],
-      city: [this.user.city, Validators.required],
-      state: [this.user.state, Validators.required],
-      email: [this.user.email, Validators.required],
-      phone: [this.user.phone, [Validators.required, Validators.pattern("^[0-9]*$")]]
+      user_id: ['', Validators.required],
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      ci: ['', Validators.required],
+      company: [''],
+      rut: [''],
+      address: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      phone: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+
     })
+    
+  }
+
+  updateForm(){
+    this.form.setValue({
+      user_id: this.user.id,
+      name: this.user.name,
+      lastname: this.user.lastname,
+      ci: this.user.ci,
+      company: this.user.company,
+      rut: this.user.rut,
+      address: this.user.address,
+      city: this.user.city,
+      state: this.user.state,
+      email: this.user.email,
+      phone: this.user.phone
+    })
+
   }
 
   // productos = [
@@ -110,9 +133,8 @@ export class CheckoutComponent implements OnInit {
   //   }
   // ]
 
-  public getTotal(): Observable<number> {
-    return this.cartService.getTotalAmount();
-  }
+  
+
 
   onSubmit() {
     ///Facebook pixel
@@ -126,9 +148,9 @@ export class CheckoutComponent implements OnInit {
       }
     )
 
-    let dataForm = this.form.value
-    dataForm.total = this.amount,
-      dataForm.products = dataProduct
+    let dataForm = this.form.value;
+    this.total.subscribe(res=>dataForm.total = res),
+    dataForm.products = dataProduct
     console.log(dataForm);
 
 
@@ -165,6 +187,20 @@ export class CheckoutComponent implements OnInit {
       
       
     });
+  }
+
+  getErrorMessages(field:string){
+    let message;
+    if(this.form.get(field).errors.required){
+      message = "Campo requerido"
+    }
+    if(this.form.get(field).errors.email){
+      message = "Email no es válido"
+    }
+    if(this.form.get(field).errors.pattern){
+      message = "Ingresa solo números"
+    }
+    return message;
   }
 
 }

@@ -315,6 +315,10 @@ width: 100% !important;
   background: $theme-main !important;
   padding: 5px 32px !important;
   color: $theme-main-dark !important;
+    &:disabled{
+      background-color: #e4e4e4!important;
+      color: rgb(131, 131, 131)!important;
+    }
   }
 
 
