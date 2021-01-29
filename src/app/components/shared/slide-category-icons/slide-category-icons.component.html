@@ -1,0 +1,17 @@
+  <div class="categories-sliders swiper-container" *ngIf="categories" [swiper]="config">
+    <div class="swiper-wrapper">
+        <div *ngFor="let item of categories" class="swiper-slide">
+            
+
+                    <a class="product-link" [routerLink]="['/tienda/productos', item.slug]" 
+                    mat-button   
+                    [matTooltip]="item.name"
+                    >
+                        <img [src]= "urlFiles +'images/icons-app/'+item.slug+'.svg'">
+                   </a>
+
+  
+        </div>
+ 
+    </div>
+ </div>

@@ -39,6 +39,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FooterOneComponent } from './footer-one/footer-one.component';
 import { ProductCarouselTwoComponent } from './product-carousel-two/product-carousel-two.component';
 import { SwiperModule } from 'ngx-swiper-wrapper';
+import { SlideCategoryIconsComponent } from './slide-category-icons/slide-category-icons.component';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 
@@ -56,7 +58,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     BtnWspRedirectComponent,
     SnackBarComponent,
     FooterOneComponent,
-    ProductCarouselTwoComponent
+    ProductCarouselTwoComponent,
+    SlideCategoryIconsComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +84,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     MatCardModule,
     FlexLayoutModule,
     ReactiveFormsModule,
-    SwiperModule
+    SwiperModule,
+    MatTooltipModule
   ],
   exports: [
     MatButtonModule,
@@ -102,6 +106,7 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     MatTabsModule,
     MatDividerModule,
     MatCardModule,
+    MatTooltipModule,
     OrderByPipe,
     MenuComponent,
     SidebarComponent,
@@ -114,7 +119,8 @@ import { SwiperModule } from 'ngx-swiper-wrapper';
     BtnWspRedirectComponent,
     SnackBarComponent,
     MatPaginatorModule,
-    FooterOneComponent
+    FooterOneComponent,
+    SlideCategoryIconsComponent
   ],
   providers: [
     ProductService,

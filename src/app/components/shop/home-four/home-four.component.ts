@@ -5,6 +5,10 @@ import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
 import { SeoService } from 'src/app/seo/services/seo.service';
 import { CarouselService } from 'src/app/admin/modules/carousel/services/carousel.service';
+import { CategoryService } from '../../shared/services/category.service';
+import { Observable } from 'rxjs';
+import { Category } from 'src/app/admin/modules/categories/interfaces/category';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -30,9 +34,9 @@ export class HomeFourComponent implements OnInit {
 
   indexProduct: number;
   shoppingCartItems: CartItem[] = [];
-  wishlistItems  :   Product[] = [];
+  wishlistItems: Product[] = [];
   slides: any;
-
+  categories: Observable<Category[]>;
 
   // public slides = [
   //   { title: '', subtitle: '', image: 'assets/images/carousel/image.jpg' },
@@ -43,17 +47,18 @@ export class HomeFourComponent implements OnInit {
   // ];
 
   constructor(
-    private productService: ProductService, 
+    private productService: ProductService,
     private cartService: CartService,
     private seoService: SeoService,
-    private carouselService: CarouselService
-    ) {
-      
-      this.setSeo()
-      this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
-      this.carouselService.carouselActive().subscribe(
-        res=> this.slides = res.images
-      )
+    private carouselService: CarouselService,
+    private categoryServices: CategoryService
+  ) {
+
+    this.setSeo()
+    this.cartService.getItems().subscribe(shoppingCartItems => this.shoppingCartItems = shoppingCartItems);
+    this.carouselService.carouselActive().subscribe(
+      res => this.slides = res.images
+    )
   }
 
   ngOnInit() {
@@ -61,30 +66,31 @@ export class HomeFourComponent implements OnInit {
 
 
     this.productService.getBanners()
-    .subscribe(
+      .subscribe(
 
-      data => this.banners = data
-    );
+        data => this.banners = data
+      );
+
+    this.categories = this.categoryServices.categories()
+
+        
+    this.productService.getProducts()
+      .subscribe(
+        (product: Product[]) => {
+
+          this.products = product.filter(
+            x => x.category.id === 13 && x.status !== "DIS"
+
+          )
+          console.log(this.products);
+
+        }
+      )
+    //  this.currency = this.currencies[0];
+    //   this.flag = this.flags[0];
 
 
-
- this.productService.getProducts()
- .subscribe(
-   (product: Product[]) => {
-
-     this.products = product.filter(
-       x => x.category.id === 13 && x.status !== "DIS"
-
-     )
-     console.log(this.products);
-     
-   }
- )
-//  this.currency = this.currencies[0];
-//   this.flag = this.flags[0];
-
-
-}
+  }
 
 
 
@@ -97,29 +103,29 @@ export class HomeFourComponent implements OnInit {
     return str.join(' ');
   }
   ///////////////////////////////
-setSeo(dataProduct?) {
-  //////seo/////
-  // console.log(dataProduct);
-  
-  let t: string = "Inicio";
+  setSeo(dataProduct?) {
+    //////seo/////
+    // console.log(dataProduct);
 
-  this.seoService.genrateTags({
+    let t: string = "Inicio";
 
-    title: `Nueva Era Uruguay | ${t}`,
+    this.seoService.genrateTags({
 
-
-  })
-  ////////////
-}
+      title: `Nueva Era Uruguay | ${t}`,
 
 
+    })
+    ////////////
+  }
 
 
-// public changeCurrency(currency){
-//   this.currency = currency;
-// }
-// public changeLang(flag){
-//   this.flag = flag;
-// }
+
+
+  // public changeCurrency(currency){
+  //   this.currency = currency;
+  // }
+  // public changeLang(flag){
+  //   this.flag = flag;
+  // }
 
 }

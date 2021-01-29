@@ -1,5 +1,10 @@
-<app-main-carousel *ngIf="slides" [slides]="slides"></app-main-carousel>
+<span class="content-slide">
+  <app-main-carousel  *ngIf="slides" [slides]="slides"></app-main-carousel>
+</span>
+
+<slide-category-icons [categories]="categories | async"></slide-category-icons>
 <div class="home-1-wrap">
+
 
   <div class="info-bar-four-wrapper">
     <div class="container">
