@@ -40,7 +40,7 @@ export class ProductAdminService {
 
   ///Productos
   getProductos() {
-    return this._http.get<Product[]>(`${environment.API}product`).pipe(
+    return this._http.get<Product[]>(`${environment.API}products`).pipe(
       take(1)
     )
   }
