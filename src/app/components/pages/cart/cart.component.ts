@@ -4,6 +4,8 @@ import { CartItem } from 'src/app/modals/cart-item';
 import { CartService } from '../../shared/services/cart.service';
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/seo/services/seo.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/interfaces/user';
 
 @Component({
   selector: 'app-cart',
@@ -15,13 +17,18 @@ export class CartComponent implements OnInit {
   public cartItems : Observable<CartItem[]> = of([]);
   public shoppingCartItems  : CartItem[] = [];
   urlFiles: string = environment.urlFiles;
+  user: User;
 
 
   constructor(
     private cartService: CartService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private authService: AuthService
+
     ) { 
       this.setSeo()
+      this.user = this.authService.currentUserValue?.user
+
     }
 
   setSeo(dataProduct?) {
@@ -67,4 +74,15 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotalAmount();
   }
 
+  calculoDesc(price , descuentoProduct, dMayorista?){
+    const descuentoP = (price * descuentoProduct) / 100;
+    const pricePublico = price - descuentoP;
+  
+    if(dMayorista){
+      const descuentMayorista = (pricePublico * dMayorista) / 100;
+      return pricePublico - descuentMayorista;
+    }
+  
+    return pricePublico
+  }
 }

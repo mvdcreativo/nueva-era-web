@@ -19,7 +19,7 @@ import { fromEvent } from 'rxjs';
 export class OrdersComponent implements OnInit, AfterViewInit {
   remplace = /_/g;
 
-  displayedColumns: string[] = ['id', 'date', 'user_id', 'name', 'email', 'phone', 'total', 'status', 'acciones'];
+  displayedColumns: string[] = ['id', 'date', 'user_id', 'name', 'email', 'phone','total', 'status', 'acciones'];
   dataSource: OrdersDataSourceService;///modificado para paginacion
 
   pageSize = 20;
@@ -106,7 +106,7 @@ export class OrdersComponent implements OnInit, AfterViewInit {
 
 
   openDialog(data?): void {
-    console.log(data);
+    // console.log(data);
 
     const dialogRef = this.dialog.open(DialogFormOrderComponent, {
       maxWidth: "100vw",

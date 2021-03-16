@@ -44,7 +44,7 @@ export class DialogFormOrderComponent implements OnInit {
     private _orderService: OrdersService,
     private authService: AuthService
   ) { }
-  displayedColumns: string[] = ['id', 'name', 'quantity', 'price', 'total'];
+  displayedColumns: string[] = ['id', 'name', 'quantity', 'price', 'discounts', 'total'];
 
 
   ngOnInit(): void {

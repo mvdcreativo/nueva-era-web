@@ -9,6 +9,8 @@ import { ProductDialogComponent } from '../product-dialog/product-dialog.compone
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/seo/services/seo.service';
 import { Seo } from 'src/app/seo/interfaces/seo';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/interfaces/user';
 
 declare let fbq: Function;
 
@@ -25,6 +27,7 @@ export class ProductComponent implements OnInit {
 
 
   urlFiles: string = environment.urlFiles;
+  user: User;
 
   constructor(
     private cartService: CartService,
@@ -32,10 +35,13 @@ export class ProductComponent implements OnInit {
     private wishlistService: WishlistService,
     private dialog: MatDialog,
     private router: Router,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private authService: AuthService
 
   ) {
-
+    this.user = this.authService.currentUserValue?.user
+    
+    
   }
 
 
@@ -103,7 +109,17 @@ export class ProductComponent implements OnInit {
   }
 
 
+calculoDesc(price , descuentoProduct, dMayorista?){
+  const descuentoP = (price * descuentoProduct) / 100;
+  const pricePublico = price - descuentoP;
 
+  if(dMayorista){
+    const descuentMayorista = (pricePublico * dMayorista) / 100;
+    return pricePublico - descuentMayorista;
+  }
+
+  return pricePublico
+}
 
 
 

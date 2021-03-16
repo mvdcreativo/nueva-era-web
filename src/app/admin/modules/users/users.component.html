@@ -42,8 +42,8 @@
                 <mat-form-field class="add">
                     <input formControlName="company"  type="text" matInput placeholder="company">
                 </mat-form-field>
-                <mat-form-field class="corto">
-                    <input formControlName="discount" type="number" matInput placeholder="Descuento">
+                <mat-form-field class="corto" *ngIf="formAdd.get('role').value === 'UMAY'">
+                    <input formControlName="discount"  matInput placeholder="Descuento Mayorista" >
                     <span matPrefix>%&nbsp;</span>
                 </mat-form-field>
                 

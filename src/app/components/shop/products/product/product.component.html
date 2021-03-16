@@ -22,8 +22,23 @@
            <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
         </div> -->
         <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
-         <p>{{product.price | currency:productsService?.currency:'symbol'}}</p>
-            <a (click)="addToCart(product)"><mat-icon class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>
+           <div>
+               <!-- <p *ngIf="!product.discount" >{{product.price | currency:productsService?.currency:'symbol'}}</p> -->
+               <p *ngIf="product.discount"> 
+                  <span class="price-old">{{product.price | currency:productsService?.currency:'symbol'}}</span>
+                  <span class="discount">
+                     {{product.discount }}% OFF
+                  </span>
+               </p>
+               <p *ngIf="user?.role === 'UMAY' && user?.discount">
+                  <span class="discount">
+                     -{{ user?.discount }}% MAYORISTA
+                  </span>
+               </p>
+               <p>{{ calculoDesc(product.price,product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</p>
+           </div>
+
+         <a (click)="addToCart(product)"><mat-icon class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>
         </div>
         <div class="icons" fxLayout="column">
            <!-- <a (click)="addToWishlist(product)"><mat-icon class="mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon></a> -->

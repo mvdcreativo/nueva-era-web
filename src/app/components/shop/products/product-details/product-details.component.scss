@@ -12,6 +12,17 @@
         margin-top: 1rem;
     }
 }
+h3{
+    .price-old{
+        text-decoration:line-through; 
+        color:#ccc;
+        font-size: 14px;
+    }
+    .discount{
+        text-decoration: inherit;
+        color: #39b54a;
+    }
+}
 
 
 @media (max-width: 768px){

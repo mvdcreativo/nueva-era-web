@@ -21,7 +21,7 @@ import { Product } from 'src/app/modals/product.model';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
-  styleUrls: ['./checkout.component.sass']
+  styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
 
@@ -143,7 +143,7 @@ export class CheckoutComponent implements OnInit {
 
     const dataProduct = this.buyProducts.map(
       value => {
-        const a = { [value.product.id]: { quantity: value.quantity, price: value.product.price } }
+        const a = { [value.product.id]: { quantity: value.quantity, price: value.product.price , discount_user: this.user.discount, discount_product: value.product?.discount} }
         return a
       }
     )
@@ -151,7 +151,7 @@ export class CheckoutComponent implements OnInit {
     let dataForm = this.form.value;
     this.total.subscribe(res=>dataForm.total = res),
     dataForm.products = dataProduct
-    console.log(dataForm);
+    // console.log(dataForm);
 
 
 
@@ -203,4 +203,16 @@ export class CheckoutComponent implements OnInit {
     return message;
   }
 
+
+  calculoDesc(price , descuentoProduct, dMayorista?){
+    const descuentoP = (price * descuentoProduct) / 100;
+    const pricePublico = price - descuentoP;
+  
+    if(dMayorista){
+      const descuentMayorista = (pricePublico * dMayorista) / 100;
+      return pricePublico - descuentMayorista;
+    }
+  
+    return pricePublico
+  }
 }

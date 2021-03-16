@@ -1,73 +1,72 @@
 <div class="container">
   <div class="checkout sec-padding">
-      <div fxLayout="row wrap" class="">
-          <div class="billing-details  pr-15" fxFlex="100" fxFlex.gt-md="30" fxFlex.md="30">
-            <div class="header-title">
-                <h3>Datos de facturación</h3
-                  >
-            </div>
+    <div fxLayout="row wrap" class="">
+      <div class="billing-details  pr-15" fxFlex="100" fxFlex.gt-md="30" fxFlex.md="30">
+        <div class="header-title">
+          <h3>Datos de facturación</h3>
+        </div>
 
-              <form fxLayout="row wrap" [formGroup] = "form">
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Nombre" formControlName = "name"  required>
-                          <mat-error *ngIf="form.get('name').errors">{{ getErrorMessages('name') }}</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Apellido" formControlName = "lastname"  required>
-                        <mat-error *ngIf="form.get('lastname').errors">{{ getErrorMessages('lastname') }}</mat-error>
-                      </mat-form-field>
-                </div>
-                  <div  fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Documento de Identidad" formControlName = "ci"  required>
-                        <mat-error *ngIf="form.get('ci').errors">{{ getErrorMessages('ci') }}</mat-error>
-                      </mat-form-field>
-                </div>
-                  <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Empresa (opcional)" formControlName = "company" >
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="R.U.T. (opcional)" formControlName = "rut" >
-                        
-                      </mat-form-field>
-                </div>
-                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Dirección" formControlName = "address" required>
-                          <mat-error *ngIf="form.get('address').errors">{{ getErrorMessages('address') }}</mat-error>          
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Ciudad" formControlName = "city" required>
-                          <mat-error *ngIf="form.get('city').errors">{{ getErrorMessages('city') }}</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Departamento" formControlName = "state" required>
-                          <mat-error *ngIf="form.get('state').errors">{{ getErrorMessages('state') }}</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Teléfono / Móvil" formControlName = "phone" required>
-                          <mat-error *ngIf="form.get('phone').errors">{{ getErrorMessages('phone') }}</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <div  fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
-                      <mat-form-field class="w-100">
-                          <input matInput placeholder="Correo electrónico" formControlName = "email" required>
-                          <mat-error *ngIf="form.get('email').errors">{{ getErrorMessages('email') }}</mat-error>
-                        </mat-form-field>
-                  </div>
-                  <!-- <div class="add-info">
+        <form fxLayout="row wrap" [formGroup]="form">
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Nombre" formControlName="name" required>
+              <mat-error *ngIf="form.get('name').errors">{{ getErrorMessages('name') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Apellido" formControlName="lastname" required>
+              <mat-error *ngIf="form.get('lastname').errors">{{ getErrorMessages('lastname') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Documento de Identidad" formControlName="ci" required>
+              <mat-error *ngIf="form.get('ci').errors">{{ getErrorMessages('ci') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Empresa (opcional)" formControlName="company">
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="R.U.T. (opcional)" formControlName="rut">
+
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Dirección" formControlName="address" required>
+              <mat-error *ngIf="form.get('address').errors">{{ getErrorMessages('address') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-sm="100" class="mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Ciudad" formControlName="city" required>
+              <mat-error *ngIf="form.get('city').errors">{{ getErrorMessages('city') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Departamento" formControlName="state" required>
+              <mat-error *ngIf="form.get('state').errors">{{ getErrorMessages('state') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="50" fxFlex.md="50" class="pl-5 mt-20" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Teléfono / Móvil" formControlName="phone" required>
+              <mat-error *ngIf="form.get('phone').errors">{{ getErrorMessages('phone') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="100" fxFlex.gt-md="100" fxFlex.md="100" class="mt-20 pr-5" ngClass.sm="mt-10" ngClass.xs="mt-10">
+            <mat-form-field class="w-100">
+              <input matInput placeholder="Correo electrónico" formControlName="email" required>
+              <mat-error *ngIf="form.get('email').errors">{{ getErrorMessages('email') }}</mat-error>
+            </mat-form-field>
+          </div>
+          <!-- <div class="add-info">
                     <h3>Additional information</h3>
                     <p class="text-muted">Order notes (optional)</p>
 
@@ -77,45 +76,40 @@
                           <textarea placeholder="Post content" matInput rows="4" ngModel name="content"></textarea>
                         </mat-form-field>
                   </div> -->
-                  <!-- <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
+          <!-- <div class="button-wrap" fxFlex="100" fxFlex.gt-sm="100" class="px-1" ngClass.sm="mt-1" ngClass.xs="mt-1">
                       <button class="btn-project" mat-raised-button color="accent" type="submit">Enviar Datos</button>
                     </div> -->
-                  </form>
-          </div>
-          <div class="mainOrder-wrapper pl-15" fxFlex="100" fxFlex.gt-md="70" fxFlex.md="70">
-            <div class="main-order " >
-              <div class="order-box">
-                  <div class="title-box">
-                      <div>Productos <span class="tl-amount"> Total</span></div>
-                  </div>
-                  <ul class="price-list" *ngIf='buyProducts.length'>
-                    <li *ngFor="let item of buyProducts">
-                       {{ item.product.name }} × {{ item.quantity }}
-                      <span>
-                       {{ item.product.price * item.quantity | currency:productService?.currency:'symbol' }}
-                        </span>
-                    </li>
-                </ul>
-                <ul class="quantity" *ngIf='buyProducts.length <= 0'>
-                  <li class="empty-checkout"> No tienes productos e el Carrito </li>
-                 </ul>
-                <ul class="total-amount">
-                  <li>
-                    Subtotal <span class="amount">{{ total | async | currency:productService?.currency:'symbol'}}</span>
-                  </li>
-                  <li *ngIf='buyProducts.length'>
-                    <!-- Envío <span class="shipping">{{ 0  | currency}}</span> -->
-                   <!-- <div class="shipping">
-                      <div class="shopping-option">
-                        <mat-radio-group>
-                          <mat-radio-button *ngFor="let payment of payments" [value]="payment">{{payment}}</mat-radio-button>
-                        </mat-radio-group>
-                      </div>
-                   </div> -->
-                  </li>
-              </ul>
-              <ul class="total">
-                <li>Total <span class="count">{{ total | async | currency:productService?.currency:'symbol'}}</span></li>
+        </form>
+      </div>
+      <div class="mainOrder-wrapper pl-15" fxFlex="100" fxFlex.gt-md="70" fxFlex.md="70">
+        <div class="main-order ">
+          <div class="order-box">
+            <div class="title-box">
+              <div>Productos <span class="tl-amount"> Total</span></div>
+            </div>
+            <ul class="price-list" *ngIf='buyProducts.length'>
+              <li *ngFor="let item of buyProducts">
+                {{ item.product.name }} × {{ item.quantity }}
+                <span>
+                  <span class="discount">
+                    <span *ngIf="item.product?.discount">-{{item.product?.discount }}%</span>
+                  </span>
+                  {{ calculoDesc(item.product.price, item.product?.discount , user?.discount) * item.quantity |
+                  currency:productService?.currency:'symbol' }}
+                </span>
+              </li>
+            </ul>
+            <ul class="quantity" *ngIf='buyProducts.length <= 0'>
+              <li class="empty-checkout"> No tienes productos e el Carrito </li>
+            </ul>
+            <ul class="total-amount">
+              <li>
+                Descuento <span class="amount">{{user?.discount || 0 }}%</span>
+              </li>
+
+            </ul>
+            <ul class="total">
+              <li>Total <span class="count">{{ total | async | currency:productService?.currency:'symbol'}}</span></li>
             </ul>
             <!-- <div class="paymentFinal">
               <mat-radio-group>
@@ -124,13 +118,14 @@
             </div> -->
             <div class="order">
               <!-- <button mat-button (click)="openDialog()">Open dialog</button> -->
-              <button class="btn-project" mat-raised-button color="accent" (click)="openDialog()" [disabled]="!form.valid" type="submit">Enviar Pedido</button>
+              <button class="btn-project" mat-raised-button color="accent" (click)="openDialog()"
+                [disabled]="!form.valid" type="submit">Enviar Pedido</button>
               <mat-error *ngIf="!form.valid">Verifica los datos del formulario</mat-error>
             </div>
-               </div>
           </div>
-          </div>
+        </div>
+      </div>
 
-       </div>
     </div>
+  </div>
 </div>

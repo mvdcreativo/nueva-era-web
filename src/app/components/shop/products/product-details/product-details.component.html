@@ -24,7 +24,20 @@
 
                      <!-- <h4 *ngIf="!productsService?.catalogMode"><del>{{product.salePrice | currency:productsService?.currency:'symbol'}}</del><span>{{product.discount}}% off</span></h4> -->
                      <h3 class="price" *ngIf="!productsService?.catalogMode">
-                        {{product.price | currency:productsService?.currency:'symbol'}}</h3>
+                        <p *ngIf="product.discount"> 
+                           <span class="price-old">{{product.price | currency:productsService?.currency:'symbol'}}</span>
+                           <span class="discount">
+                              {{product.discount }}% OFF
+                           </span>
+                        </p>
+                        <p *ngIf="user?.role === 'UMAY' && user?.discount">
+                           <span class="discount">
+                              -{{ user?.discount }}% MAYORISTA
+                           </span>
+                        </p>
+                        <p>{{ calculoDesc(product.price,product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</p>
+                     </h3>
+                     
                      <!-- <p class="text-muted description">{{product.description}}</p> -->
                   </div>
                   <!-- <div class="py-1 mt-15">

@@ -29,6 +29,7 @@ export class AuthService implements OnInit{
     private http: HttpClient,
     public snackBar: MatSnackBar,
     private authServiceSocial: AuthServiceSocial,
+    
 
   ) {
     this.currentUserSubject = new BehaviorSubject<CurrentUser>(JSON.parse(localStorage.getItem('currentUser')));

@@ -8,6 +8,8 @@ import { SwiperDirective, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { ProductZoomComponent } from './product-zoom/product-zoom.component';
 import { environment } from 'src/environments/environment';
 import { SeoService } from 'src/app/seo/services/seo.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/interfaces/user';
 
 declare let fbq: Function;
 
@@ -36,6 +38,7 @@ export class ProductDetailsComponent implements OnInit {
 
   index: number;
   bigProductImageIndex = 0;
+  user: User;
 
   constructor(
     private route: ActivatedRoute,
@@ -43,9 +46,11 @@ export class ProductDetailsComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private cartService: CartService,
-    private seoService: SeoService
+    private seoService: SeoService,
+    private authService: AuthService
 
-  ) {
+    ) {
+    this.user = this.authService.currentUserValue?.user
     this.route.params.subscribe(params => {
       const slug = params['slug'];
       this.productsService.getProduct(slug).subscribe(
@@ -62,6 +67,17 @@ export class ProductDetailsComponent implements OnInit {
     });
   }
 
+  calculoDesc(price , descuentoProduct, dMayorista?){
+    const descuentoP = (price * descuentoProduct) / 100;
+    const pricePublico = price - descuentoP;
+  
+    if(dMayorista){
+      const descuentMayorista = (pricePublico * dMayorista) / 100;
+      return pricePublico - descuentMayorista;
+    }
+  
+    return pricePublico
+  }
   //////  funcion para Titulos
   titleCase(str) {
     str = str.toLowerCase().split(' ');

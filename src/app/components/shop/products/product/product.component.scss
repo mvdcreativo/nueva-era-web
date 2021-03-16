@@ -26,7 +26,18 @@
                 position: absolute;
                 bottom: 0;
                 margin-bottom: 0.8rem;
-                width: calc(100% - 1rem);     
+                width: calc(100% - 1rem);
+                div{
+                    .price-old{
+                        text-decoration:line-through; 
+                        color:#ccc;
+                        font-size: 14px;
+                    }
+                    .discount{
+                        text-decoration: inherit;
+                        color: #39b54a;
+                    }
+                }
             }
         }
     }
