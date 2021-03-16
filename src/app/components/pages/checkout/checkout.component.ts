@@ -163,7 +163,11 @@ export class CheckoutComponent implements OnInit {
 
         // >
         //redirecciono a url de pagos en API y a su vez redirecciona a mercadopago////
-        location.href = `${environment.urlPago}/${id}`
+        if(this.user.role === "UMAY"){
+          this.router.navigate(['/mi-cuenta/mis-pedidos'])
+        }else{
+          location.href = `${environment.urlPago}/${id}`
+        }
 
         localStorage.removeItem('cartItem');
         // this.router.navigate(['/pages/metodos-de-pago/', id ])

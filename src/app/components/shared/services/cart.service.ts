@@ -60,7 +60,7 @@ export class CartService {
         let stock = this.calculateStockCounts(products[index], quantity);
         if (qty != 0 && stock) {
           products[index]['discount_user'] = this.user?.discount || 0
-          products[index]['discount_product'] = product.discount
+          products[index]['discount_product'] = product?.discount
           products[index]['quantity'] = qty;
           message = 'El producto ' + product.name + ' se agrego tu carrito';
           status = 'success';
@@ -72,7 +72,7 @@ export class CartService {
 
     // If Products does not exist (Add New Products)
     if (!hasItem) {
-      item = { product: product, quantity: quantity, discount_user: this.user.discount  || 0, discount_product: product.discount };
+      item = { product: product, quantity: quantity, discount_user: this.user?.discount  || 0, discount_product: product?.discount };
       products.push(item);
       message = 'El producto ' + product.name + ' se agrego tu carrito';
       status = 'success';

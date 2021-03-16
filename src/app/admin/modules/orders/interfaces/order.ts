@@ -27,6 +27,8 @@ export interface Order {
 export interface ProductOrder {
     quantity:number;
     product: Product
+    discount_user?: number;
+    discount_product?: number;
 }
 
 export interface Status{
