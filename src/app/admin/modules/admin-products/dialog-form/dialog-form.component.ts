@@ -77,31 +77,31 @@ export class DialogFormComponent implements OnInit {
     
     this.edit = false;
     this.edit = true;
-    var discount
-    if(element.discount === null){
-      discount = 0;
-    }else{
-      discount = element.discount;
-    }
-    var price_mayorista
-    if(element.price_mayorista === null){
-      price_mayorista = 0;
-    }else{
-      price_mayorista = element.discount;
-    }
+    // var discount
+    // if(element.discount === null){
+    //   discount = 0;
+    // }else{
+    //   discount = element.discount;
+    // }
+    // var price_mayorista
+    // if(element.price_mayorista === null){
+    //   price_mayorista = 0;
+    // }else{
+    //   price_mayorista = element.discount;
+    // }
 
     this.formAdd.patchValue(
       {
         id: element.id,
-        name: element.name,
-        price: element.price,
-        name_concat:element.name_concat,
-        price_mayorista: price_mayorista,
-        discount: discount,
-        description: element.description,
-        stock: element.stock,
-        brand_id: element.brand_id,
-        category_id: element.category_id
+        name: element?.name,
+        price: element?.price,
+        name_concat:element?.name_concat,
+        price_mayorista: element?.price_mayorista,
+        discount: element?.discount,
+        description: element?.description,
+        stock: element?.stock,
+        brand_id: element?.brand_id,
+        category_id: element?.category_id
       }
       )
       this.imageSrc = `${this.urlFiles+element.picture}`

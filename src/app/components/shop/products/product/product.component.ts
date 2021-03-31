@@ -109,12 +109,12 @@ export class ProductComponent implements OnInit {
   }
 
 
-calculoDesc(price , descuentoProduct, dMayorista?){
+calculoDesc(price , descuentoProduct, dUser?){
   const descuentoP = (price * descuentoProduct) / 100;
   const pricePublico = price - descuentoP;
 
-  if(dMayorista){
-    const descuentMayorista = (pricePublico * dMayorista) / 100;
+  if(dUser){
+    const descuentMayorista = (pricePublico * dUser) / 100;
     return pricePublico - descuentMayorista;
   }
 

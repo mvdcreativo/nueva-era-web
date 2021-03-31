@@ -74,13 +74,13 @@ export class CartComponent implements OnInit {
     return this.cartService.getTotalAmount();
   }
 
-  calculoDesc(price , descuentoProduct, dMayorista?){
+  calculoDesc(price , descuentoProduct, dUser?){
     const descuentoP = (price * descuentoProduct) / 100;
     const pricePublico = price - descuentoP;
   
-    if(dMayorista){
-      const descuentMayorista = (pricePublico * dMayorista) / 100;
-      return pricePublico - descuentMayorista;
+    if(dUser){
+      const descuentUser = (pricePublico * dUser) / 100;
+      return pricePublico - descuentUser;
     }
   
     return pricePublico

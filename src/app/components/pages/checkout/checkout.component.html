@@ -87,7 +87,9 @@
             <div class="title-box">
               <div>Productos <span class="tl-amount"> Total</span></div>
             </div>
-            <ul class="price-list" *ngIf='buyProducts.length'>
+
+            <!--  PRECIO COMUN  -->
+            <ul class="price-list" *ngIf="buyProducts.length && user?.role !== 'UMAY'">
               <li *ngFor="let item of buyProducts">
                 {{ item.product.name }} × {{ item.quantity }}
                 <span>
@@ -99,6 +101,22 @@
                 </span>
               </li>
             </ul>
+
+            <!--  PRECIO MAYORISTA  -->
+            <ul class="price-list" *ngIf="buyProducts.length && user?.role === 'UMAY'">
+              <li *ngFor="let item of buyProducts">
+                {{ item.product.name }} × {{ item.quantity }}
+                <span>
+                  <span class="discount">
+                    <span *ngIf="item.product?.discount">-{{item.product?.discount }}%</span>
+                  </span>
+                  {{ calculoDesc(item.product?.price_mayorista || item.product?.price, item.product?.discount , user?.discount) * item.quantity |
+                  currency:productService?.currency:'symbol' }}
+                </span>
+              </li>
+            </ul>
+
+
             <ul class="quantity" *ngIf='buyProducts.length <= 0'>
               <li class="empty-checkout"> No tienes productos e el Carrito </li>
             </ul>

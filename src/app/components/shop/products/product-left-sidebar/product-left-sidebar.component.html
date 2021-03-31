@@ -79,7 +79,7 @@
                 </div>
                 <div fxLayout="row wrap" class="products-wrapper">
                     <div *ngFor="let products of allItems | orderBy:sortByOrder | paginate: { itemsPerPage: 12, currentPage: page  }"
-                        fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.xs="50" fxFlex.sm="33" class="col">
+                        fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.xs="100" fxFlex.sm="33" class="col">
                         <div class="product-box">
                             <app-product [seo]="seoData" [product]="products"></app-product>
                         </div>

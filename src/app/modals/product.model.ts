@@ -14,6 +14,7 @@ export class Product {
   name_concat?:string;
   slug?:string;
   price?: number;
+  price_mayorista?:number;
   salePrice?: number;
   discount?: number;
   picture?: string;

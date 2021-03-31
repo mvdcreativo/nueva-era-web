@@ -22,7 +22,27 @@
            <mat-icon class="mat-icon-xs mat-icon material-icons ng-star-inserted">star_rate</mat-icon>
         </div> -->
         <div class="price-wrap" fxLayout="row" fxLayoutAlign="space-between center">
-           <div>
+           
+            <!-- PRECIO MAYORISTA -->
+            <div *ngIf="user?.role === 'UMAY'">
+               <!-- <p *ngIf="!product.discount" >{{product.price | currency:productsService?.currency:'symbol'}}</p> -->
+               <p *ngIf="product.discount"> 
+                  <span *ngIf="user?.role === 'UMAY'" class="price-old">{{product?.price_mayorista  || product?.price | currency:productsService?.currency:'symbol'}}</span>
+                  <span class="discount">
+                     {{product.discount }}% OFF
+                  </span>
+               </p>
+               <p *ngIf="user?.discount">
+                  <span class="discount">
+                     -{{ user?.discount }}% OFF para ti.
+                  </span>
+               </p>
+               <p><span>Sugerido {{ calculoDesc(product?.price ,product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</span></p>
+               <p>{{ calculoDesc(product?.price_mayorista || product?.price ,product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</p>
+           </div>
+           
+           <!-- PRECIO COMUN -->
+           <div *ngIf="user?.role !== 'UMAY'">
                <!-- <p *ngIf="!product.discount" >{{product.price | currency:productsService?.currency:'symbol'}}</p> -->
                <p *ngIf="product.discount"> 
                   <span class="price-old">{{product.price | currency:productsService?.currency:'symbol'}}</span>
@@ -30,19 +50,18 @@
                      {{product.discount }}% OFF
                   </span>
                </p>
-               <p *ngIf="user?.role === 'UMAY' && user?.discount">
+               <p *ngIf="user?.discount">
                   <span class="discount">
-                     -{{ user?.discount }}% MAYORISTA
+                     -{{ user?.discount }}% OFF Solo para ti!
                   </span>
                </p>
-               <p>{{ calculoDesc(product.price,product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</p>
-           </div>
-
+            <p>{{ calculoDesc(product.price, product.discount, user?.discount)  | currency:productsService?.currency:'symbol' }}</p>
+         </div>
          <a (click)="addToCart(product)"><mat-icon class="mat-icon-lg mat-icon material-icons">shopping_cart</mat-icon></a>
         </div>
         <div class="icons" fxLayout="column">
            <!-- <a (click)="addToWishlist(product)"><mat-icon class="mat-icon-lg mat-icon material-icons mr-10">favorite_border</mat-icon></a> -->
-           <a (click)="openProductDialog(product)"><mat-icon>remove_red_eye</mat-icon></a>
+           <!-- <a (click)="openProductDialog(product)"><mat-icon>remove_red_eye</mat-icon></a> -->
            <!-- <a (click)="addToCompare(product)"><mat-icon>cached</mat-icon></a> -->
          </div>
      </div>

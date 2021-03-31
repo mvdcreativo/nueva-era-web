@@ -137,7 +137,11 @@ export class CartService {
     )
     return this.cartItems.pipe(map((product: CartItem[]) => {
       return products.reduce((prev, curr: CartItem) => {
-        return prev + this.calculoDesc(curr.product.price, curr.product?.discount, this.user?.discount) * curr.quantity;
+        if(this.user?.role === 'UMAY'){
+          return prev + this.calculoDesc(curr.product?.price_mayorista  || curr.product?.price, curr.product?.discount, this.user?.discount) * curr.quantity;
+        }else{
+          return prev + this.calculoDesc(curr.product.price, curr.product?.discount, this.user?.discount) * curr.quantity;
+        }
       }, 0);
     }));
   }

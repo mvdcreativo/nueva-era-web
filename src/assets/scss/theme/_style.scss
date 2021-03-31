@@ -778,12 +778,20 @@ line-height: 23px;
         padding: 0;
         .product-img {
           background: $baners-background;
-          img {
-            max-width: 180px;
-            margin-bottom: 12px;
-            display: block;
-              margin-left: auto;
-              margin-right: auto;
+          height: 100%;
+          .product-link{
+            width: 100%;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+              margin-bottom: 12px;
+              display: block;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
           }
         }
         .product-info-wrapper {

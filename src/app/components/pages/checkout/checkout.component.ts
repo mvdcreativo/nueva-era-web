@@ -141,12 +141,22 @@ export class CheckoutComponent implements OnInit {
     fbq('track', 'AddPaymentInfo');
     //////
 
-    const dataProduct = this.buyProducts.map(
-      value => {
-        const a = { [value.product.id]: { quantity: value.quantity, price: value.product.price , discount_user: this.user.discount, discount_product: value.product?.discount} }
-        return a
-      }
-    )
+    if(this.user?.role === 'UMAY'){
+      var dataProduct = this.buyProducts.map(
+        value => {
+          const a = { [value.product.id]: { quantity: value.quantity, price: value.product?.price_mayorista ? value.product?.price_mayorista : value.product?.price , discount_user: this.user.discount, discount_product: value.product?.discount} }
+          return a
+        }
+      )
+    }else{
+      var dataProduct = this.buyProducts.map(
+        value => {
+          const a = { [value.product.id]: { quantity: value.quantity, price: value.product?.price , discount_user: this.user.discount, discount_product: value.product?.discount} }
+          return a
+        }
+      )
+      
+    }
 
     let dataForm = this.form.value;
     this.total.subscribe(res=>dataForm.total = res),
@@ -188,9 +198,8 @@ export class CheckoutComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
       if(result === true){this.onSubmit()}
-      
-      
     });
+
   }
 
   getErrorMessages(field:string){
